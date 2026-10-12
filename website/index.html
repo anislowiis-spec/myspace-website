@@ -106,7 +106,7 @@ p{margin:0}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
 .hero-meta{display:flex;align-items:center;gap:8px;margin-top:22px;color:var(--navy);font-weight:600;font-size:15px}
 
-.tool-card{background:var(--surface);border-radius:20px;box-shadow:0 20px 50px rgba(27,45,91,.16);overflow:hidden}
+.tool-card{background:var(--surface);border-radius:20px;box-shadow:0 20px 50px rgba(27,45,91,.16);position:relative;z-index:5}
 .tabs{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)}
 .tab{display:flex;align-items:center;justify-content:center;gap:8px;min-height:56px;background:none;border:0;border-bottom:3px solid transparent;font:600 16px var(--body);color:var(--muted);cursor:pointer;transition:color .2s,border-color .2s}
 .tab[aria-selected="true"]{color:var(--navy);border-bottom-color:var(--teal)}
@@ -289,6 +289,26 @@ dialog.wide{width:min(620px,calc(100vw - 32px))}
 .trk-msg .ic{width:52px;height:52px;border-radius:50%;background:var(--bg);color:var(--muted);display:inline-grid;place-items:center;margin-bottom:10px}
 .spinner{width:36px;height:36px;border-radius:50%;border:4px solid var(--teal-soft);border-top-color:var(--teal);margin:6px auto 12px;animation:spin .9s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
+
+/* searchable country picker */
+.combo{position:relative}
+.combo select{position:absolute;inset:0;opacity:0;pointer-events:none}
+.combo-btn{display:flex;align-items:center;gap:10px;text-align:start;cursor:pointer;font:16px var(--body);color:var(--fg)}
+.combo-btn .ph{color:var(--muted)}
+.combo-btn .lbl{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.combo-btn::after{content:"";width:18px;height:18px;flex:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%234f5d78' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") center/18px no-repeat;transition:transform .2s var(--ease)}
+.combo-btn[aria-expanded="true"]::after{transform:rotate(180deg)}
+.combo:has(select[aria-invalid="true"]) .combo-btn{border-color:var(--err)}
+.flag{width:24px;height:18px;border-radius:3px;object-fit:cover;flex:none;box-shadow:0 0 0 1px rgba(20,33,61,.12);background:var(--bg)}
+.combo-pop{position:absolute;inset-inline:0;top:calc(100% + 6px);z-index:30;background:#fff;border:1px solid var(--line);border-radius:14px;box-shadow:0 18px 40px rgba(20,33,61,.18);padding:8px}
+.combo-search{min-height:44px;margin-bottom:6px}
+.combo-list{list-style:none;margin:0;padding:0;max-height:280px;overflow-y:auto;overscroll-behavior:contain}
+.combo-list .grp{font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:10px 10px 4px}
+:lang(ar) .combo-list .grp,:lang(ckb) .combo-list .grp{letter-spacing:0}
+.combo-list [role="option"]{display:flex;align-items:center;gap:10px;min-height:44px;padding:8px 10px;border-radius:10px;cursor:pointer}
+.combo-list [role="option"].active{background:var(--teal-soft)}
+.combo-list [role="option"][aria-selected="true"]{font-weight:700;color:var(--navy)}
+.combo-list .none{padding:14px 10px;color:var(--muted)}
 
 .faq{background:var(--surface)}
 .faq-list{max-width:820px;margin-inline:auto}
@@ -959,6 +979,7 @@ const CONFIG = {
    ===================================================================== */
 const T = {
 en:{
+ q_search:"Search country",q_none:"No country found",
  newpw_title:"Choose a new password",newpw_btn:"Save password",newpw_done:"Your password has been changed.",confirm_sent:"Almost done! We sent a confirmation link to {email}. Click it to activate your account.",err_confirm:"Please confirm your email first. Check your inbox for our link.",
  track_locked:"Log in to track your shipments",track_locked_d:"Tracking is available for MySpace customers. Creating an account is free.",track_help_live:"See where your shipment is right now, with its full history.",trk_title:"Shipment",trk_loading:"Looking up your shipment…",trk_notfound:"We couldn't find a shipment with this number. Check the number and try again. New shipments can take a few hours to appear.",trk_error:"Tracking is temporarily unavailable. Please try again later or ask us on WhatsApp.",trk_login:"Your session has expired. Please log in again.",trk_eta:"Estimated delivery",trk_from:"From",trk_to:"To",trk_history:"Shipment history",trk_updated:"Last update",st_pre:"Shipment created",st_transit:"In transit",st_delivered:"Delivered",st_failure:"Action needed",st_unknown:"Status update",
  nav_quote:"Get a quote",q_title:"Get a rate quote in seconds",q_sub:"Tell us where your shipment comes from and what's inside, and we'll show you the price to Iraq.",q_st1:"Route",q_st2:"Your shipment",q_st3:"Your price",q_from:"Shipping from",q_from_ph:"Select a country",q_to:"Delivering to (Iraq)",q_popular:"Popular",q_all:"All countries",q_next:"Next",q_back:"Back",q_type:"What are you sending?",q_pkg:"Package",q_pkg_d:"Goods, products, anything in a box",q_doc:"Documents",q_doc_d:"Papers only",q_piece:"Piece",q_qty:"Quantity",q_weight:"Weight (kg)",q_add:"Add another piece",q_remove:"Remove",q_show:"Show my price",q_err_from:"Please choose the country you're shipping from.",q_err_weight:"Enter the weight of every piece.",q_err_limit:"This shipment is too large for online pricing. Please contact us for a custom quote.",q_iraq:"Iraq",q_total:"Total",q_cw:"Chargeable weight",q_actual:"Actual weight",q_vol:"Volumetric weight",q_ship:"Shipping",q_handling:"Heavy or large piece handling",q_fuel:"Fuel surcharge",q_note:"Customs duties and taxes are not included. The final price is confirmed after your parcel is weighed and measured at our warehouse.",q_edit:"Change details",q_book:"Book on WhatsApp",q_pieces:"Pieces",q_book_msg:"Hello MySpace, I'd like to book a shipment.\nFrom: {from}\nTo: {to}, Iraq\nType: {type}\nPieces: {pieces}\nChargeable weight: {w} kg\nQuoted price: {total}",cities:"Erbil|Sulaymaniyah|Duhok|Halabja|Kirkuk|Baghdad|Basra|Mosul|Najaf|Karbala|Other city",
@@ -1001,6 +1022,7 @@ en:{
  demo:"Preview mode: accounts are saved on this device only until online accounts are switched on."
 },
 ar:{
+ q_search:"ابحث عن دولة",q_none:"لم يتم العثور على دولة",
  newpw_title:"اختر كلمة مرور جديدة",newpw_btn:"حفظ كلمة المرور",newpw_done:"تم تغيير كلمة المرور.",confirm_sent:"اقتربت! أرسلنا رابط تأكيد إلى {email}. اضغط عليه لتفعيل حسابك.",err_confirm:"يرجى تأكيد بريدك الإلكتروني أولاً. تحقق من بريدك الوارد.",
  track_locked:"سجّل الدخول لتتبع شحناتك",track_locked_d:"التتبع متاح لعملاء MySpace. إنشاء الحساب مجاني.",track_help_live:"اعرف مكان شحنتك الآن مع سجلها الكامل.",trk_title:"الشحنة",trk_loading:"جارٍ البحث عن شحنتك…",trk_notfound:"لم نعثر على شحنة بهذا الرقم. تحقق من الرقم وحاول مجدداً. قد تستغرق الشحنات الجديدة بضع ساعات لتظهر.",trk_error:"التتبع غير متاح مؤقتاً. حاول لاحقاً أو اسألنا عبر واتساب.",trk_login:"انتهت جلستك. يرجى تسجيل الدخول مرة أخرى.",trk_eta:"موعد التسليم المتوقع",trk_from:"من",trk_to:"إلى",trk_history:"سجل الشحنة",trk_updated:"آخر تحديث",st_pre:"تم إنشاء الشحنة",st_transit:"في الطريق",st_delivered:"تم التسليم",st_failure:"يتطلب إجراء",st_unknown:"تحديث الحالة",
  nav_quote:"احصل على سعر",q_title:"احصل على سعر الشحن خلال ثوانٍ",q_sub:"أخبرنا من أين تأتي شحنتك وما بداخلها، وسنعرض لك سعر الشحن إلى العراق.",q_st1:"المسار",q_st2:"شحنتك",q_st3:"السعر",q_from:"الشحن من",q_from_ph:"اختر الدولة",q_to:"التوصيل إلى (العراق)",q_popular:"الأكثر طلباً",q_all:"جميع الدول",q_next:"التالي",q_back:"رجوع",q_type:"ماذا ترسل؟",q_pkg:"طرد",q_pkg_d:"بضائع ومنتجات وأي شيء في صندوق",q_doc:"مستندات",q_doc_d:"أوراق فقط",q_piece:"قطعة",q_qty:"العدد",q_weight:"الوزن (كغ)",q_add:"إضافة قطعة أخرى",q_remove:"إزالة",q_show:"اعرض السعر",q_err_from:"يرجى اختيار الدولة التي تشحن منها.",q_err_weight:"أدخل وزن كل قطعة.",q_err_limit:"هذه الشحنة كبيرة جداً للتسعير عبر الإنترنت. تواصل معنا للحصول على عرض خاص.",q_iraq:"العراق",q_total:"المجموع",q_cw:"الوزن المحتسب",q_actual:"الوزن الفعلي",q_vol:"الوزن الحجمي",q_ship:"الشحن",q_handling:"رسوم القطع الثقيلة أو الكبيرة",q_fuel:"رسوم الوقود",q_note:"لا يشمل السعر الرسوم الجمركية والضرائب. يتم تأكيد السعر النهائي بعد وزن طردك وقياسه في مستودعنا.",q_edit:"تعديل التفاصيل",q_book:"احجز عبر واتساب",q_pieces:"عدد القطع",q_book_msg:"مرحباً MySpace، أريد حجز شحنة.\nمن: {from}\nإلى: {to}، العراق\nالنوع: {type}\nعدد القطع: {pieces}\nالوزن المحتسب: {w} كغ\nالسعر: {total}",cities:"أربيل|السليمانية|دهوك|حلبجة|كركوك|بغداد|البصرة|الموصل|النجف|كربلاء|مدينة أخرى",
@@ -1043,6 +1065,7 @@ ar:{
  demo:"وضع المعاينة: تُحفظ الحسابات على هذا الجهاز فقط حتى يتم تفعيل الحسابات عبر الإنترنت."
 },
 ckb:{
+ q_search:"گەڕان بۆ وڵات",q_none:"هیچ وڵاتێک نەدۆزرایەوە",
  newpw_title:"وشەی نهێنیی نوێ هەڵبژێرە",newpw_btn:"پاشەکەوتکردنی وشەی نهێنی",newpw_done:"وشەی نهێنییەکەت گۆڕدرا.",confirm_sent:"نزیکە تەواو بێت! بەستەرێکی پشتڕاستکردنەوەمان بۆ {email} نارد. کلیکی لێ بکە بۆ چالاککردنی هەژمارەکەت.",err_confirm:"تکایە سەرەتا ئیمەیڵەکەت پشتڕاست بکەرەوە. سندوقی نامەکانت بپشکنە.",
  track_locked:"بچۆ ژوورەوە بۆ بەدواداچوونی بارەکانت",track_locked_d:"بەدواداچوون بۆ کڕیارانی MySpace بەردەستە. دروستکردنی هەژمار بەخۆڕاییە.",track_help_live:"بزانە بارەکەت ئێستا لە کوێیە، لەگەڵ هەموو مێژووەکەی.",trk_title:"بار",trk_loading:"بەدوای بارەکەتدا دەگەڕێین…",trk_notfound:"هیچ بارێکمان بەم ژمارەیە نەدۆزییەوە. ژمارەکە بپشکنە و دووبارە هەوڵ بدەرەوە. لەوانەیە بارە نوێیەکان چەند کاتژمێرێک بخایەنن تا دەردەکەون.",trk_error:"بەدواداچوون بە شێوەیەکی کاتی بەردەست نییە. دواتر هەوڵ بدەرەوە یان لە واتسئاپ لێمان بپرسە.",trk_login:"دانیشتنەکەت کۆتایی هات. تکایە دووبارە بچۆ ژوورەوە.",trk_eta:"کاتی گەیاندنی چاوەڕوانکراو",trk_from:"لە",trk_to:"بۆ",trk_history:"مێژووی بار",trk_updated:"دوایین نوێکردنەوە",st_pre:"بار تۆمارکرا",st_transit:"لە ڕێگادایە",st_delivered:"گەیەندرا",st_failure:"پێویستی بە کردارە",st_unknown:"نوێکردنەوەی دۆخ",
  nav_quote:"نرخ وەربگرە",q_title:"لە چەند چرکەیەکدا نرخی بارکردن وەربگرە",q_sub:"پێمان بڵێ بارەکەت لە کوێوە دێت و چی تێدایە، نرخی گەیاندنی بۆ عێراق پیشانت دەدەین.",q_st1:"ڕێگا",q_st2:"بارەکەت",q_st3:"نرخەکەت",q_from:"ناردن لە",q_from_ph:"وڵاتێک هەڵبژێرە",q_to:"گەیاندن بۆ (عێراق)",q_popular:"باوترین",q_all:"هەموو وڵاتان",q_next:"دواتر",q_back:"گەڕانەوە",q_type:"چی دەنێریت؟",q_pkg:"پاکەت",q_pkg_d:"کاڵا، بەرهەم، هەر شتێک لە سندوقدا",q_doc:"بەڵگەنامە",q_doc_d:"تەنها کاغەز",q_piece:"پارچە",q_qty:"ژمارە",q_weight:"کێش (کگم)",q_add:"زیادکردنی پارچەیەکی تر",q_remove:"لابردن",q_show:"نرخەکەم پیشان بدە",q_err_from:"تکایە ئەو وڵاتە هەڵبژێرە کە لێیەوە دەنێریت.",q_err_weight:"کێشی هەموو پارچەکان بنووسە.",q_err_limit:"ئەم بارە زۆر گەورەیە بۆ نرخدانانی ئۆنلاین. تکایە پەیوەندیمان پێوە بکە بۆ نرخێکی تایبەت.",q_iraq:"عێراق",q_total:"کۆی گشتی",q_cw:"کێشی ژمێردراو",q_actual:"کێشی ڕاستەقینە",q_vol:"کێشی قەبارەیی",q_ship:"بارکردن",q_handling:"پارچەی قورس یان گەورە",q_fuel:"باجی سووتەمەنی",q_note:"باجی گومرگ و باجەکان لەخۆناگرێت. نرخی کۆتایی دوای کێشان و پێوانی پاکەتەکەت لە کۆگاکەمان دەسەلمێنرێت.",q_edit:"گۆڕینی وردەکارییەکان",q_book:"لە واتسئاپ داوا بکە",q_pieces:"ژمارەی پارچەکان",q_book_msg:"سڵاو MySpace، دەمەوێت بارێک بنێرم.\nلە: {from}\nبۆ: {to}، عێراق\nجۆر: {type}\nژمارەی پارچەکان: {pieces}\nکێشی ژمێردراو: {w} کگم\nنرخ: {total}",cities:"هەولێر|سلێمانی|دهۆک|هەڵەبجە|کەرکووک|بەغدا|بەسرە|مووسڵ|نەجەف|کەربەلا|شارێکی تر",
@@ -1234,8 +1257,106 @@ function fillRouteSelects(){
     + `<optgroup label="${t("q_popular")}">${POPULAR.map(c => opt([c, countryName(c)])).join("")}</optgroup>`
     + `<optgroup label="${t("q_all")}">${sorted.map(opt).join("")}</optgroup>`;
   const toHtml = t("cities").split("|").map((c, i) => `<option value="${i}">${c}</option>`).join("");
-  $$(".js-from").forEach(sel => { const v = sel.value; sel.innerHTML = fromHtml; sel.value = v; });
+  $$(".js-from").forEach(sel => { const v = sel.value; sel.innerHTML = fromHtml; sel.value = v; countryCombo(sel).refresh(); });
   $$(".js-to").forEach(sel => { const v = sel.value || "0"; sel.innerHTML = toHtml; sel.value = v; });
+}
+
+/* ----- Searchable country picker with flags -----
+   The real <select> stays in the page (hidden) and keeps the value, so the rest of the
+   code is unchanged; this builds a button + search box + list on top of it. */
+const FLAG_CODE = { XB:"bq", XC:"cw", XE:"bq", XM:"sx", XN:"kn", XS:"so", XY:"bl", KV:"xk", IC:"es" };
+const flagUrl = c => `https://flagcdn.com/w40/${FLAG_CODE[c] || c.toLowerCase()}.png`;
+const flagImg = c => `<img class="flag" src="${flagUrl(c)}" alt="" width="24" height="18" loading="lazy" decoding="async">`;
+// extra search words people commonly type (English, Arabic, Kurdish)
+const ALIAS = { GB:"uk england britain بريطانيا انكلترا بەریتانیا ئینگلتەرا", US:"usa america امريكا أمريكا ئەمریکا", AE:"uae emirates dubai الامارات دبي ئیمارات دوبەی",
+  TR:"turkey turkiye تركيا تورکیا", DE:"germany المانيا ئەڵمانیا", CN:"china الصين چین", SA:"ksa saudi السعودية سعودیە", KR:"korea كوريا کۆریا", NL:"holland هولندا هۆڵەندا" };
+const fold = v => String(v).toLocaleLowerCase().normalize("NFD").replace(/[̀-ًͯ-ٟ]/g, "").replace(/[إأآ]/g, "ا");
+
+function countryCombo(sel){
+  if (sel._combo) return sel._combo;
+  const id = sel.id, wrap = document.createElement("div");
+  wrap.className = "combo";
+  sel.parentNode.insertBefore(wrap, sel); wrap.appendChild(sel);
+  sel.tabIndex = -1; sel.setAttribute("aria-hidden", "true");
+  wrap.insertAdjacentHTML("beforeend", `
+    <button type="button" class="input combo-btn" id="${id}Btn" aria-haspopup="listbox" aria-expanded="false" aria-controls="${id}Pop"></button>
+    <div class="combo-pop" id="${id}Pop" hidden>
+      <input class="input combo-search" type="search" role="combobox" aria-autocomplete="list" aria-expanded="true" aria-controls="${id}List" autocomplete="off" spellcheck="false">
+      <ul class="combo-list" id="${id}List" role="listbox"></ul>
+    </div>`);
+  const btn = $(".combo-btn", wrap), pop = $(".combo-pop", wrap), search = $(".combo-search", wrap), list = $(".combo-list", wrap);
+  const label = document.querySelector(`label[for="${id}"]`);
+  if (label){ label.htmlFor = id + "Btn"; label.id = label.id || id + "Lbl"; list.setAttribute("aria-labelledby", label.id); }
+  sel.addEventListener("focus", () => btn.focus());          // code that focuses the select lands on the button
+  let items = [], active = -1;
+
+  const all = () => Object.keys(RATES.zones).map(c => ({ c, n: countryName(c), en: RATES.zones[c][0] }))
+    .sort((a, b) => a.n.localeCompare(b.n, LANG));
+  function renderList(){
+    const q = fold(search.value.trim());
+    const pool = all();
+    const match = x => !q || fold(x.n).includes(q) || fold(x.en).includes(q) || x.c.toLowerCase() === q || fold(ALIAS[x.c] || "").split(" ").some(w => w.startsWith(q));
+    const groups = q ? [[null, pool.filter(match)]]
+      : [[t("q_popular"), POPULAR.map(c => pool.find(x => x.c === c)).filter(Boolean)], [t("q_all"), pool]];
+    items = []; let html = "";
+    for (const [g, arr] of groups){
+      if (g) html += `<li class="grp" role="presentation">${g}</li>`;
+      for (const x of arr){
+        const i = items.push(x.c) - 1;
+        html += `<li role="option" id="${id}-o${i}" data-i="${i}" aria-selected="${x.c === sel.value}">${flagImg(x.c)}<span>${esc(x.n)}</span></li>`;
+      }
+    }
+    list.innerHTML = html || `<li class="none" role="presentation">${t("q_none")}</li>`;
+    setActive(q ? 0 : Math.max(0, items.indexOf(sel.value)), true);
+  }
+  function setActive(i, scroll){
+    $$(".active", list).forEach(el => el.classList.remove("active"));
+    active = items.length ? Math.max(0, Math.min(i, items.length - 1)) : -1;
+    const el = active >= 0 && $(`#${id}-o${active}`, list);
+    if (el){ el.classList.add("active"); search.setAttribute("aria-activedescendant", el.id); if (scroll) el.scrollIntoView({block:"nearest"}); }
+    else search.removeAttribute("aria-activedescendant");
+  }
+  function open(){
+    if (!pop.hidden) return;
+    pop.hidden = false; btn.setAttribute("aria-expanded", "true");
+    search.value = ""; renderList(); search.focus();
+  }
+  function close(focusBtn = true){
+    if (pop.hidden) return;
+    pop.hidden = true; btn.setAttribute("aria-expanded", "false");
+    if (focusBtn) btn.focus();
+  }
+  function choose(code){
+    sel.value = code; sel.removeAttribute("aria-invalid");
+    sel.dispatchEvent(new Event("change", { bubbles: true }));
+    close();
+  }
+  function refresh(){
+    const c = sel.value;
+    btn.innerHTML = c ? `${flagImg(c)}<span class="lbl">${esc(countryName(c))}</span>` : `<span class="lbl ph">${t("q_from_ph")}</span>`;
+    search.placeholder = t("q_search"); search.setAttribute("aria-label", t("q_search"));
+    if (!pop.hidden) renderList();
+  }
+
+  btn.addEventListener("click", () => pop.hidden ? open() : close());
+  btn.addEventListener("keydown", e => { if (["ArrowDown","ArrowUp"].includes(e.key)){ e.preventDefault(); open(); } });
+  search.addEventListener("input", renderList);
+  search.addEventListener("keydown", e => {
+    if (e.key === "ArrowDown"){ e.preventDefault(); setActive(active + 1, true); }
+    else if (e.key === "ArrowUp"){ e.preventDefault(); setActive(active - 1, true); }
+    else if (e.key === "Home"){ e.preventDefault(); setActive(0, true); }
+    else if (e.key === "End"){ e.preventDefault(); setActive(items.length - 1, true); }
+    else if (e.key === "Enter"){ e.preventDefault(); if (active >= 0) choose(items[active]); }
+    else if (e.key === "Escape"){ e.preventDefault(); close(); }
+    else if (e.key === "Tab"){ close(false); }
+  });
+  list.addEventListener("mousedown", e => e.preventDefault());   // keep focus in the search box
+  list.addEventListener("click", e => { const o = e.target.closest("[role=option]"); if (o) choose(items[+o.dataset.i]); });
+  list.addEventListener("mousemove", e => { const o = e.target.closest("[role=option]"); if (o && +o.dataset.i !== active) setActive(+o.dataset.i, false); });
+  document.addEventListener("pointerdown", e => { if (!wrap.contains(e.target)) close(false); });
+  sel.addEventListener("change", refresh);                         // keeps both pickers in sync
+
+  return (sel._combo = { refresh, open, close });
 }
 
 /* Price for a chargeable weight (kg) from one zone */
@@ -1323,7 +1444,7 @@ $$("[data-qgo]").forEach(b => b.addEventListener("click", () => goStep(+b.datase
 // keep the two route forms (hero + section) in sync
 $$(".js-from, .js-to").forEach(sel => sel.addEventListener("change", () => {
   const cls = sel.classList.contains("js-from") ? ".js-from" : ".js-to";
-  $$(cls).forEach(o => { if (o !== sel) o.value = sel.value; });
+  $$(cls).forEach(o => { if (o !== sel){ o.value = sel.value; o._combo?.refresh(); } });
   $("#qFromErr").textContent = ""; $("#hErr").textContent = ""; $("#qFrom").removeAttribute("aria-invalid");
 }));
 
