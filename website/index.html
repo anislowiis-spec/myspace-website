@@ -938,6 +938,8 @@ dialog[open]{animation:pop .22s var(--ease)}
 const CONFIG = {
   // Messages from the contact form and new sign-ups are emailed here.
   notifyEmail: "anis@myspaceapp.com",
+  // FormSubmit alias for the address above (keeps the email out of the form traffic)
+  formKey: "c4be1940739464c2694e23f193f5490d",
   phone: "+964 750 742 2734",
   whatsapp: "9647507422734",          // country code + number, no "+" or spaces
   // Supabase project (customer accounts, customer database, tracking service).
@@ -1391,7 +1393,7 @@ function refreshQuoteLang(){ fillRouteSelects(); renderPieces(); renderResult();
 
 /* ---------- Email notifications (FormSubmit — no server needed) ---------- */
 async function sendEmail(subject, fields){
-  const res = await fetch("https://formsubmit.co/ajax/" + CONFIG.notifyEmail, {
+  const res = await fetch("https://formsubmit.co/ajax/" + (CONFIG.formKey || CONFIG.notifyEmail), {
     method:"POST",
     headers:{"Content-Type":"application/json","Accept":"application/json"},
     body: JSON.stringify({_subject: subject, _template:"table", _captcha:"false", ...fields})
