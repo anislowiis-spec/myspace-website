@@ -1,0 +1,14 @@
+# This folder also holds private business documents (contracts, invoices, rate cards).
+# Only the files listed below are ever uploaded to GitHub — everything else is ignored.
+/*
+!/.gitignore
+!/README.md
+!/website/
+!/supabase/
+!/.github/
+
+# never upload local secrets or tool caches
+supabase/.branches
+supabase/.temp
+.env*
+*.secret*

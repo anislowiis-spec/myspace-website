@@ -1,0 +1,1676 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MySpace — Shop the world, delivered to Iraq</title>
+<meta name="description" content="MySpace: shop from online stores around the world and get your parcels flown to Iraq by MySpace Express Air. Office in Erbil.">
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="logo.png">
+<meta name="theme-color" content="#1b2d5b">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="MySpace">
+<meta property="og:title" content="MySpace — Shop the world, delivered to Iraq">
+<meta property="og:description" content="Shop from online stores worldwide. We consolidate your parcels and fly them to Iraq with MySpace Express. Office in Erbil.">
+<meta property="og:image" content="og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&family=Vazirmatn:wght@400;500;600;700;800&display=swap">
+<style>
+/* ---------- Brand tokens (navy + teal from the MySpace logo) ---------- */
+:root{
+  --navy:#1b2d5b; --navy-2:#243a72; --navy-deep:#122044;
+  --teal:#2f9c93; --teal-ink:#1c7068; --teal-soft:#d7efed;
+  --sky:#e4f4f4; --sky-2:#c4e5e6;
+  --bg:#f5f8fb; --surface:#ffffff; --fg:#14213d; --muted:#4f5d78; --line:#d9e2ec;
+  --coral:#e8673f; --kraft:#d7a56b; --kraft-dark:#b5824b;
+  --ok:#1f7a4d; --err:#b3261e;
+  --radius:16px; --radius-sm:10px;
+  --shadow:0 1px 2px rgba(20,33,61,.06),0 8px 24px rgba(20,33,61,.08);
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif;
+  --body:"Barlow","Segoe UI",Arial,sans-serif;
+  --ease:cubic-bezier(.2,.7,.2,1);
+  color-scheme:light;
+}
+:root:lang(ar),:root:lang(ckb){--display:"Vazirmatn",Tahoma,sans-serif;--body:"Vazirmatn",Tahoma,sans-serif}
+
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:84px}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:var(--teal-ink)}
+h1,h2,h3{font-family:var(--display);line-height:1.08;margin:0;color:var(--navy);text-wrap:balance}
+:lang(ar) h1,:lang(ar) h2,:lang(ar) h3,:lang(ckb) h1,:lang(ckb) h2,:lang(ckb) h3{line-height:1.35}
+p{margin:0}
+.wrap{max-width:1200px;margin-inline:auto;padding-inline:20px}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.skip{position:absolute;inset-inline-start:12px;top:-60px;background:var(--navy);color:#fff;padding:10px 16px;border-radius:8px;z-index:100;text-decoration:none}
+.skip:focus{top:12px}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:6px}
+.icon{width:24px;height:24px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.icon.sm{width:18px;height:18px}
+
+/* ---------- Buttons ---------- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 22px;border-radius:999px;border:2px solid transparent;font:600 16px/1.2 var(--body);cursor:pointer;text-decoration:none;transition:background .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease),transform .15s var(--ease);touch-action:manipulation;white-space:nowrap}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--teal-ink);color:#fff}
+.btn-primary:hover{background:#155a53}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-navy:hover{background:var(--navy-deep)}
+.btn-outline{border-color:var(--navy);color:var(--navy);background:transparent}
+.btn-outline:hover{background:var(--navy);color:#fff}
+.btn-ghost{color:var(--navy);background:rgba(255,255,255,.7)}
+.btn-ghost:hover{background:#fff}
+.btn-block{width:100%}
+.btn[disabled]{opacity:.55;cursor:progress}
+
+/* ---------- Header ---------- */
+.site-header{position:sticky;top:0;z-index:40;background:rgba(228,244,244,.88);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid rgba(27,45,91,.1)}
+.nav{display:flex;align-items:center;gap:20px;min-height:72px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--navy);flex:none}
+.brand img{width:48px;height:auto}
+.brand span{font:800 26px/1 "Barlow Condensed",Arial,sans-serif;letter-spacing:.03em}
+.nav-links{display:flex;gap:4px;margin-inline:auto;list-style:none;padding:0}
+.nav-links a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
+.nav-links a:hover{background:rgba(27,45,91,.07);color:var(--navy)}
+.nav-actions{display:flex;align-items:center;gap:10px}
+.auth-btns{display:flex;gap:10px}
+@media (max-width:480px){.lang select{padding-inline:32px 10px;font-size:14px}.nav{gap:10px}}
+.lang{position:relative;display:flex;align-items:center}
+.lang .icon{position:absolute;inset-inline-start:10px;pointer-events:none;color:var(--navy)}
+.lang select{appearance:none;-webkit-appearance:none;min-height:44px;padding-block:8px;padding-inline:36px 14px;border:1px solid rgba(27,45,91,.25);border-radius:999px;background:rgba(255,255,255,.75);font:600 15px var(--body);color:var(--navy);cursor:pointer}
+.menu-btn{display:none;width:46px;height:46px;border-radius:12px;border:1px solid rgba(27,45,91,.25);background:#fff;color:var(--navy);align-items:center;justify-content:center;cursor:pointer}
+.mobile-menu{display:none}
+@media (max-width:1020px){
+  .nav-links,.nav-actions .auth-btns{display:none}
+  .menu-btn{display:inline-flex}
+  .nav-actions{margin-inline-start:auto}
+  .mobile-menu{display:block;border-top:1px solid rgba(27,45,91,.1);padding:12px 0 20px}
+  .mobile-menu[hidden]{display:none!important}
+  .mobile-menu ul{list-style:none;margin:0;padding:0}
+  .mobile-menu a{display:block;padding:14px 4px;color:var(--fg);font-weight:600;text-decoration:none;border-bottom:1px solid var(--line)}
+  .mobile-menu .btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+}
+@media (max-width:420px){.brand span{display:none}}
+
+/* ---------- Hero ---------- */
+.hero{background:linear-gradient(180deg,var(--sky) 0%,var(--sky-2) 100%);overflow:hidden;position:relative}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:start;padding-block:56px 8px;position:relative;z-index:2}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--teal-ink);background:rgba(255,255,255,.7);padding:6px 14px;border-radius:999px;font-size:14px;letter-spacing:.02em}
+.hero h1{font-size:clamp(44px,6.4vw,84px);font-weight:800;margin-block:18px 18px;letter-spacing:-.01em}
+:lang(ar) .hero h1,:lang(ckb) .hero h1{font-size:clamp(36px,5vw,64px);letter-spacing:0}
+.hero h1 .line2{color:var(--teal-ink);display:block}
+.hero .lead{font-size:clamp(17px,1.6vw,19px);color:#34425f;max-width:56ch}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+.hero-meta{display:flex;align-items:center;gap:8px;margin-top:22px;color:var(--navy);font-weight:600;font-size:15px}
+
+.tool-card{background:var(--surface);border-radius:20px;box-shadow:0 20px 50px rgba(27,45,91,.16);overflow:hidden}
+.tabs{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)}
+.tab{display:flex;align-items:center;justify-content:center;gap:8px;min-height:56px;background:none;border:0;border-bottom:3px solid transparent;font:600 16px var(--body);color:var(--muted);cursor:pointer;transition:color .2s,border-color .2s}
+.tab[aria-selected="true"]{color:var(--navy);border-bottom-color:var(--teal)}
+.tab:hover{color:var(--navy)}
+.panel{padding:24px}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:16px;min-width:0}
+.field label{font-weight:600;font-size:14px;color:var(--navy)}
+.field .help{font-size:13px;color:var(--muted)}
+.field .error{font-size:13px;color:var(--err);font-weight:600}
+.input{width:100%;min-height:48px;padding:10px 14px;border:1.5px solid #c3cedb;border-radius:var(--radius-sm);font:16px var(--body);color:var(--fg);background:#fff;transition:border-color .2s,box-shadow .2s}
+.input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(47,156,147,.2)}
+.input[aria-invalid="true"]{border-color:var(--err)}
+textarea.input{min-height:120px;resize:vertical}
+.input-icon{position:relative}
+.input-icon .icon{position:absolute;inset-inline-start:14px;top:50%;transform:translateY(-50%);color:var(--muted);pointer-events:none}
+.input-icon .input{padding-inline-start:44px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.result{display:flex;align-items:baseline;justify-content:space-between;gap:12px;background:var(--teal-soft);border-radius:var(--radius-sm);padding:14px 16px;margin-block:4px 12px}
+.result strong{font:800 28px var(--display);color:var(--navy);font-variant-numeric:tabular-nums}
+.result span{font-weight:600;color:var(--teal-ink)}
+.note{font-size:13px;color:var(--muted)}
+.row-btns{display:flex;gap:10px;flex-wrap:wrap}
+.row-btns .btn{flex:1}
+
+.hero-art{position:relative;z-index:1;margin-top:-30px}
+.hero-art svg{width:100%;height:clamp(260px,34vw,480px)}
+
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;padding-top:36px;gap:28px}
+  .hero-art{margin-top:0}
+}
+
+.route{display:grid;gap:4px}
+.route .field label{display:flex;align-items:center;gap:8px}
+.pin-dot{width:24px;height:24px;border-radius:50%;border:2px solid var(--teal);color:var(--teal-ink);display:inline-grid;place-items:center;font-size:12px;font-weight:700;flex:none}
+select.input{appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='%234f5d78' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;background-size:18px;padding-inline-end:40px;cursor:pointer}
+[dir="rtl"] select.input{background-position:left 12px center}
+
+/* Hero illustration motion */
+.plane{animation:fly 7s ease-in-out infinite}
+.cloud-a{animation:drift 38s linear infinite}
+.cloud-b{animation:drift 52s linear infinite}
+.trail{stroke-dasharray:14 12;animation:dash 1.6s linear infinite}
+.route{stroke-dasharray:6 8;animation:dash 2.4s linear infinite}
+.ping{animation:ping 2.4s ease-out infinite;transform-box:fill-box;transform-origin:center}
+.van{animation:bob 1.4s ease-in-out infinite}
+@keyframes fly{0%,100%{transform:translate(0,0) rotate(-7deg)}50%{transform:translate(18px,-14px) rotate(-5deg)}}
+@keyframes drift{from{transform:translateX(-80px)}to{transform:translateX(80px)}}
+@keyframes dash{to{stroke-dashoffset:-52}}
+@keyframes ping{0%{transform:scale(.6);opacity:.9}100%{transform:scale(2.2);opacity:0}}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-2px)}}
+
+/* ---------- Sections ---------- */
+section{padding-block:clamp(64px,8vw,104px)}
+.section-head{max-width:720px;margin-bottom:44px}
+.section-head.center{margin-inline:auto;text-align:center}
+.kicker{font-weight:700;color:var(--teal-ink);text-transform:uppercase;letter-spacing:.12em;font-size:13px;margin-bottom:10px}
+:lang(ar) .kicker,:lang(ckb) .kicker{letter-spacing:0}
+.section-head h2{font-size:clamp(34px,4.4vw,52px);font-weight:800}
+.section-head p{margin-top:14px;color:var(--muted);font-size:18px}
+
+.trust{background:var(--navy);color:#fff;padding-block:36px}
+.trust ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
+.trust li{display:flex;gap:14px;align-items:flex-start}
+.trust .badge{width:48px;height:48px;border-radius:12px;background:rgba(47,156,147,.22);color:#7fd6cd;display:grid;place-items:center;flex:none}
+.trust h3{color:#fff;font-size:20px;font-weight:700;margin-bottom:2px}
+:lang(ar) .trust h3,:lang(ckb) .trust h3{font-size:17px}
+.trust p{color:#c5cee3;font-size:15px}
+@media (max-width:900px){.trust ul{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.trust ul{grid-template-columns:1fr}}
+
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:20px;counter-reset:step}
+.step{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:28px 22px 24px;counter-increment:step}
+.step::before{content:counter(step,decimal-leading-zero);position:absolute;inset-inline-end:20px;top:18px;font:800 40px var(--display);color:var(--teal-soft)}
+.step .ic{width:56px;height:56px;border-radius:14px;background:var(--navy);color:#fff;display:grid;place-items:center;margin-bottom:18px}
+.step h3{font-size:24px;font-weight:700;margin-bottom:6px}
+:lang(ar) .step h3,:lang(ckb) .step h3{font-size:19px}
+.step p{color:var(--muted)}
+@media (max-width:980px){.steps{grid-template-columns:1fr 1fr}}
+@media (max-width:560px){.steps{grid-template-columns:1fr}}
+
+.services{background:var(--surface)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.svc{border:1px solid var(--line);border-radius:var(--radius);padding:28px;background:linear-gradient(180deg,#fff, #fbfdfe);transition:border-color .2s var(--ease),box-shadow .2s var(--ease)}
+.svc:hover{border-color:var(--teal);box-shadow:var(--shadow)}
+.svc .ic{width:52px;height:52px;border-radius:14px;background:var(--teal-soft);color:var(--teal-ink);display:grid;place-items:center;margin-bottom:16px}
+.svc h3{font-size:23px;font-weight:700;margin-bottom:6px}
+:lang(ar) .svc h3,:lang(ckb) .svc h3{font-size:19px}
+.svc p{color:var(--muted)}
+@media (max-width:900px){.svc-grid{grid-template-columns:1fr 1fr}}
+@media (max-width:600px){.svc-grid{grid-template-columns:1fr}}
+
+.cats{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;position:relative;overflow:hidden}
+.cats .section-head h2{color:#fff}
+.cats .section-head p{color:#c5cee3}
+.cats .kicker{color:#7fd6cd}
+.cat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;list-style:none;margin:0;padding:0}
+.cat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:22px 16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;font-weight:600}
+.cat .ic{width:56px;height:56px;border-radius:50%;background:rgba(47,156,147,.25);color:#9be3dc;display:grid;place-items:center}
+.cats .more{text-align:center;margin-top:24px;color:#c5cee3;font-weight:600}
+@media (max-width:980px){.cat-grid{grid-template-columns:repeat(3,1fr)}}
+@media (max-width:520px){.cat-grid{grid-template-columns:1fr 1fr}}
+.cats-globe{position:absolute;inset-inline-end:-120px;top:-120px;width:420px;opacity:.08;pointer-events:none}
+
+.cta-band{padding-block:0;margin-block:clamp(64px,8vw,104px)}
+.cta-inner{background:var(--sky);border-radius:28px;padding:clamp(32px,5vw,56px);display:grid;grid-template-columns:auto 1fr auto;gap:32px;align-items:center;border:1px solid var(--sky-2)}
+.cta-inner img{width:120px}
+.cta-inner h2{font-size:clamp(30px,3.6vw,44px);font-weight:800}
+.cta-inner p{color:var(--muted);margin-top:8px;font-size:18px}
+@media (max-width:820px){.cta-inner{grid-template-columns:1fr;text-align:center;justify-items:center}}
+
+.quote{background:linear-gradient(180deg,var(--bg),var(--sky))}
+.qcard{max-width:880px;margin-inline:auto;background:var(--surface);border-radius:24px;box-shadow:0 20px 50px rgba(27,45,91,.12);padding:clamp(20px,4vw,40px)}
+.stepper{list-style:none;margin:0 0 28px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;counter-reset:none}
+.stepper li{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--muted);padding-bottom:12px;border-bottom:3px solid var(--line)}
+.stepper .num{width:30px;height:30px;border-radius:50%;background:var(--line);color:var(--muted);display:grid;place-items:center;font-size:14px;flex:none}
+.stepper li[aria-current="step"]{color:var(--navy);border-color:var(--teal)}
+.stepper li[aria-current="step"] .num,.stepper li.done .num{background:var(--teal-ink);color:#fff}
+.stepper li.done{color:var(--navy);border-color:var(--teal-soft)}
+@media (max-width:560px){.stepper li{flex-direction:column;align-items:flex-start;gap:6px;font-size:13px}}
+.route.big{grid-template-columns:1fr 1fr;gap:16px}
+@media (max-width:640px){.route.big{grid-template-columns:1fr}}
+.qnav{display:flex;justify-content:space-between;gap:12px;margin-top:20px;flex-wrap:wrap}
+.qnav .btn{min-width:140px}
+.types{border:0;padding:0;margin:0 0 20px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.types legend{font-weight:700;color:var(--navy);margin-bottom:10px;padding:0}
+.type{cursor:pointer;position:relative}
+.type input{position:absolute;opacity:0;pointer-events:none}
+.tbox{display:grid;grid-template-columns:auto 1fr;gap:2px 12px;align-items:center;border:2px solid var(--line);border-radius:14px;padding:14px 16px;transition:border-color .2s,background .2s}
+.tbox .icon{grid-row:span 2;color:var(--teal-ink)}
+.tbox b{color:var(--navy)}
+.tbox small{color:var(--muted);font-size:13px}
+.type input:checked + .tbox{border-color:var(--teal);background:var(--teal-soft)}
+.type input:focus-visible + .tbox{outline:3px solid var(--teal);outline-offset:2px}
+@media (max-width:520px){.types{grid-template-columns:1fr}}
+.piece{border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:12px;background:#fbfdfe}
+.piece-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-weight:700;color:var(--navy)}
+.piece-grid{display:grid;grid-template-columns:.7fr 1fr 1fr 1fr 1fr;gap:10px}
+.piece-grid .field{margin-bottom:0}
+.piece-grid label{font-size:13px}
+@media (max-width:720px){.piece-grid{grid-template-columns:repeat(6,1fr)}.piece-grid .field{grid-column:span 2}.piece-grid .field:nth-child(-n+2){grid-column:span 3}}
+.rm{min-height:36px;padding:0 10px;border-radius:8px;border:1px solid var(--line);background:#fff;color:var(--err);font:600 14px var(--body);cursor:pointer}
+.addpiece{margin-block:4px 8px}
+.qresult{border:1px solid var(--line);border-radius:18px;padding:22px;background:linear-gradient(180deg,#fff,#f8fbfc)}
+.qroute{font-weight:700;color:var(--navy);font-size:18px;margin-bottom:10px}
+.total{display:flex;justify-content:space-between;align-items:baseline;gap:12px;background:var(--navy);color:#fff;border-radius:14px;padding:16px 20px;margin-bottom:14px}
+.total strong{font:800 40px "Barlow Condensed",Arial,sans-serif}
+.lines{display:grid;grid-template-columns:1fr auto;gap:8px 16px;margin:0 0 14px}
+.lines dt{color:var(--muted)}
+.lines dd{margin:0;font-weight:600;color:var(--fg);text-align:end;font-variant-numeric:tabular-nums}
+
+.locked{text-align:center;padding:4px 4px 2px}
+.lock-ic{width:52px;height:52px;border-radius:50%;background:var(--teal-soft);color:var(--teal-ink);display:inline-grid;place-items:center;margin-bottom:10px}
+.lock-t{font-weight:700;color:var(--navy);font-size:18px}
+.lock-d{color:var(--muted);font-size:14px;margin:4px 0 16px}
+dialog.wide{width:min(620px,calc(100vw - 32px))}
+.trk-label{color:var(--muted);font-weight:600;font-size:14px}
+#trkTitle{font-size:28px}
+.trk-status{display:flex;gap:14px;align-items:center;border-radius:16px;padding:16px 18px;margin-bottom:16px;background:var(--teal-soft);color:var(--navy)}
+.trk-status .ic{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;background:var(--teal-ink);color:#fff;flex:none}
+.trk-status.delivered{background:#e1f3ea}.trk-status.delivered .ic{background:var(--ok)}
+.trk-status.failure{background:#fbe9e7}.trk-status.failure .ic{background:var(--err)}
+.trk-status b{display:block;font-size:20px}
+.trk-status span{color:var(--muted);font-size:14px}
+.trk-meta{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:18px}
+.trk-meta div{background:var(--bg);border-radius:12px;padding:10px 12px}
+.trk-meta small{display:block;color:var(--muted);font-size:13px}
+.trk-meta b{color:var(--navy)}
+.trk-h{font-size:20px;margin-bottom:10px}
+.timeline{list-style:none;margin:0;padding:0}
+.timeline li{position:relative;padding-inline-start:28px;padding-bottom:16px}
+.timeline li::before{content:"";position:absolute;inset-inline-start:6px;top:6px;width:10px;height:10px;border-radius:50%;background:var(--line);box-shadow:0 0 0 3px #fff}
+.timeline li:first-child::before{background:var(--teal)}
+.timeline li::after{content:"";position:absolute;inset-inline-start:10px;top:18px;bottom:-2px;width:2px;background:var(--line)}
+.timeline li:last-child::after{display:none}
+.timeline .ev{font-weight:600;color:var(--fg)}
+.timeline li:first-child .ev{color:var(--navy)}
+.timeline .when{color:var(--muted);font-size:14px}
+.trk-msg{text-align:center;padding:18px 6px}
+.trk-msg .ic{width:52px;height:52px;border-radius:50%;background:var(--bg);color:var(--muted);display:inline-grid;place-items:center;margin-bottom:10px}
+.spinner{width:36px;height:36px;border-radius:50%;border:4px solid var(--teal-soft);border-top-color:var(--teal);margin:6px auto 12px;animation:spin .9s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+.faq{background:var(--surface)}
+.faq-list{max-width:820px;margin-inline:auto}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 4px;cursor:pointer;font-weight:700;font-size:18px;color:var(--navy)}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary .icon{transition:transform .25s var(--ease);color:var(--teal-ink)}
+.faq details[open] summary .icon{transform:rotate(180deg)}
+.faq details p{padding:0 4px 22px;color:var(--muted);max-width:70ch}
+
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:28px;align-items:start}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:clamp(22px,3vw,32px);box-shadow:var(--shadow)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.info-list{list-style:none;margin:0 0 20px;padding:0;display:grid;gap:16px}
+.info-list li{display:flex;gap:14px;align-items:flex-start}
+.info-list .ic{width:44px;height:44px;border-radius:12px;background:var(--teal-soft);color:var(--teal-ink);display:grid;place-items:center;flex:none}
+.info-list b{display:block;color:var(--navy)}
+.info-list a{color:var(--fg);text-decoration:none;font-weight:500}
+.info-list a:hover{color:var(--teal-ink);text-decoration:underline}
+.ltr-num{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.map{width:100%;height:240px;border:0;border-radius:14px;background:var(--sky)}
+.status{margin-top:12px;padding:12px 14px;border-radius:10px;font-weight:600}
+.status.ok{background:#e1f3ea;color:var(--ok)}
+.status.err{background:#fbe9e7;color:var(--err)}
+@media (max-width:900px){.contact-grid{grid-template-columns:1fr}}
+@media (max-width:520px){.grid2,.grid3{grid-template-columns:1fr}}
+
+footer{background:var(--navy-deep);color:#c5cee3;padding-block:48px 28px}
+.foot{display:flex;flex-wrap:wrap;justify-content:space-between;gap:28px;align-items:center}
+.foot .brand{color:#fff}
+.foot .brand img{width:64px;background:#fff;border-radius:50%;padding:3px}
+.foot nav{display:flex;flex-wrap:wrap;gap:6px 20px}
+.foot nav a{color:#c5cee3;text-decoration:none}
+.foot nav a:hover{color:#fff}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.12);margin-top:28px;padding-top:20px;font-size:14px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+
+.wa-float{position:fixed;inset-inline-end:20px;bottom:20px;z-index:30;width:58px;height:58px;border-radius:50%;background:#1f9d55;color:#fff;display:grid;place-items:center;box-shadow:0 10px 24px rgba(0,0,0,.2);transition:transform .2s var(--ease)}
+.wa-float:hover{transform:scale(1.06)}
+.wa-float svg{width:30px;height:30px}
+
+/* ---------- Dialogs ---------- */
+dialog{border:0;border-radius:22px;padding:0;width:min(460px,calc(100vw - 32px));max-height:calc(100dvh - 32px);box-shadow:0 30px 80px rgba(18,32,68,.35);color:var(--fg)}
+dialog::backdrop{background:rgba(18,32,68,.55);backdrop-filter:blur(3px)}
+dialog[open]{animation:pop .22s var(--ease)}
+@keyframes pop{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+.dlg-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:22px 24px 0}
+.dlg-head .brand img{width:40px}
+.dlg-head h2{font-size:30px;font-weight:800}
+.close{width:44px;height:44px;border-radius:50%;border:0;background:var(--bg);color:var(--navy);display:grid;place-items:center;cursor:pointer}
+.close:hover{background:var(--line)}
+.dlg-body{padding:18px 24px 26px}
+.dlg-body h2{font-size:30px;font-weight:800;margin-bottom:18px}
+.switch{text-align:center;margin-top:16px;color:var(--muted)}
+.linkbtn{background:none;border:0;padding:4px;font:600 15px var(--body);color:var(--teal-ink);cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.pw-wrap{position:relative}
+.pw-wrap .input{padding-inline-end:84px}
+.pw-toggle{position:absolute;inset-inline-end:6px;top:50%;transform:translateY(-50%);min-height:36px;padding:0 12px;border:0;border-radius:8px;background:var(--bg);font:600 14px var(--body);color:var(--navy);cursor:pointer}
+.demo-note{font-size:13px;background:#fff6e0;color:#7a5200;padding:10px 12px;border-radius:10px;margin-bottom:16px}
+.idcard{background:linear-gradient(135deg,var(--navy),var(--navy-2));color:#fff;border-radius:16px;padding:20px;margin-block:14px 18px;position:relative;overflow:hidden}
+.idcard small{color:#9fb0d6;font-weight:600}
+.idcard .id{font:800 38px "Barlow Condensed",Arial,sans-serif;letter-spacing:.06em;direction:ltr;unicode-bidi:isolate}
+.idcard p{color:#c5cee3;font-size:14px}
+.idcard img{position:absolute;inset-inline-end:-24px;bottom:-24px;width:120px;opacity:.15}
+.acc-meta{display:grid;gap:4px;color:var(--muted);margin-bottom:18px;font-size:15px}
+
+.site-header{transition:box-shadow .25s var(--ease)}
+.site-header.scrolled{box-shadow:0 6px 20px rgba(20,33,61,.08)}
+.nav-links a[aria-current="true"]{color:var(--navy);background:rgba(27,45,91,.08);font-weight:600}
+.js .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease);transition-delay:var(--d,0ms)}
+.js .reveal.in{opacity:1;transform:none}
+.hp{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+.foot-bottom .linkbtn{color:#c5cee3;padding:0;font-size:14px}
+.foot-bottom .linkbtn:hover{color:#fff}
+.privacy-list{margin:0;padding-inline-start:20px;display:grid;gap:12px;color:var(--muted)}
+.agree{font-size:13px;color:var(--muted);text-align:center;margin-top:12px}
+.agree .linkbtn{font-size:13px;padding:0}
+
+@media (prefers-reduced-motion:reduce){
+  .js .reveal{opacity:1;transform:none}
+  *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main" data-i18n="skip">Skip to content</a>
+
+<!-- Icon sprite -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-plane" viewBox="0 0 24 24"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></symbol>
+  <symbol id="i-package" viewBox="0 0 24 24"><path d="M16.5 9.4 7.55 4.24"/><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.29 7 12 12l8.71-5"/><path d="M12 22V12"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/><path d="m9 12 2 2 4-4"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.62l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></symbol>
+  <symbol id="i-userplus" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M19 8v6M22 11h-6"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="5"/><path d="M20 21a8 8 0 0 0-16 0"/></symbol>
+  <symbol id="i-bag" viewBox="0 0 24 24"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24"><path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z"/><path d="m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65"/><path d="m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01M8 10h.01M12 10h.01M16 10h.01"/></symbol>
+  <symbol id="i-briefcase" viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></symbol>
+  <symbol id="i-file" viewBox="0 0 24 24"><path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"/><path d="M14 2v6h6"/><path d="m9 15 2 2 4-4"/></symbol>
+  <symbol id="i-pin" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></symbol>
+  <symbol id="i-chat" viewBox="0 0 24 24"><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+  <symbol id="i-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="m6 9 6 6 6-6"/></symbol>
+  <symbol id="i-menu" viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-pill" viewBox="0 0 24 24"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"/><path d="m8.5 8.5 7 7"/></symbol>
+  <symbol id="i-laptop" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="11" rx="2"/><path d="M2 20h20"/></symbol>
+  <symbol id="i-shirt" viewBox="0 0 24 24"><path d="M20.38 3.46 16 2a4 4 0 0 1-8 0L3.62 3.46a2 2 0 0 0-1.34 2.23l.58 3.47a1 1 0 0 0 .99.84H6v10c0 1.1.9 2 2 2h8a2 2 0 0 0 2-2V10h2.15a1 1 0 0 0 .99-.84l.58-3.47a2 2 0 0 0-1.34-2.23z"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M9.94 15.5A2 2 0 0 0 8.5 14.06l-6.14-1.58a.5.5 0 0 1 0-.96L8.5 9.94A2 2 0 0 0 9.94 8.5l1.58-6.14a.5.5 0 0 1 .96 0L14.06 8.5A2 2 0 0 0 15.5 9.94l6.14 1.58a.5.5 0 0 1 0 .96L15.5 14.06a2 2 0 0 0-1.44 1.44l-1.58 6.14a.5.5 0 0 1-.96 0z"/></symbol>
+  <symbol id="i-wrench" viewBox="0 0 24 24"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+  <symbol id="i-pot" viewBox="0 0 24 24"><path d="M2 12h20"/><path d="M20 12v8a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-8"/><path d="m4 8 16-4"/><path d="m8.86 6.78-.45-1.81a2 2 0 0 1 1.45-2.43l1.94-.48a2 2 0 0 1 2.43 1.46l.45 1.8"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-alert" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><path fill="currentColor" stroke="none" d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2.05 22l5.25-1.38a9.9 9.9 0 0 0 4.74 1.21c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2Zm5.8 14.02c-.24.68-1.42 1.3-1.95 1.36-.5.06-1.13.09-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.79-4.17-4.94-4.36-.14-.2-1.18-1.57-1.18-3s.75-2.13 1.02-2.42c.26-.29.58-.36.77-.36h.55c.18 0 .42-.07.65.5.24.58.82 2 .89 2.15.07.14.12.31.02.5-.1.2-.14.31-.29.48-.14.17-.3.38-.43.51-.14.14-.29.3-.13.59.17.29.74 1.22 1.59 1.97 1.09.97 2.01 1.27 2.3 1.42.29.14.46.12.63-.07.17-.2.72-.84.92-1.13.19-.29.38-.24.65-.14.26.1 1.68.79 1.97.94.29.14.48.21.55.33.07.12.07.7-.17 1.38Z"/></symbol>
+</svg>
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="brand" href="#top" aria-label="MySpace home">
+      <img src="logo.png" alt="" width="48" height="39">
+      <span>MYSPACE</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#how" data-i18n="nav_how">How it works</a></li>
+      <li><a href="#services" data-i18n="nav_services">Services</a></li>
+      <li><a href="#quote" data-i18n="nav_quote">Get a quote</a></li>
+      <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <div class="lang">
+        <svg class="icon sm" aria-hidden="true"><use href="#i-globe"/></svg>
+        <label class="sr-only" for="langSel" data-i18n="lang">Language</label>
+        <select id="langSel">
+          <option value="en">English</option>
+          <option value="ar">العربية</option>
+          <option value="ckb">کوردی</option>
+        </select>
+      </div>
+      <div class="auth-btns">
+        <button class="btn btn-outline js-login" type="button" data-i18n="login">Log in</button>
+        <button class="btn btn-navy js-signup" type="button" data-i18n="signup">Sign up</button>
+        <button class="btn btn-navy js-account" type="button" hidden><svg class="icon sm" aria-hidden="true"><use href="#i-user"/></svg><span data-i18n="my_account">My account</span></button>
+      </div>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="mobileMenu" id="menuBtn">
+        <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg><span class="sr-only" data-i18n="menu">Menu</span>
+      </button>
+    </div>
+  </div>
+  <div class="wrap mobile-menu" id="mobileMenu" hidden>
+    <ul>
+      <li><a href="#how" data-i18n="nav_how">How it works</a></li>
+      <li><a href="#services" data-i18n="nav_services">Services</a></li>
+      <li><a href="#quote" data-i18n="nav_quote">Get a quote</a></li>
+      <li><a href="#faq" data-i18n="nav_faq">FAQ</a></li>
+      <li><a href="#contact" data-i18n="nav_contact">Contact</a></li>
+    </ul>
+    <div class="btns">
+      <button class="btn btn-outline js-login" type="button" data-i18n="login">Log in</button>
+      <button class="btn btn-navy js-signup" type="button" data-i18n="signup">Sign up</button>
+      <button class="btn btn-navy js-account" type="button" hidden style="grid-column:1/-1"><span data-i18n="my_account">My account</span></button>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+<!-- ================= HERO ================= -->
+<section class="hero" id="top" style="padding:0">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow"><svg class="icon sm" aria-hidden="true"><use href="#i-globe"/></svg><span data-i18n="hero_eyebrow">Global addresses · Bigger possibilities</span></span>
+      <h1><span data-i18n="hero_t1">Shop the world.</span> <span class="line2" data-i18n="hero_t2">We fly it to Iraq.</span></h1>
+      <p class="lead" data-i18n="hero_sub">Order from almost any online store abroad. MySpace receives your parcels, combines them into one box and flies them to your door with MySpace Express Air.</p>
+      <div class="hero-ctas">
+        <button class="btn btn-primary js-signup" type="button"><svg class="icon sm" aria-hidden="true"><use href="#i-userplus"/></svg><span data-i18n="cta_signup">Create free account</span></button>
+        <a class="btn btn-ghost" href="#how" data-i18n="cta_how">How it works</a>
+      </div>
+      <p class="hero-meta"><svg class="icon sm" aria-hidden="true"><use href="#i-pin"/></svg><span data-i18n="hero_office">Office in Erbil · Delivery across Iraq</span></p>
+    </div>
+
+    <!-- Track / calculate card (like the reference) -->
+    <div class="tool-card" id="tools">
+      <div class="tabs" role="tablist">
+        <button class="tab" role="tab" id="tab-track" aria-controls="pnl-track" aria-selected="true"><svg class="icon sm" aria-hidden="true"><use href="#i-search"/></svg><span data-i18n="tab_track">Track</span></button>
+        <button class="tab" role="tab" id="tab-calc" aria-controls="pnl-calc" aria-selected="false" tabindex="-1"><svg class="icon sm" aria-hidden="true"><use href="#i-calc"/></svg><span data-i18n="nav_quote">Get a quote</span></button>
+      </div>
+      <form class="panel" role="tabpanel" id="pnl-track" aria-labelledby="tab-track" novalidate>
+        <div class="locked" id="trackLocked">
+          <span class="lock-ic"><svg class="icon" aria-hidden="true"><use href="#i-lock"/></svg></span>
+          <p class="lock-t" data-i18n="track_locked">Log in to track your shipments</p>
+          <p class="lock-d" data-i18n="track_locked_d">Tracking is available for MySpace customers. Creating an account is free.</p>
+          <div class="row-btns">
+            <button class="btn btn-primary js-login" type="button" data-i18n="login">Log in</button>
+            <button class="btn btn-outline js-signup" type="button" data-i18n="signup">Sign up</button>
+          </div>
+        </div>
+        <div id="trackOpen" hidden>
+        <div class="field">
+          <label for="trackNo" data-i18n="track_label">MySpace tracking number</label>
+          <div class="input-icon">
+            <svg class="icon sm" aria-hidden="true"><use href="#i-search"/></svg>
+            <input class="input" id="trackNo" inputmode="numeric" autocomplete="off" data-i18n-ph="track_ph" placeholder="e.g. 1234567890" aria-describedby="trackHelp trackErr">
+          </div>
+          <span class="help" id="trackHelp">We'll send you your shipment's latest status on WhatsApp.</span>
+          <span class="error" id="trackErr" role="alert"></span>
+        </div>
+        <button class="btn btn-primary btn-block" type="submit" data-i18n="track_btn">Track shipment</button>
+        </div>
+      </form>
+      <form class="panel" role="tabpanel" id="pnl-calc" aria-labelledby="tab-calc" hidden novalidate>
+        <div class="route">
+          <div class="field"><label for="hFrom"><span class="pin-dot">A</span><span data-i18n="q_from">Shipping from</span></label><select class="input js-from" id="hFrom"></select></div>
+          <div class="field"><label for="hTo"><span class="pin-dot">B</span><span data-i18n="q_to">Delivering to (Iraq)</span></label><select class="input js-to" id="hTo"></select></div>
+        </div>
+        <span class="error" id="hErr" role="alert"></span>
+        <button class="btn btn-primary btn-block" type="submit"><span data-i18n="q_next">Next</span></button>
+      </form>
+    </div>
+  </div>
+
+  <!-- Hero illustration: plane, globe, Erbil citadel & minaret, parcels, delivery van -->
+  <div class="hero-art" aria-hidden="true">
+    <svg viewBox="0 0 1440 470" preserveAspectRatio="xMidYMax slice">
+      <defs>
+        <clipPath id="globeClip"><circle cx="760" cy="360" r="190"/></clipPath>
+        <linearGradient id="gGlobe" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a4585"/><stop offset="1" stop-color="#14234a"/></linearGradient>
+      </defs>
+      <!-- clouds -->
+      <g class="cloud-a" fill="#fff" opacity=".9">
+        <ellipse cx="180" cy="90" rx="60" ry="18"/><ellipse cx="215" cy="76" rx="38" ry="22"/>
+        <ellipse cx="1180" cy="70" rx="70" ry="18"/><ellipse cx="1150" cy="58" rx="36" ry="20"/>
+      </g>
+      <g class="cloud-b" fill="#fff" opacity=".75">
+        <ellipse cx="560" cy="150" rx="48" ry="13"/><ellipse cx="1330" cy="200" rx="54" ry="14"/>
+      </g>
+      <!-- far skyline -->
+      <g fill="#9fcfd3">
+        <rect x="20" y="300" width="46" height="120"/><rect x="72" y="260" width="34" height="160"/><rect x="112" y="320" width="60" height="100"/>
+        <rect x="200" y="285" width="40" height="135"/><rect x="246" y="330" width="56" height="90"/><rect x="1010" y="300" width="44" height="120"/>
+        <rect x="1060" y="270" width="30" height="150"/><rect x="1096" y="320" width="54" height="100"/><rect x="1290" y="290" width="40" height="130"/>
+        <rect x="1336" y="250" width="34" height="170"/><rect x="1376" y="310" width="64" height="110"/>
+      </g>
+      <!-- globe with orbit (echoes the logo) -->
+      <circle cx="760" cy="360" r="190" fill="url(#gGlobe)"/>
+      <g clip-path="url(#globeClip)" fill="#2f9c93" opacity=".9">
+        <path d="M620 230c30-20 80-24 110-10 22 10 10 34-14 40-30 8-40 30-70 26-34-4-48-38-26-56z"/>
+        <path d="M760 200c40-14 110 0 140 24 22 18-6 40-40 36-30-4-44 14-74 8-34-6-56-50-26-68z"/>
+        <path d="M800 290c30 0 60 26 56 60-4 40-30 70-56 70-24 0-30-30-24-60 6-28-6-70 24-70z"/>
+        <path d="M640 330c22-6 50 14 52 40 2 30-22 50-44 40-20-8-34-74-8-80z"/>
+        <path d="M900 330c24-6 44 10 40 30-4 18-34 20-46 8-10-12-8-34 6-38z"/>
+      </g>
+      <ellipse cx="760" cy="330" rx="270" ry="56" fill="none" stroke="#2f9c93" stroke-width="10" transform="rotate(-12 760 330)" opacity=".9"/>
+      <!-- routes from the world to Erbil -->
+      <g fill="none" stroke="#fff" stroke-width="2.5" opacity=".9" class="route">
+        <path d="M660 250 Q 640 170 560 210"/>
+        <path d="M840 230 Q 900 150 980 220"/>
+      </g>
+      <circle cx="560" cy="210" r="6" fill="#fff"/><circle cx="560" cy="210" r="6" fill="#fff" class="ping"/>
+      <circle cx="980" cy="220" r="6" fill="#fff"/><circle cx="980" cy="220" r="6" fill="#fff" class="ping"/>
+      <!-- Erbil citadel -->
+      <g>
+        <path d="M330 420 L372 352 L612 352 L654 420Z" fill="#4f8fa8"/>
+        <path d="M372 352 L380 318 L604 318 L612 352Z" fill="#3d7c95"/>
+        <g fill="#3d7c95">
+          <rect x="380" y="306" width="18" height="14"/><rect x="420" y="306" width="18" height="14"/><rect x="460" y="306" width="18" height="14"/>
+          <rect x="506" y="306" width="18" height="14"/><rect x="546" y="306" width="18" height="14"/><rect x="586" y="306" width="18" height="14"/>
+        </g>
+        <path d="M478 352v-26a14 14 0 0 1 28 0v26Z" fill="#2c6378"/>
+        <rect x="520" y="270" width="8" height="40" fill="#3d7c95"/><circle cx="524" cy="266" r="9" fill="#3d7c95"/>
+      </g>
+      <!-- Mudhafaria minaret -->
+      <g fill="#3d7c95">
+        <path d="M1192 420 L1200 230 L1222 230 L1230 420Z"/>
+        <rect x="1194" y="300" width="34" height="10" rx="3"/>
+        <rect x="1196" y="236" width="30" height="8" rx="3"/>
+        <path d="M1203 230 L1211 206 L1219 230Z"/>
+      </g>
+      <!-- parcels -->
+      <g>
+        <rect x="1250" y="350" width="86" height="70" fill="#d7a56b"/><rect x="1336" y="350" width="22" height="70" fill="#b5824b"/>
+        <rect x="1286" y="350" width="14" height="70" fill="#c6935b"/>
+        <rect x="1270" y="296" width="70" height="54" fill="#e2b47e"/><rect x="1340" y="296" width="18" height="54" fill="#b5824b"/>
+        <rect x="1298" y="296" width="12" height="54" fill="#c6935b"/>
+        <rect x="1258" y="392" width="40" height="16" rx="2" fill="#2f9c93"/>
+        <text x="1278" y="404" text-anchor="middle" font-family="Barlow Condensed,Arial" font-weight="800" font-size="10" fill="#fff">MYSPACE</text>
+      </g>
+      <!-- ground -->
+      <rect x="0" y="418" width="1440" height="52" fill="#1b2d5b"/>
+      <rect x="0" y="418" width="1440" height="5" fill="#2f9c93"/>
+      <g fill="#fff" opacity=".35"><rect x="80" y="442" width="60" height="4"/><rect x="220" y="442" width="60" height="4"/><rect x="360" y="442" width="60" height="4"/><rect x="900" y="442" width="60" height="4"/><rect x="1040" y="442" width="60" height="4"/><rect x="1180" y="442" width="60" height="4"/></g>
+      <!-- delivery van -->
+      <g class="van">
+        <path d="M70 360 h150 v58 H70Z" fill="#fff"/>
+        <path d="M220 372 h40 l26 26 v20 h-66Z" fill="#fff"/>
+        <path d="M228 378 h28 l18 20 h-46Z" fill="#1b2d5b"/>
+        <rect x="70" y="388" width="216" height="8" fill="#2f9c93"/>
+        <text x="145" y="381" text-anchor="middle" font-family="Barlow Condensed,Arial" font-weight="800" font-size="18" fill="#1b2d5b">MYSPACE</text>
+        <circle cx="110" cy="420" r="14" fill="#122044"/><circle cx="110" cy="420" r="5" fill="#c4e5e6"/>
+        <circle cx="250" cy="420" r="14" fill="#122044"/><circle cx="250" cy="420" r="5" fill="#c4e5e6"/>
+      </g>
+      <!-- plane -->
+      <g class="plane" style="transform-origin:420px 140px">
+        <g fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".8" class="trail">
+          <path d="M170 160 H40"/><path d="M200 182 H90"/>
+        </g>
+        <g transform="translate(190 92)">
+          <path d="M150 52 L210 -6 L236 -6 L196 52Z" fill="#14234a"/>
+          <path d="M10 46 L-14 -12 L16 -12 L64 40Z" fill="#2f9c93"/>
+          <path d="M-2 -12 L16 -12 L30 6 Z" fill="#e8673f"/>
+          <path d="M0 46 C 20 26, 270 22, 330 30 C 356 34, 364 48, 340 56 C 270 68, 40 68, 0 46Z" fill="#fff"/>
+          <path d="M8 52 C 60 62, 280 66, 340 56 C 330 62, 270 70, 150 70 C 60 70, 20 62, 8 52Z" fill="#1b2d5b"/>
+          <path d="M40 44 C 120 38, 260 36, 330 40 L 328 46 C 250 44, 120 46, 40 50Z" fill="#2f9c93"/>
+          <path d="M318 34 C 330 34, 342 38, 346 44 L 326 44Z" fill="#1b2d5b"/>
+          <g fill="#1b2d5b"><circle cx="110" cy="36" r="3"/><circle cx="126" cy="35" r="3"/><circle cx="142" cy="34" r="3"/><circle cx="158" cy="34" r="3"/><circle cx="174" cy="34" r="3"/><circle cx="190" cy="34" r="3"/><circle cx="206" cy="34" r="3"/><circle cx="222" cy="34" r="3"/><circle cx="238" cy="34" r="3"/><circle cx="254" cy="34" r="3"/><circle cx="270" cy="35" r="3"/></g>
+          <path d="M150 56 L96 124 L130 124 L222 60Z" fill="#243a72"/>
+          <ellipse cx="146" cy="92" rx="30" ry="12" fill="#1b2d5b"/><ellipse cx="174" cy="92" rx="5" ry="11" fill="#2f9c93"/>
+        </g>
+      </g>
+    </svg>
+  </div>
+</section>
+
+<!-- ================= TRUST STRIP ================= -->
+<section class="trust" aria-label="Why MySpace">
+  <div class="wrap">
+    <ul>
+      <li><span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-plane"/></svg></span><div><h3 data-i18n="t1">MySpace Express Air</h3><p data-i18n="t1d">Fast, tracked air freight from around the world.</p></div></li>
+      <li><span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg></span><div><h3 data-i18n="t2">Parcel consolidation</h3><p data-i18n="t2d">We combine your orders into one box to lower costs.</p></div></li>
+      <li><span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span><div><h3 data-i18n="t3">Customs handled</h3><p data-i18n="t3d">We take care of clearance paperwork for you.</p></div></li>
+      <li><span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg></span><div><h3 data-i18n="t4">Door delivery in Iraq</h3><p data-i18n="t4d">From our Erbil office to your doorstep.</p></div></li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ================= QUOTE CALCULATOR ================= -->
+<section class="quote" id="quote">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <p class="kicker" data-i18n="nav_calc">Shipping calculator</p>
+      <h2 data-i18n="q_title">Get a rate quote in seconds</h2>
+      <p data-i18n="q_sub">Tell us where your shipment comes from and what's inside, and we'll show you the price to Iraq.</p>
+    </div>
+
+    <div class="qcard">
+      <ol class="stepper" aria-label="Steps">
+        <li data-step="1" aria-current="step"><span class="num">1</span><span data-i18n="q_st1">Route</span></li>
+        <li data-step="2"><span class="num">2</span><span data-i18n="q_st2">Your shipment</span></li>
+        <li data-step="3"><span class="num">3</span><span data-i18n="q_st3">Your price</span></li>
+      </ol>
+
+      <!-- Step 1: route -->
+      <form class="qstep" data-q="1" novalidate>
+        <div class="route big">
+          <div class="field"><label for="qFrom"><span class="pin-dot">A</span><span data-i18n="q_from">Shipping from</span></label><select class="input js-from" id="qFrom" aria-describedby="qFromErr"></select><span class="error" id="qFromErr"></span></div>
+          <div class="field"><label for="qTo"><span class="pin-dot">B</span><span data-i18n="q_to">Delivering to (Iraq)</span></label><select class="input js-to" id="qTo"></select></div>
+        </div>
+        <div class="qnav"><span></span><button class="btn btn-primary" type="submit"><span data-i18n="q_next">Next</span></button></div>
+      </form>
+
+      <!-- Step 2: shipment -->
+      <form class="qstep" data-q="2" hidden novalidate>
+        <fieldset class="types">
+          <legend data-i18n="q_type">What are you sending?</legend>
+          <label class="type"><input type="radio" name="qType" value="pkg" checked><span class="tbox"><svg class="icon" aria-hidden="true"><use href="#i-package"/></svg><b data-i18n="q_pkg">Package</b><small data-i18n="q_pkg_d">Goods, products, anything in a box</small></span></label>
+          <label class="type"><input type="radio" name="qType" value="docs"><span class="tbox"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg><b data-i18n="q_doc">Documents</b><small data-i18n="q_doc_d">Papers only</small></span></label>
+        </fieldset>
+        <div id="pieces"></div>
+        <button class="linkbtn addpiece" type="button" id="addPiece">+ <span data-i18n="q_add">Add another piece</span></button>
+        <span class="error" id="qPieceErr" role="alert"></span>
+        <div class="qnav">
+          <button class="btn btn-outline" type="button" data-qgo="1" data-i18n="q_back">Back</button>
+          <button class="btn btn-primary" type="submit"><span data-i18n="q_show">Show my price</span></button>
+        </div>
+      </form>
+
+      <!-- Step 3: price -->
+      <div class="qstep" data-q="3" hidden>
+        <div class="qresult" aria-live="polite">
+          <p class="qroute" id="rRoute"></p>
+          <div class="total"><span data-i18n="q_total">Total</span><strong id="rTotal" class="ltr-num"></strong></div>
+          <dl class="lines" id="rLines"></dl>
+          <p class="note" data-i18n="q_note">Customs duties and taxes are not included. The final price is confirmed after your parcel is weighed and measured at our warehouse.</p>
+        </div>
+        <div class="qnav">
+          <button class="btn btn-outline" type="button" data-qgo="2" data-i18n="q_edit">Change details</button>
+          <a class="btn btn-primary" id="qBook" href="#" target="_blank" rel="noopener"><svg class="icon sm" aria-hidden="true"><use href="#i-wa"/></svg><span data-i18n="q_book">Book on WhatsApp</span></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= HOW IT WORKS ================= -->
+<section id="how">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <p class="kicker" data-i18n="nav_how">How it works</p>
+      <h2 data-i18n="how_title">How MySpace works</h2>
+      <p data-i18n="how_sub">Four simple steps from checkout to your door.</p>
+    </div>
+    <ol class="steps">
+      <li class="step reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-userplus"/></svg></div><h3 data-i18n="s1">Sign up free</h3><p data-i18n="s1d">Create your account and get your personal MySpace ID.</p></li>
+      <li class="step reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg></div><h3 data-i18n="s2">Shop online</h3><p data-i18n="s2d">Buy from your favourite stores abroad and ship to our address with your ID.</p></li>
+      <li class="step reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-package"/></svg></div><h3 data-i18n="s3">We consolidate</h3><p data-i18n="s3d">We receive, check and pack your parcels together into one shipment.</p></li>
+      <li class="step reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-plane"/></svg></div><h3 data-i18n="s4">Delivered to you</h3><p data-i18n="s4d">Your box flies to Iraq and is delivered to your door.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ================= SERVICES ================= -->
+<section class="services" id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker" data-i18n="nav_services">Services</p>
+      <h2 data-i18n="svc_title">What we do</h2>
+      <p data-i18n="svc_sub">Everything you need to bring your purchases to Iraq — in one place.</p>
+    </div>
+    <div class="svc-grid">
+      <article class="svc reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg></div><h3 data-i18n="sv1">Shop &amp; Ship</h3><p data-i18n="sv1d">Use our addresses to shop from stores that don't deliver to Iraq.</p></article>
+      <article class="svc reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg></div><h3 data-i18n="sv2">Consolidation &amp; repacking</h3><p data-i18n="sv2d">Several orders, one box, one lower shipping cost.</p></article>
+      <article class="svc reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-plane"/></svg></div><h3 data-i18n="sv3">Express air freight</h3><p data-i18n="sv3d">Time-critical shipments flown with MySpace Express.</p></article>
+      <article class="svc reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg></div><h3 data-i18n="sv4">Business shipping</h3><p data-i18n="sv4d">Regular imports for shops, clinics and companies.</p></article>
+      <article class="svc reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></div><h3 data-i18n="sv5">Customs clearance</h3><p data-i18n="sv5d">Documents and duties handled by our team.</p></article>
+      <article class="svc reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-truck"/></svg></div><h3 data-i18n="sv6">Door-to-door delivery</h3><p data-i18n="sv6d">Delivery to your door anywhere in Iraq.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CATEGORIES ================= -->
+<section class="cats">
+  <svg class="cats-globe" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#fff" stroke-width=".6"><use href="#i-globe"/></svg>
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <p class="kicker" data-i18n="cat_kicker">Shop anything</p>
+      <h2 data-i18n="cat_title">Everything you love, from anywhere</h2>
+      <p data-i18n="cat_sub">From vitamins to electronics — we ship it for you.</p>
+    </div>
+    <ul class="cat-grid">
+      <li class="cat reveal"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-pill"/></svg></span><span data-i18n="cat1">Vitamins &amp; supplements</span></li>
+      <li class="cat reveal"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-laptop"/></svg></span><span data-i18n="cat2">Electronics</span></li>
+      <li class="cat reveal"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-shirt"/></svg></span><span data-i18n="cat3">Fashion &amp; shoes</span></li>
+      <li class="cat reveal"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-sparkle"/></svg></span><span data-i18n="cat4">Beauty &amp; personal care</span></li>
+      <li class="cat reveal"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-wrench"/></svg></span><span data-i18n="cat5">Auto parts</span></li>
+      <li class="cat reveal"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-pot"/></svg></span><span data-i18n="cat6">Home &amp; kitchen</span></li>
+    </ul>
+    <p class="more" data-i18n="cat_more">…and much more</p>
+  </div>
+</section>
+
+<!-- ================= CTA ================= -->
+<section class="cta-band">
+  <div class="wrap">
+    <div class="cta-inner reveal">
+      <img src="logo.png" alt="MySpace logo" width="120" height="98" loading="lazy">
+      <div>
+        <h2 data-i18n="cta_title">Your global address is one click away</h2>
+        <p data-i18n="cta_sub">Create your free MySpace account to get your ID and start shopping.</p>
+      </div>
+      <button class="btn btn-primary js-signup" type="button"><svg class="icon sm" aria-hidden="true"><use href="#i-userplus"/></svg><span data-i18n="cta_signup">Create free account</span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FAQ ================= -->
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="section-head center reveal">
+      <p class="kicker" data-i18n="nav_faq">FAQ</p>
+      <h2 data-i18n="faq_title">Frequently asked questions</h2>
+    </div>
+    <div class="faq-list">
+      <details><summary><span data-i18n="q1">Which countries can I shop from?</span><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></summary><p data-i18n="a1"></p></details>
+      <details><summary><span data-i18n="q2">How is the shipping cost calculated?</span><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></summary><p data-i18n="a2"></p></details>
+      <details><summary><span data-i18n="q3">How long does delivery take?</span><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></summary><p data-i18n="a3"></p></details>
+      <details><summary><span data-i18n="q4">Can I combine several orders?</span><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></summary><p data-i18n="a4"></p></details>
+      <details><summary><span data-i18n="q5">Are there items you cannot ship?</span><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></summary><p data-i18n="a5"></p></details>
+      <details><summary><span data-i18n="q6">How do I pay?</span><svg class="icon" aria-hidden="true"><use href="#i-chev"/></svg></summary><p data-i18n="a6"></p></details>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <p class="kicker" data-i18n="nav_contact">Contact</p>
+      <h2 data-i18n="contact_title">Get in touch</h2>
+      <p data-i18n="contact_sub">Questions or a quote? Send us a message and we'll reply quickly.</p>
+    </div>
+    <div class="contact-grid">
+      <form class="card reveal" id="contactForm" novalidate>
+        <div class="grid2">
+          <div class="field"><label for="cfName" data-i18n="f_name">Full name</label><input class="input" id="cfName" name="name" autocomplete="name" required aria-describedby="cfNameErr"><span class="error" id="cfNameErr"></span></div>
+          <div class="field"><label for="cfPhone" data-i18n="f_phone">Phone number</label><input class="input" id="cfPhone" name="phone" type="tel" autocomplete="tel" dir="ltr" placeholder="+964 7xx xxx xxxx"></div>
+        </div>
+        <div class="field"><label for="cfEmail" data-i18n="f_email">Email</label><input class="input" id="cfEmail" name="email" type="email" autocomplete="email" dir="ltr" required aria-describedby="cfEmailErr"><span class="error" id="cfEmailErr"></span></div>
+        <div class="field"><label for="cfMsg" data-i18n="f_msg">Your message</label><textarea class="input" id="cfMsg" name="message" required aria-describedby="cfMsgErr"></textarea><span class="error" id="cfMsgErr"></span></div>
+        <div class="hp" aria-hidden="true"><label for="cfHoney">Leave empty</label><input id="cfHoney" name="_honey" tabindex="-1" autocomplete="off"></div>
+        <button class="btn btn-primary btn-block" type="submit" data-i18n="f_send">Send message</button>
+        <div class="status" id="cfStatus" role="status" hidden></div>
+      </form>
+      <div class="card">
+        <ul class="info-list">
+          <li><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span><div><b data-i18n="i_office">Our office</b><span data-i18n="i_office_v">Erbil, Kurdistan Region, Iraq</span></div></li>
+          <li><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-phone"/></svg></span><div><b data-i18n="i_phone">Phone</b><a class="ltr-num js-phone" href="#"></a></div></li>
+          <li><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-wa"/></svg></span><div><b>WhatsApp</b><a class="js-wa" href="#" target="_blank" rel="noopener" data-i18n="i_wa">Chat on WhatsApp</a></div></li>
+          <li><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg></span><div><b data-i18n="i_email">Email</b><a class="js-email" href="#"></a></div></li>
+        </ul>
+        <iframe class="map" title="Map: Erbil, Iraq" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Erbil%2C%20Iraq&z=12&output=embed"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <a class="brand" href="#top"><img src="logo.png" alt="" width="64" height="52" loading="lazy"><span>MYSPACE<br><small style="font:500 14px var(--body);color:#9fb0d6;letter-spacing:0" data-i18n="tagline">Your dreams. Delivered.</small></span></a>
+      <nav aria-label="Footer">
+        <a href="#how" data-i18n="nav_how">How it works</a>
+        <a href="#services" data-i18n="nav_services">Services</a>
+        <a href="#faq" data-i18n="nav_faq">FAQ</a>
+        <a href="#contact" data-i18n="nav_contact">Contact</a>
+      </nav>
+    </div>
+    <div class="foot-bottom">
+      <span data-i18n="rights">© 2026 MySpace. All rights reserved.</span>
+      <span><span data-i18n="i_office_v">Erbil, Kurdistan Region, Iraq</span> · <button class="linkbtn js-privacy" type="button" data-i18n="privacy">Privacy</button></span>
+    </div>
+  </div>
+</footer>
+
+<a class="wa-float js-wa" href="#" target="_blank" rel="noopener" aria-label="WhatsApp"><svg aria-hidden="true"><use href="#i-wa"/></svg></a>
+
+<!-- ================= AUTH DIALOG ================= -->
+<dialog id="authDlg" aria-labelledby="authTitle">
+  <div class="dlg-head">
+    <span class="brand"><img src="logo.png" alt="" width="40" height="33"></span>
+    <button class="close" type="button" data-close><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span class="sr-only" data-i18n="close">Close</span></button>
+  </div>
+  <div class="dlg-body">
+    <p class="demo-note" data-i18n="demo" hidden data-demo>Preview mode: accounts are saved on this device only until online accounts are switched on.</p>
+
+    <!-- Login -->
+    <form id="loginForm" novalidate data-view="login">
+      <h2 id="authTitle" data-i18n="login_title">Welcome back</h2>
+      <div class="field"><label for="lEmail" data-i18n="f_email">Email</label><input class="input" id="lEmail" type="email" autocomplete="email" dir="ltr" required><span class="error"></span></div>
+      <div class="field"><label for="lPw" data-i18n="f_pw">Password</label><div class="pw-wrap"><input class="input" id="lPw" type="password" autocomplete="current-password" dir="ltr" required><button class="pw-toggle" type="button" data-i18n="show">Show</button></div><span class="error"></span></div>
+      <div class="status err" role="alert" hidden></div>
+      <button class="btn btn-primary btn-block" type="submit" data-i18n="login_btn">Log in</button>
+      <p class="switch"><button class="linkbtn" type="button" data-go="reset" data-i18n="forgot">Forgot password?</button></p>
+      <p class="switch"><span data-i18n="no_acc">New to MySpace?</span> <button class="linkbtn" type="button" data-go="signup" data-i18n="signup">Sign up</button></p>
+    </form>
+
+    <!-- Sign up -->
+    <form id="signupForm" novalidate data-view="signup" hidden>
+      <h2 data-i18n="signup_title">Create your account</h2>
+      <div class="field"><label for="sName" data-i18n="f_name">Full name</label><input class="input" id="sName" autocomplete="name" required><span class="error"></span></div>
+      <div class="field"><label for="sEmail" data-i18n="f_email">Email</label><input class="input" id="sEmail" type="email" autocomplete="email" dir="ltr" required><span class="error"></span></div>
+      <div class="grid2">
+        <div class="field"><label for="sPhone" data-i18n="f_phone">Phone number</label><input class="input" id="sPhone" type="tel" autocomplete="tel" dir="ltr" placeholder="+964" required><span class="error"></span></div>
+        <div class="field"><label for="sCity" data-i18n="f_city">City</label><input class="input" id="sCity" autocomplete="address-level2" required><span class="error"></span></div>
+      </div>
+      <div class="field"><label for="sPw" data-i18n="f_pw">Password</label><div class="pw-wrap"><input class="input" id="sPw" type="password" autocomplete="new-password" dir="ltr" minlength="8" required aria-describedby="sPwHelp"><button class="pw-toggle" type="button" data-i18n="show">Show</button></div><span class="help" id="sPwHelp" data-i18n="pw_help">At least 8 characters</span><span class="error"></span></div>
+      <div class="status err" role="alert" hidden></div>
+      <button class="btn btn-primary btn-block" type="submit" data-i18n="signup_btn">Create account</button>
+      <p class="agree"><span data-i18n="agree">By creating an account you agree to our</span> <button class="linkbtn js-privacy" type="button" data-i18n="privacy_link">privacy notice</button></p>
+      <p class="switch"><span data-i18n="have_acc">Already have an account?</span> <button class="linkbtn" type="button" data-go="login" data-i18n="login">Log in</button></p>
+    </form>
+
+    <!-- New password (after clicking the reset link in the email) -->
+    <form id="newPwForm" novalidate data-view="newpw" hidden>
+      <h2 data-i18n="newpw_title">Choose a new password</h2>
+      <div class="field"><label for="nPw" data-i18n="f_pw">Password</label><div class="pw-wrap"><input class="input" id="nPw" type="password" autocomplete="new-password" dir="ltr" minlength="8" required aria-describedby="nPwHelp"><button class="pw-toggle" type="button" data-i18n="show">Show</button></div><span class="help" id="nPwHelp" data-i18n="pw_help">At least 8 characters</span><span class="error"></span></div>
+      <div class="status" role="status" hidden></div>
+      <button class="btn btn-primary btn-block" type="submit" data-i18n="newpw_btn">Save password</button>
+    </form>
+
+    <!-- Reset -->
+    <form id="resetForm" novalidate data-view="reset" hidden>
+      <h2 data-i18n="reset_title">Reset password</h2>
+      <div class="field"><label for="rEmail" data-i18n="f_email">Email</label><input class="input" id="rEmail" type="email" autocomplete="email" dir="ltr" required><span class="error"></span></div>
+      <div class="status" role="status" hidden></div>
+      <button class="btn btn-primary btn-block" type="submit" data-i18n="reset_btn">Send reset link</button>
+      <p class="switch"><button class="linkbtn" type="button" data-go="login" data-i18n="back_login">Back to log in</button></p>
+    </form>
+  </div>
+</dialog>
+
+<!-- ================= TRACKING DIALOG ================= -->
+<dialog id="trackDlg" aria-labelledby="trkTitle" class="wide">
+  <div class="dlg-head">
+    <div><p class="trk-label" data-i18n="trk_title">Shipment</p><h2 id="trkTitle" class="ltr-num"></h2></div>
+    <button class="close" type="button" data-close><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span class="sr-only" data-i18n="close">Close</span></button>
+  </div>
+  <div class="dlg-body" id="trkBody" aria-live="polite"></div>
+</dialog>
+
+<!-- ================= PRIVACY DIALOG ================= -->
+<dialog id="privDlg" aria-labelledby="privTitle">
+  <div class="dlg-head">
+    <h2 id="privTitle" data-i18n="privacy_title">Privacy notice</h2>
+    <button class="close" type="button" data-close><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span class="sr-only" data-i18n="close">Close</span></button>
+  </div>
+  <div class="dlg-body">
+    <ul class="privacy-list">
+      <li data-i18n="p1"></li><li data-i18n="p2"></li><li data-i18n="p3"></li><li data-i18n="p4"></li><li data-i18n="p5"></li>
+    </ul>
+  </div>
+</dialog>
+
+<!-- ================= ACCOUNT DIALOG ================= -->
+<dialog id="accDlg" aria-labelledby="accTitle">
+  <div class="dlg-head">
+    <h2 id="accTitle"><span data-i18n="acc_hello">Hello</span><span data-i18n="comma">,</span> <bdi id="accName"></bdi></h2>
+    <button class="close" type="button" data-close><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg><span class="sr-only" data-i18n="close">Close</span></button>
+  </div>
+  <div class="dlg-body">
+    <div class="idcard">
+      <small data-i18n="acc_id">Your MySpace ID</small>
+      <div class="id" id="accId"></div>
+      <p data-i18n="acc_id_help">Write this ID on every order you ship to us.</p>
+      <img src="logo.png" alt="">
+    </div>
+    <div class="acc-meta"><span id="accEmail" dir="ltr" style="text-align:start"></span><span><bdi id="accPhone" dir="ltr"></bdi> <span id="accCity"></span></span></div>
+    <h3 style="font-size:22px;margin-bottom:6px" data-i18n="acc_next">Next step</h3>
+    <p style="color:var(--muted);margin-bottom:18px" data-i18n="acc_next_d">Our team will contact you with your shipping address. You can also message us on WhatsApp.</p>
+    <div class="row-btns">
+      <a class="btn btn-primary js-wa" href="#" target="_blank" rel="noopener"><svg class="icon sm" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
+      <button class="btn btn-outline" type="button" id="logoutBtn"><svg class="icon sm" aria-hidden="true"><use href="#i-logout"/></svg><span data-i18n="logout">Log out</span></button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+/* =====================================================================
+   SETTINGS — the only part you may ever need to change.
+   ===================================================================== */
+const CONFIG = {
+  // Messages from the contact form and new sign-ups are emailed here.
+  notifyEmail: "anis@myspaceapp.com",
+  phone: "+964 750 742 2734",
+  whatsapp: "9647507422734",          // country code + number, no "+" or spaces
+  // Supabase project (customer accounts, customer database, tracking service).
+  // The "anon" key is meant to be public; your data is protected by database rules.
+  // While these are empty, accounts are only saved in the visitor's own browser (preview mode).
+  supabaseUrl: "",
+  supabaseAnonKey: "",
+  // Fuel surcharge in percent. It changes every week: update it here (e.g. 24.5).
+  // It is added on top of shipping and handling, then included in the customer's total.
+  fuelPercent: 0,
+  // Tracking service address. Leave empty to use the Supabase "track" function automatically.
+  trackingApi: ""
+};
+
+/* =====================================================================
+   TRANSLATIONS — English, Arabic, Sorani Kurdish
+   ===================================================================== */
+const T = {
+en:{
+ newpw_title:"Choose a new password",newpw_btn:"Save password",newpw_done:"Your password has been changed.",confirm_sent:"Almost done! We sent a confirmation link to {email}. Click it to activate your account.",err_confirm:"Please confirm your email first. Check your inbox for our link.",
+ track_locked:"Log in to track your shipments",track_locked_d:"Tracking is available for MySpace customers. Creating an account is free.",track_help_live:"See where your shipment is right now, with its full history.",trk_title:"Shipment",trk_loading:"Looking up your shipment…",trk_notfound:"We couldn't find a shipment with this number. Check the number and try again. New shipments can take a few hours to appear.",trk_error:"Tracking is temporarily unavailable. Please try again later or ask us on WhatsApp.",trk_login:"Your session has expired. Please log in again.",trk_eta:"Estimated delivery",trk_from:"From",trk_to:"To",trk_history:"Shipment history",trk_updated:"Last update",st_pre:"Shipment created",st_transit:"In transit",st_delivered:"Delivered",st_failure:"Action needed",st_unknown:"Status update",
+ nav_quote:"Get a quote",q_title:"Get a rate quote in seconds",q_sub:"Tell us where your shipment comes from and what's inside, and we'll show you the price to Iraq.",q_st1:"Route",q_st2:"Your shipment",q_st3:"Your price",q_from:"Shipping from",q_from_ph:"Select a country",q_to:"Delivering to (Iraq)",q_popular:"Popular",q_all:"All countries",q_next:"Next",q_back:"Back",q_type:"What are you sending?",q_pkg:"Package",q_pkg_d:"Goods, products, anything in a box",q_doc:"Documents",q_doc_d:"Papers only",q_piece:"Piece",q_qty:"Quantity",q_weight:"Weight (kg)",q_add:"Add another piece",q_remove:"Remove",q_show:"Show my price",q_err_from:"Please choose the country you're shipping from.",q_err_weight:"Enter the weight of every piece.",q_err_limit:"This shipment is too large for online pricing. Please contact us for a custom quote.",q_iraq:"Iraq",q_total:"Total",q_cw:"Chargeable weight",q_actual:"Actual weight",q_vol:"Volumetric weight",q_ship:"Shipping",q_handling:"Heavy or large piece handling",q_fuel:"Fuel surcharge",q_note:"Customs duties and taxes are not included. The final price is confirmed after your parcel is weighed and measured at our warehouse.",q_edit:"Change details",q_book:"Book on WhatsApp",q_pieces:"Pieces",q_book_msg:"Hello MySpace, I'd like to book a shipment.\nFrom: {from}\nTo: {to}, Iraq\nType: {type}\nPieces: {pieces}\nChargeable weight: {w} kg\nQuoted price: {total}",cities:"Erbil|Sulaymaniyah|Duhok|Halabja|Kirkuk|Baghdad|Basra|Mosul|Najaf|Karbala|Other city",
+ track_msg:"Hello MySpace, please send me the status of my shipment: {n}",doc_title:"MySpace — Shop the world, delivered to Iraq",privacy:"Privacy",privacy_title:"Privacy notice",privacy_link:"privacy notice",agree:"By creating an account you agree to our",
+ p1:"What we collect: your name, email, phone number and city when you create an account, and what you write in the contact form.",
+ p2:"Why: to create your MySpace account and ID, handle your shipments and reply to your messages.",
+ p3:"Who sees it: only the MySpace team. We share shipment details with our shipping partners and customs only when needed to deliver your parcel. We never sell your data.",
+ p4:"We use trusted services to run this website: FormSubmit to deliver messages to our inbox and Supabase to store accounts securely. Your password is never sent to us by email.",
+ p5:"You can ask us to see, correct or delete your data at any time by email or WhatsApp.",
+ skip:"Skip to content",menu:"Menu",lang:"Language",nav_how:"How it works",nav_services:"Services",nav_calc:"Shipping calculator",nav_faq:"FAQ",nav_contact:"Contact",login:"Log in",signup:"Sign up",my_account:"My account",
+ hero_eyebrow:"Global addresses · Bigger possibilities",hero_t1:"Shop the world.",hero_t2:"We fly it to Iraq.",
+ hero_sub:"Order from almost any online store abroad. MySpace receives your parcels, combines them into one box and flies them to your door with MySpace Express Air.",
+ cta_signup:"Create free account",cta_how:"How it works",hero_office:"Office in Erbil · Delivery across Iraq",
+ tab_track:"Track",tab_calc:"Calculate",track_label:"MySpace tracking number",track_ph:"e.g. 1234567890",track_btn:"Track shipment",track_help:"We'll send you your shipment's latest status on WhatsApp.",track_err:"Please enter your tracking number.",
+ c_len:"Length (cm)",c_wid:"Width",c_hei:"Height",c_result:"Chargeable weight",kg:"kg",
+  t1:"MySpace Express Air",t1d:"Fast, tracked air freight from around the world.",t2:"Parcel consolidation",t2d:"We combine your orders into one box to lower costs.",t3:"Customs handled",t3d:"We take care of clearance paperwork for you.",t4:"Door delivery in Iraq",t4d:"From our Erbil office to your doorstep.",
+ how_title:"How MySpace works",how_sub:"Four simple steps from checkout to your door.",
+ s1:"Sign up free",s1d:"Create your account and get your personal MySpace ID.",s2:"Shop online",s2d:"Buy from your favourite stores abroad and ship to our address with your ID.",s3:"We consolidate",s3d:"We receive, check and pack your parcels together into one shipment.",s4:"Delivered to you",s4d:"Your box flies to Iraq and is delivered to your door.",
+ svc_title:"What we do",svc_sub:"Everything you need to bring your purchases to Iraq — in one place.",
+ sv1:"Shop & Ship",sv1d:"Use our addresses to shop from stores that don't deliver to Iraq.",sv2:"Consolidation & repacking",sv2d:"Several orders, one box, one lower shipping cost.",sv3:"Express air freight",sv3d:"Time-critical shipments flown with MySpace Express.",sv4:"Business shipping",sv4d:"Regular imports for shops, clinics and companies.",sv5:"Customs clearance",sv5d:"Documents and duties handled by our team.",sv6:"Door-to-door delivery",sv6d:"Delivery to your door anywhere in Iraq.",
+ cat_kicker:"Shop anything",cat_title:"Everything you love, from anywhere",cat_sub:"From vitamins to electronics — we ship it for you.",cat1:"Vitamins & supplements",cat2:"Electronics",cat3:"Fashion & shoes",cat4:"Beauty & personal care",cat5:"Auto parts",cat6:"Home & kitchen",cat_more:"…and much more",
+ cta_title:"Your global address is one click away",cta_sub:"Create your free MySpace account to get your ID and start shopping.",
+ faq_title:"Frequently asked questions",
+ q1:"Which countries can I shop from?",a1:"You can order from online stores around the world. After you sign up, our team shares the shipping address to use together with your MySpace ID.",
+ q2:"How is the shipping cost calculated?",a2:"Air freight is priced by chargeable weight — whichever is greater between the actual weight and the volumetric weight (L × W × H ÷ 5000). Use our calculator, then contact us for an exact price.",
+ q3:"How long does delivery take?",a3:"Most express air shipments arrive within a few business days after leaving the origin country, plus customs clearance time. We keep you updated at every step.",
+ q4:"Can I combine several orders?",a4:"Yes. We hold your parcels until all of them arrive, then pack them together so you save money.",
+ q5:"Are there items you cannot ship?",a5:"Yes. Dangerous goods, flammable items, weapons and other restricted products cannot be shipped by air. Contact us if you're unsure about an item.",
+ q6:"How do I pay?",a6:"Contact our team to learn about the payment options available in Iraq.",
+ contact_title:"Get in touch",contact_sub:"Questions or a quote? Send us a message and we'll reply quickly.",
+ f_name:"Full name",f_phone:"Phone number",f_email:"Email",f_msg:"Your message",f_city:"City",f_pw:"Password",f_send:"Send message",sending:"Sending…",
+ sent:"Thank you! Your message was sent. We'll get back to you soon.",send_err:"Something went wrong. Please try again or contact us on WhatsApp.",
+ i_office:"Our office",i_office_v:"Erbil, Kurdistan Region, Iraq",i_phone:"Phone",i_wa:"Chat on WhatsApp",i_email:"Email",
+ tagline:"Your dreams. Delivered.",rights:"© 2026 MySpace. All rights reserved.",
+ login_title:"Welcome back",signup_title:"Create your account",pw_help:"At least 8 characters",show:"Show",hide:"Hide",have_acc:"Already have an account?",no_acc:"New to MySpace?",forgot:"Forgot password?",
+ reset_title:"Reset password",reset_btn:"Send reset link",reset_sent:"If an account exists for this email, a reset link has been sent.",reset_local:"In preview mode, please contact us on WhatsApp to reset your password.",
+ login_btn:"Log in",signup_btn:"Create account",back_login:"Back to log in",close:"Close",
+ err_required:"Please fill in this field.",err_email:"Enter a valid email address, like name@example.com.",err_pw:"Password must be at least 8 characters.",err_exists:"An account with this email already exists. Try logging in.",err_creds:"Email or password is incorrect.",err_generic:"Something went wrong. Please try again.",
+ acc_hello:"Hello",comma:",",acc_id:"Your MySpace ID",acc_id_help:"Write this ID on every order you ship to us.",acc_next:"Next step",acc_next_d:"Our team will contact you with your shipping address. You can also message us on WhatsApp.",logout:"Log out",
+ demo:"Preview mode: accounts are saved on this device only until online accounts are switched on."
+},
+ar:{
+ newpw_title:"اختر كلمة مرور جديدة",newpw_btn:"حفظ كلمة المرور",newpw_done:"تم تغيير كلمة المرور.",confirm_sent:"اقتربت! أرسلنا رابط تأكيد إلى {email}. اضغط عليه لتفعيل حسابك.",err_confirm:"يرجى تأكيد بريدك الإلكتروني أولاً. تحقق من بريدك الوارد.",
+ track_locked:"سجّل الدخول لتتبع شحناتك",track_locked_d:"التتبع متاح لعملاء MySpace. إنشاء الحساب مجاني.",track_help_live:"اعرف مكان شحنتك الآن مع سجلها الكامل.",trk_title:"الشحنة",trk_loading:"جارٍ البحث عن شحنتك…",trk_notfound:"لم نعثر على شحنة بهذا الرقم. تحقق من الرقم وحاول مجدداً. قد تستغرق الشحنات الجديدة بضع ساعات لتظهر.",trk_error:"التتبع غير متاح مؤقتاً. حاول لاحقاً أو اسألنا عبر واتساب.",trk_login:"انتهت جلستك. يرجى تسجيل الدخول مرة أخرى.",trk_eta:"موعد التسليم المتوقع",trk_from:"من",trk_to:"إلى",trk_history:"سجل الشحنة",trk_updated:"آخر تحديث",st_pre:"تم إنشاء الشحنة",st_transit:"في الطريق",st_delivered:"تم التسليم",st_failure:"يتطلب إجراء",st_unknown:"تحديث الحالة",
+ nav_quote:"احصل على سعر",q_title:"احصل على سعر الشحن خلال ثوانٍ",q_sub:"أخبرنا من أين تأتي شحنتك وما بداخلها، وسنعرض لك سعر الشحن إلى العراق.",q_st1:"المسار",q_st2:"شحنتك",q_st3:"السعر",q_from:"الشحن من",q_from_ph:"اختر الدولة",q_to:"التوصيل إلى (العراق)",q_popular:"الأكثر طلباً",q_all:"جميع الدول",q_next:"التالي",q_back:"رجوع",q_type:"ماذا ترسل؟",q_pkg:"طرد",q_pkg_d:"بضائع ومنتجات وأي شيء في صندوق",q_doc:"مستندات",q_doc_d:"أوراق فقط",q_piece:"قطعة",q_qty:"العدد",q_weight:"الوزن (كغ)",q_add:"إضافة قطعة أخرى",q_remove:"إزالة",q_show:"اعرض السعر",q_err_from:"يرجى اختيار الدولة التي تشحن منها.",q_err_weight:"أدخل وزن كل قطعة.",q_err_limit:"هذه الشحنة كبيرة جداً للتسعير عبر الإنترنت. تواصل معنا للحصول على عرض خاص.",q_iraq:"العراق",q_total:"المجموع",q_cw:"الوزن المحتسب",q_actual:"الوزن الفعلي",q_vol:"الوزن الحجمي",q_ship:"الشحن",q_handling:"رسوم القطع الثقيلة أو الكبيرة",q_fuel:"رسوم الوقود",q_note:"لا يشمل السعر الرسوم الجمركية والضرائب. يتم تأكيد السعر النهائي بعد وزن طردك وقياسه في مستودعنا.",q_edit:"تعديل التفاصيل",q_book:"احجز عبر واتساب",q_pieces:"عدد القطع",q_book_msg:"مرحباً MySpace، أريد حجز شحنة.\nمن: {from}\nإلى: {to}، العراق\nالنوع: {type}\nعدد القطع: {pieces}\nالوزن المحتسب: {w} كغ\nالسعر: {total}",cities:"أربيل|السليمانية|دهوك|حلبجة|كركوك|بغداد|البصرة|الموصل|النجف|كربلاء|مدينة أخرى",
+ track_msg:"مرحباً MySpace، أرجو إرسال حالة شحنتي: {n}",doc_title:"MySpace — تسوّق من العالم ونوصله إلى العراق",privacy:"الخصوصية",privacy_title:"إشعار الخصوصية",privacy_link:"إشعار الخصوصية",agree:"بإنشاء حساب، فإنك توافق على",
+ p1:"ما نجمعه: اسمك وبريدك الإلكتروني ورقم هاتفك ومدينتك عند إنشاء الحساب، وما تكتبه في نموذج التواصل.",
+ p2:"لماذا: لإنشاء حساب MySpace ورقمك الخاص، ومتابعة شحناتك، والرد على رسائلك.",
+ p3:"من يطّلع عليها: فريق MySpace فقط. نشارك تفاصيل الشحنة مع شركاء الشحن والجمارك عند الحاجة لتوصيل طردك فقط. لا نبيع بياناتك أبداً.",
+ p4:"نستخدم خدمات موثوقة لتشغيل الموقع: FormSubmit لإيصال الرسائل إلى بريدنا، وSupabase لحفظ الحسابات بأمان. لا تُرسَل كلمة المرور إلينا بالبريد أبداً.",
+ p5:"يمكنك أن تطلب منا الاطلاع على بياناتك أو تصحيحها أو حذفها في أي وقت عبر البريد الإلكتروني أو واتساب.",
+ skip:"انتقل إلى المحتوى",menu:"القائمة",lang:"اللغة",nav_how:"كيف نعمل",nav_services:"خدماتنا",nav_calc:"حاسبة الشحن",nav_faq:"الأسئلة الشائعة",nav_contact:"اتصل بنا",login:"تسجيل الدخول",signup:"إنشاء حساب",my_account:"حسابي",
+ hero_eyebrow:"عناوين عالمية · إمكانيات أكبر",hero_t1:"تسوّق من العالم.",hero_t2:"ونوصله جواً إلى العراق.",
+ hero_sub:"اطلب من أي متجر إلكتروني تقريباً في الخارج. تستلم MySpace طرودك، وتجمعها في صندوق واحد، وتشحنها جواً عبر MySpace Express حتى باب بيتك.",
+ cta_signup:"أنشئ حساباً مجانياً",cta_how:"كيف نعمل",hero_office:"مكتبنا في أربيل · توصيل إلى جميع أنحاء العراق",
+ tab_track:"تتبّع",tab_calc:"احسب",track_label:"رقم تتبع MySpace",track_ph:"مثال: 1234567890",track_btn:"تتبّع الشحنة",track_help:"سنرسل لك آخر حالة لشحنتك عبر واتساب.",track_err:"يرجى إدخال رقم التتبع.",
+ c_len:"الطول (سم)",c_wid:"العرض",c_hei:"الارتفاع",c_result:"الوزن المحتسب",kg:"كغ",
+  t1:"شحن جوي سريع مع MySpace",t1d:"شحن جوي سريع وقابل للتتبع من حول العالم.",t2:"تجميع الطرود",t2d:"نجمع طلباتك في صندوق واحد لتقليل التكلفة.",t3:"التخليص الجمركي",t3d:"نتولى أوراق التخليص نيابةً عنك.",t4:"توصيل إلى الباب في العراق",t4d:"من مكتبنا في أربيل إلى باب بيتك.",
+ how_title:"كيف تعمل MySpace",how_sub:"أربع خطوات بسيطة من الشراء إلى باب بيتك.",
+ s1:"سجّل مجاناً",s1d:"أنشئ حسابك واحصل على رقم MySpace الخاص بك.",s2:"تسوّق أونلاين",s2d:"اشترِ من متاجرك المفضلة في الخارج واشحن إلى عنواننا مع رقمك.",s3:"نجمع شحناتك",s3d:"نستلم طرودك ونفحصها ونغلفها معاً في شحنة واحدة.",s4:"تصلك إلى الباب",s4d:"يطير صندوقك إلى العراق ويُسلَّم إلى باب بيتك.",
+ svc_title:"ماذا نقدّم",svc_sub:"كل ما تحتاجه لإيصال مشترياتك إلى العراق — في مكان واحد.",
+ sv1:"تسوّق واشحن",sv1d:"استخدم عناويننا للشراء من متاجر لا توصل إلى العراق.",sv2:"التجميع وإعادة التغليف",sv2d:"عدة طلبات، صندوق واحد، تكلفة شحن أقل.",sv3:"شحن جوي سريع",sv3d:"شحنات عاجلة تُنقل جواً مع MySpace Express.",sv4:"شحن الأعمال",sv4d:"استيراد منتظم للمحلات والعيادات والشركات.",sv5:"التخليص الجمركي",sv5d:"فريقنا يتولى المستندات والرسوم.",sv6:"توصيل من الباب إلى الباب",sv6d:"توصيل إلى بابك في أي مكان في العراق.",
+ cat_kicker:"تسوّق أي شيء",cat_title:"كل ما تحبه، من أي مكان",cat_sub:"من الفيتامينات إلى الإلكترونيات — نشحنها لك.",cat1:"الفيتامينات والمكملات",cat2:"الإلكترونيات",cat3:"الأزياء والأحذية",cat4:"الجمال والعناية الشخصية",cat5:"قطع غيار السيارات",cat6:"المنزل والمطبخ",cat_more:"…والكثير غير ذلك",
+ cta_title:"عنوانك العالمي على بُعد نقرة واحدة",cta_sub:"أنشئ حساب MySpace المجاني لتحصل على رقمك وتبدأ التسوّق.",
+ faq_title:"الأسئلة الشائعة",
+ q1:"من أي الدول يمكنني التسوّق؟",a1:"يمكنك الطلب من متاجر إلكترونية حول العالم. بعد التسجيل، يرسل لك فريقنا عنوان الشحن الذي تستخدمه مع رقم MySpace الخاص بك.",
+ q2:"كيف تُحسب تكلفة الشحن؟",a2:"يُسعَّر الشحن الجوي حسب الوزن المحتسب، وهو الأكبر بين الوزن الفعلي والوزن الحجمي (الطول × العرض × الارتفاع ÷ 5000). استخدم الحاسبة ثم تواصل معنا لمعرفة السعر الدقيق.",
+ q3:"كم يستغرق التوصيل؟",a3:"تصل معظم الشحنات الجوية السريعة خلال أيام عمل قليلة من مغادرتها بلد المنشأ، إضافةً إلى وقت التخليص الجمركي. نبقيك على اطلاع في كل خطوة.",
+ q4:"هل يمكنني تجميع عدة طلبات؟",a4:"نعم. نحتفظ بطرودك حتى تصل جميعها، ثم نغلفها معاً لتوفّر المال.",
+ q5:"هل هناك مواد لا يمكن شحنها؟",a5:"نعم. لا يمكن شحن المواد الخطرة والقابلة للاشتعال والأسلحة وغيرها من المواد المحظورة جواً. تواصل معنا إذا لم تكن متأكداً من منتج ما.",
+ q6:"كيف أدفع؟",a6:"تواصل مع فريقنا لمعرفة طرق الدفع المتاحة في العراق.",
+ contact_title:"تواصل معنا",contact_sub:"لديك سؤال أو تريد عرض سعر؟ أرسل لنا رسالة وسنرد بسرعة.",
+ f_name:"الاسم الكامل",f_phone:"رقم الهاتف",f_email:"البريد الإلكتروني",f_msg:"رسالتك",f_city:"المدينة",f_pw:"كلمة المرور",f_send:"إرسال الرسالة",sending:"جارٍ الإرسال…",
+ sent:"شكراً لك! تم إرسال رسالتك وسنعود إليك قريباً.",send_err:"حدث خطأ. حاول مرة أخرى أو راسلنا على واتساب.",
+ i_office:"مكتبنا",i_office_v:"أربيل، إقليم كوردستان، العراق",i_phone:"الهاتف",i_wa:"تحدث معنا على واتساب",i_email:"البريد الإلكتروني",
+ tagline:"أحلامك. تصلك.",rights:"© 2026 MySpace. جميع الحقوق محفوظة.",
+ login_title:"مرحباً بعودتك",signup_title:"أنشئ حسابك",pw_help:"8 أحرف على الأقل",show:"إظهار",hide:"إخفاء",have_acc:"لديك حساب بالفعل؟",no_acc:"جديد في MySpace؟",forgot:"نسيت كلمة المرور؟",
+ reset_title:"إعادة تعيين كلمة المرور",reset_btn:"إرسال رابط إعادة التعيين",reset_sent:"إذا كان هناك حساب بهذا البريد، فقد أُرسل رابط إعادة التعيين.",reset_local:"في وضع المعاينة، يرجى مراسلتنا على واتساب لإعادة تعيين كلمة المرور.",
+ login_btn:"تسجيل الدخول",signup_btn:"إنشاء الحساب",back_login:"العودة لتسجيل الدخول",close:"إغلاق",
+ err_required:"يرجى ملء هذا الحقل.",err_email:"أدخل بريداً إلكترونياً صحيحاً، مثل name@example.com.",err_pw:"يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.",err_exists:"يوجد حساب بهذا البريد بالفعل. جرّب تسجيل الدخول.",err_creds:"البريد الإلكتروني أو كلمة المرور غير صحيحة.",err_generic:"حدث خطأ. حاول مرة أخرى.",
+ acc_hello:"مرحباً",comma:"،",acc_id:"رقم MySpace الخاص بك",acc_id_help:"اكتب هذا الرقم على كل طلب تشحنه إلينا.",acc_next:"الخطوة التالية",acc_next_d:"سيتواصل معك فريقنا لتزويدك بعنوان الشحن. يمكنك أيضاً مراسلتنا على واتساب.",logout:"تسجيل الخروج",
+ demo:"وضع المعاينة: تُحفظ الحسابات على هذا الجهاز فقط حتى يتم تفعيل الحسابات عبر الإنترنت."
+},
+ckb:{
+ newpw_title:"وشەی نهێنیی نوێ هەڵبژێرە",newpw_btn:"پاشەکەوتکردنی وشەی نهێنی",newpw_done:"وشەی نهێنییەکەت گۆڕدرا.",confirm_sent:"نزیکە تەواو بێت! بەستەرێکی پشتڕاستکردنەوەمان بۆ {email} نارد. کلیکی لێ بکە بۆ چالاککردنی هەژمارەکەت.",err_confirm:"تکایە سەرەتا ئیمەیڵەکەت پشتڕاست بکەرەوە. سندوقی نامەکانت بپشکنە.",
+ track_locked:"بچۆ ژوورەوە بۆ بەدواداچوونی بارەکانت",track_locked_d:"بەدواداچوون بۆ کڕیارانی MySpace بەردەستە. دروستکردنی هەژمار بەخۆڕاییە.",track_help_live:"بزانە بارەکەت ئێستا لە کوێیە، لەگەڵ هەموو مێژووەکەی.",trk_title:"بار",trk_loading:"بەدوای بارەکەتدا دەگەڕێین…",trk_notfound:"هیچ بارێکمان بەم ژمارەیە نەدۆزییەوە. ژمارەکە بپشکنە و دووبارە هەوڵ بدەرەوە. لەوانەیە بارە نوێیەکان چەند کاتژمێرێک بخایەنن تا دەردەکەون.",trk_error:"بەدواداچوون بە شێوەیەکی کاتی بەردەست نییە. دواتر هەوڵ بدەرەوە یان لە واتسئاپ لێمان بپرسە.",trk_login:"دانیشتنەکەت کۆتایی هات. تکایە دووبارە بچۆ ژوورەوە.",trk_eta:"کاتی گەیاندنی چاوەڕوانکراو",trk_from:"لە",trk_to:"بۆ",trk_history:"مێژووی بار",trk_updated:"دوایین نوێکردنەوە",st_pre:"بار تۆمارکرا",st_transit:"لە ڕێگادایە",st_delivered:"گەیەندرا",st_failure:"پێویستی بە کردارە",st_unknown:"نوێکردنەوەی دۆخ",
+ nav_quote:"نرخ وەربگرە",q_title:"لە چەند چرکەیەکدا نرخی بارکردن وەربگرە",q_sub:"پێمان بڵێ بارەکەت لە کوێوە دێت و چی تێدایە، نرخی گەیاندنی بۆ عێراق پیشانت دەدەین.",q_st1:"ڕێگا",q_st2:"بارەکەت",q_st3:"نرخەکەت",q_from:"ناردن لە",q_from_ph:"وڵاتێک هەڵبژێرە",q_to:"گەیاندن بۆ (عێراق)",q_popular:"باوترین",q_all:"هەموو وڵاتان",q_next:"دواتر",q_back:"گەڕانەوە",q_type:"چی دەنێریت؟",q_pkg:"پاکەت",q_pkg_d:"کاڵا، بەرهەم، هەر شتێک لە سندوقدا",q_doc:"بەڵگەنامە",q_doc_d:"تەنها کاغەز",q_piece:"پارچە",q_qty:"ژمارە",q_weight:"کێش (کگم)",q_add:"زیادکردنی پارچەیەکی تر",q_remove:"لابردن",q_show:"نرخەکەم پیشان بدە",q_err_from:"تکایە ئەو وڵاتە هەڵبژێرە کە لێیەوە دەنێریت.",q_err_weight:"کێشی هەموو پارچەکان بنووسە.",q_err_limit:"ئەم بارە زۆر گەورەیە بۆ نرخدانانی ئۆنلاین. تکایە پەیوەندیمان پێوە بکە بۆ نرخێکی تایبەت.",q_iraq:"عێراق",q_total:"کۆی گشتی",q_cw:"کێشی ژمێردراو",q_actual:"کێشی ڕاستەقینە",q_vol:"کێشی قەبارەیی",q_ship:"بارکردن",q_handling:"پارچەی قورس یان گەورە",q_fuel:"باجی سووتەمەنی",q_note:"باجی گومرگ و باجەکان لەخۆناگرێت. نرخی کۆتایی دوای کێشان و پێوانی پاکەتەکەت لە کۆگاکەمان دەسەلمێنرێت.",q_edit:"گۆڕینی وردەکارییەکان",q_book:"لە واتسئاپ داوا بکە",q_pieces:"ژمارەی پارچەکان",q_book_msg:"سڵاو MySpace، دەمەوێت بارێک بنێرم.\nلە: {from}\nبۆ: {to}، عێراق\nجۆر: {type}\nژمارەی پارچەکان: {pieces}\nکێشی ژمێردراو: {w} کگم\nنرخ: {total}",cities:"هەولێر|سلێمانی|دهۆک|هەڵەبجە|کەرکووک|بەغدا|بەسرە|مووسڵ|نەجەف|کەربەلا|شارێکی تر",
+ track_msg:"سڵاو MySpace، تکایە دۆخی بارەکەم بۆ بنێرە: {n}",doc_title:"MySpace — لە جیهان بازاڕ بکە، دەیگەیەنینە عێراق",privacy:"تایبەتمەندی",privacy_title:"ئاگاداری تایبەتمەندی",privacy_link:"ئاگاداری تایبەتمەندی",agree:"بە دروستکردنی هەژمار، ڕازی دەبیت بە",
+ p1:"ئەوەی کۆی دەکەینەوە: ناو، ئیمەیڵ، ژمارەی مۆبایل و شارەکەت کاتێک هەژمار دروست دەکەیت، و ئەوەی لە فۆرمی پەیوەندیدا دەینووسیت.",
+ p2:"بۆچی: بۆ دروستکردنی هەژماری MySpace و ناسنامەکەت، ڕاپەڕاندنی بارەکانت و وەڵامدانەوەی نامەکانت.",
+ p3:"کێ دەیبینێت: تەنها تیمی MySpace. وردەکاری بار تەنها کاتی پێویست بۆ گەیاندنی پاکەتەکەت لەگەڵ هاوبەشانی بارکردن و گومرگ هاوبەش دەکەین. هەرگیز زانیارییەکانت نافرۆشین.",
+ p4:"خزمەتگوزاریی متمانەپێکراو بۆ کارپێکردنی ماڵپەڕەکە بەکاردەهێنین: FormSubmit بۆ گەیاندنی نامەکان بە ئیمەیڵەکەمان و Supabase بۆ پاشەکەوتکردنی پارێزراوی هەژمارەکان. وشەی نهێنی هەرگیز بە ئیمەیڵ بۆمان نانێردرێت.",
+ p5:"دەتوانیت لە هەر کاتێکدا داوامان لێ بکەیت زانیارییەکانت ببینیت، ڕاستی بکەیتەوە یان بیسڕیتەوە، لە ڕێگەی ئیمەیڵ یان واتسئاپەوە.",
+ skip:"بڕۆ بۆ ناوەڕۆک",menu:"لیست",lang:"زمان",nav_how:"چۆن کار دەکەین",nav_services:"خزمەتگوزارییەکان",nav_calc:"ژمێرەری بارکردن",nav_faq:"پرسیارە باوەکان",nav_contact:"پەیوەندی",login:"چوونەژوورەوە",signup:"خۆتۆمارکردن",my_account:"هەژمارەکەم",
+ hero_eyebrow:"ناونیشانی جیهانی · دەرفەتی گەورەتر",hero_t1:"لە جیهان بازاڕ بکە.",hero_t2:"ئێمە بە ئاسماندا دەیگەیەنینە عێراق.",
+ hero_sub:"لە نزیکەی هەموو فرۆشگا ئۆنلاینەکانی دەرەوە داوا بکە. MySpace پاکەتەکانت وەردەگرێت، لە یەک سندوقدا کۆیان دەکاتەوە و بە بارکردنی ئاسمانیی خێرای MySpace Express دەیانگەیەنێتە بەردەم دەرگاکەت.",
+ cta_signup:"هەژماری بەخۆڕایی دروست بکە",cta_how:"چۆن کار دەکەین",hero_office:"نووسینگەمان لە هەولێرە · گەیاندن بۆ هەموو عێراق",
+ tab_track:"بەدواداچوون",tab_calc:"هەژمارکردن",track_label:"ژمارەی بەدواداچوونی MySpace",track_ph:"نموونە: 1234567890",track_btn:"بەدواداچوونی بار",track_help:"دوایین دۆخی بارەکەت لە واتسئاپ بۆت دەنێرین.",track_err:"تکایە ژمارەی بەدواداچوون بنووسە.",
+ c_len:"درێژی (سم)",c_wid:"پانی",c_hei:"بەرزی",c_result:"کێشی ژمێردراو",kg:"کگم",
+  t1:"بارکردنی ئاسمانیی خێرا لەگەڵ MySpace",t1d:"بارکردنی ئاسمانیی خێرا و بەدواداچووندار لە هەموو جیهانەوە.",t2:"کۆکردنەوەی پاکەتەکان",t2d:"داواکارییەکانت لە یەک سندوقدا کۆدەکەینەوە بۆ کەمکردنەوەی تێچوون.",t3:"ڕاپەڕاندنی گومرگ",t3d:"کاغەزەکانی گومرگ بۆ تۆ ڕادەپەڕێنین.",t4:"گەیاندن بۆ بەردەم دەرگا لە عێراق",t4d:"لە نووسینگەکەمان لە هەولێرەوە بۆ بەردەم دەرگاکەت.",
+ how_title:"MySpace چۆن کار دەکات",how_sub:"چوار هەنگاوی سادە لە کڕینەوە تا بەردەم دەرگاکەت.",
+ s1:"بەخۆڕایی خۆت تۆمار بکە",s1d:"هەژمارەکەت دروست بکە و ناسنامەی MySpaceی تایبەت بە خۆت وەربگرە.",s2:"ئۆنلاین بازاڕ بکە",s2d:"لە فرۆشگا دڵخوازەکانت لە دەرەوە بکڕە و بە ناسنامەکەتەوە بۆ ناونیشانەکەمان بینێرە.",s3:"کۆی دەکەینەوە",s3d:"پاکەتەکانت وەردەگرین، دەیانپشکنین و پێکەوە لە یەک باردا دەیانپێچینەوە.",s4:"دەگاتە دەستت",s4d:"سندوقەکەت بە ئاسماندا دەگاتە عێراق و دەگەیەنرێتە بەردەم دەرگاکەت.",
+ svc_title:"چی پێشکەش دەکەین",svc_sub:"هەموو ئەوەی پێویستتە بۆ هێنانی کڕینەکانت بۆ عێراق — لە یەک شوێندا.",
+ sv1:"بکڕە و بینێرە",sv1d:"ناونیشانەکانمان بەکاربهێنە بۆ کڕین لەو فرۆشگایانەی کە ناگەیەننە عێراق.",sv2:"کۆکردنەوە و دووبارە پێچانەوە",sv2d:"چەند داواکارییەک، یەک سندوق، تێچوونی بارکردنی کەمتر.",sv3:"بارکردنی ئاسمانیی خێرا",sv3d:"بارە بەپەلەکان بە MySpace Express دەگوازرێنەوە.",sv4:"بارکردنی بازرگانی",sv4d:"هاوردەی بەردەوام بۆ دوکان، کلینیک و کۆمپانیاکان.",sv5:"ڕاپەڕاندنی گومرگ",sv5d:"تیمەکەمان بەڵگەنامە و باجەکان ڕادەپەڕێنێت.",sv6:"گەیاندن لە دەرگاوە بۆ دەرگا",sv6d:"گەیاندن بۆ بەردەم دەرگاکەت لە هەر شوێنێکی عێراق.",
+ cat_kicker:"هەر شتێک بکڕە",cat_title:"هەموو ئەوەی خۆشت دەوێت، لە هەر شوێنێکەوە",cat_sub:"لە ڤیتامینەوە تا ئەلیکترۆنیات — بۆت دەگەیەنین.",cat1:"ڤیتامین و تەواوکەرە خۆراکییەکان",cat2:"ئەلیکترۆنیات",cat3:"جل و پێڵاو",cat4:"جوانکاری و خۆپاراستن",cat5:"پارچەی ئۆتۆمبێل",cat6:"ماڵ و چێشتخانە",cat_more:"…و زۆری تر",
+ cta_title:"ناونیشانی جیهانیت تەنها یەک کلیک دوورە",cta_sub:"هەژماری بەخۆڕایی MySpace دروست بکە بۆ وەرگرتنی ناسنامەکەت و دەستپێکردنی بازاڕکردن.",
+ faq_title:"پرسیارە باوەکان",
+ q1:"لە چ وڵاتانێکەوە دەتوانم بکڕم؟",a1:"دەتوانیت لە فرۆشگا ئۆنلاینەکانی هەموو جیهان داوا بکەیت. دوای خۆتۆمارکردن، تیمەکەمان ئەو ناونیشانەی بارکردنەت بۆ دەنێرێت کە لەگەڵ ناسنامەی MySpace بەکاری دەهێنیت.",
+ q2:"تێچوونی بارکردن چۆن هەژمار دەکرێت؟",a2:"نرخی بارکردنی ئاسمانی بەپێی کێشی ژمێردراوە، واتە گەورەترین لە نێوان کێشی ڕاستەقینە و کێشی قەبارەیی (درێژی × پانی × بەرزی ÷ 5000). ژمێرەرەکە بەکاربهێنە و پاشان بۆ نرخی ورد پەیوەندیمان پێوە بکە.",
+ q3:"گەیاندن چەندی پێدەچێت؟",a3:"زۆربەی بارە ئاسمانییە خێراکان لە ماوەی چەند ڕۆژێکی کاردا دوای جێهێشتنی وڵاتی سەرچاوە دەگەن، جگە لە کاتی ڕاپەڕاندنی گومرگ. لە هەموو هەنگاوێکدا ئاگادارت دەکەینەوە.",
+ q4:"دەتوانم چەند داواکارییەک کۆبکەمەوە؟",a4:"بەڵێ. پاکەتەکانت هەڵدەگرین تا هەموویان دەگەن، پاشان پێکەوە دەیانپێچینەوە بۆ ئەوەی پارە پاشەکەوت بکەیت.",
+ q5:"ئایا کاڵایەک هەیە کە نەتوانرێت بنێردرێت؟",a5:"بەڵێ. کاڵای مەترسیدار، ئاگرگرتوو، چەک و کاڵا قەدەغەکراوەکانی تر ناتوانرێت بە ئاسماندا بنێردرێن. ئەگەر دڵنیا نیت لە کاڵایەک پەیوەندیمان پێوە بکە.",
+ q6:"چۆن پارە بدەم؟",a6:"پەیوەندی بە تیمەکەمانەوە بکە بۆ زانینی ڕێگاکانی پارەدان لە عێراق.",
+ contact_title:"پەیوەندیمان پێوە بکە",contact_sub:"پرسیارت هەیە یان نرخت دەوێت؟ نامەیەکمان بۆ بنێرە و بە خێرایی وەڵام دەدەینەوە.",
+ f_name:"ناوی تەواو",f_phone:"ژمارەی مۆبایل",f_email:"ئیمەیڵ",f_msg:"نامەکەت",f_city:"شار",f_pw:"وشەی نهێنی",f_send:"ناردنی نامە",sending:"دەنێردرێت…",
+ sent:"سوپاس! نامەکەت نێردرا و بەم زووانە وەڵامت دەدەینەوە.",send_err:"هەڵەیەک ڕوویدا. تکایە دووبارە هەوڵ بدەرەوە یان لە واتسئاپ نامەمان بۆ بنێرە.",
+ i_office:"نووسینگەکەمان",i_office_v:"هەولێر، هەرێمی کوردستان، عێراق",i_phone:"تەلەفۆن",i_wa:"لە واتسئاپ قسەمان لەگەڵ بکە",i_email:"ئیمەیڵ",
+ tagline:"خەونەکانت، گەیەنراون.",rights:"© 2026 MySpace. هەموو مافەکان پارێزراون.",
+ login_title:"بەخێربێیتەوە",signup_title:"هەژمارەکەت دروست بکە",pw_help:"لانیکەم 8 پیت",show:"پیشاندان",hide:"شاردنەوە",have_acc:"پێشتر هەژمارت هەیە؟",no_acc:"نوێیت لە MySpace؟",forgot:"وشەی نهێنیت لەبیرچووە؟",
+ reset_title:"گۆڕینی وشەی نهێنی",reset_btn:"ناردنی بەستەری گۆڕین",reset_sent:"ئەگەر هەژمارێک بەم ئیمەیڵە هەبێت، بەستەری گۆڕین نێردراوە.",reset_local:"لە دۆخی پێشبینیندا، تکایە لە واتسئاپ پەیوەندیمان پێوە بکە بۆ گۆڕینی وشەی نهێنی.",
+ login_btn:"چوونەژوورەوە",signup_btn:"دروستکردنی هەژمار",back_login:"گەڕانەوە بۆ چوونەژوورەوە",close:"داخستن",
+ err_required:"تکایە ئەم خانەیە پڕ بکەرەوە.",err_email:"ئیمەیڵێکی دروست بنووسە، وەک name@example.com.",err_pw:"وشەی نهێنی دەبێت لانیکەم 8 پیت بێت.",err_exists:"هەژمارێک بەم ئیمەیڵە پێشتر هەیە. هەوڵی چوونەژوورەوە بدە.",err_creds:"ئیمەیڵ یان وشەی نهێنی هەڵەیە.",err_generic:"هەڵەیەک ڕوویدا. تکایە دووبارە هەوڵ بدەرەوە.",
+ acc_hello:"سڵاو",comma:"،",acc_id:"ناسنامەی MySpaceی تۆ",acc_id_help:"ئەم ناسنامەیە لەسەر هەموو ئەو داواکارییانە بنووسە کە بۆمانی دەنێریت.",acc_next:"هەنگاوی داهاتوو",acc_next_d:"تیمەکەمان پەیوەندیت پێوە دەکات بۆ پێدانی ناونیشانی بارکردن. هەروەها دەتوانیت لە واتسئاپ نامەمان بۆ بنێریت.",logout:"چوونەدەرەوە",
+ demo:"دۆخی پێشبینین: هەژمارەکان تەنها لەسەر ئەم ئامێرە پاشەکەوت دەکرێن تا هەژمارە ئۆنلاینەکان چالاک دەکرێن."
+}};
+
+/* ---------- Helpers ---------- */
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const store = {
+  get(k, d=null){ try{ const v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch{ return d; } },
+  set(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch{} },
+  del(k){ try{ localStorage.removeItem(k); }catch{} }
+};
+let LANG = "en";
+const t = k => (T[LANG] && T[LANG][k]) ?? T.en[k] ?? k;
+
+/* ---------- Language ---------- */
+function setLang(code){
+  LANG = T[code] ? code : "en";
+  document.documentElement.lang = LANG;
+  document.documentElement.dir = LANG === "en" ? "ltr" : "rtl";
+  $$("[data-i18n]").forEach(el => { el.textContent = t(el.dataset.i18n); });
+  $$("[data-i18n-ph]").forEach(el => { el.placeholder = t(el.dataset.i18nPh); });
+  $$(".pw-toggle").forEach(b => { const inp = b.previousElementSibling; b.textContent = t(inp.type === "password" ? "show" : "hide"); });
+  $("#langSel").value = LANG;
+  document.title = t("doc_title");
+  store.set("ms_lang", LANG);
+  if (typeof refreshQuoteLang === "function") refreshQuoteLang();
+  if (typeof updateTrackHelp === "function"){ updateTrackHelp(); renderTrack(); }
+  try{ const u = new URL(location.href); if (LANG === "en") u.searchParams.delete("lang"); else u.searchParams.set("lang", LANG); history.replaceState(null, "", u); }catch{}
+}
+$("#langSel").addEventListener("change", e => setLang(e.target.value));
+
+/* ---------- Contact details ---------- */
+$$(".js-phone").forEach(a => { a.href = "tel:" + CONFIG.phone.replace(/\s/g,""); a.textContent = CONFIG.phone; });
+$$(".js-wa").forEach(a => a.href = "https://wa.me/" + CONFIG.whatsapp);
+$$(".js-email").forEach(a => { a.href = "mailto:" + CONFIG.notifyEmail; a.textContent = CONFIG.notifyEmail; });
+
+/* ---------- Mobile menu ---------- */
+const menuBtn = $("#menuBtn"), mobileMenu = $("#mobileMenu");
+menuBtn.addEventListener("click", () => {
+  const open = mobileMenu.hidden; mobileMenu.hidden = !open; menuBtn.setAttribute("aria-expanded", String(open));
+});
+mobileMenu.addEventListener("click", e => { if (e.target.closest("a,button")) { mobileMenu.hidden = true; menuBtn.setAttribute("aria-expanded","false"); } });
+
+/* ---------- Tabs (track / calculate) ---------- */
+const tabs = $$(".tab");
+function selectTab(tab){
+  tabs.forEach(tb => { const on = tb === tab; tb.setAttribute("aria-selected", on); tb.tabIndex = on ? 0 : -1; $("#" + tb.getAttribute("aria-controls")).hidden = !on; });
+}
+tabs.forEach((tb, i) => {
+  tb.addEventListener("click", () => selectTab(tb));
+  tb.addEventListener("keydown", e => {
+    if (!["ArrowLeft","ArrowRight"].includes(e.key)) return;
+    const n = tabs[(i + 1) % tabs.length]; selectTab(n); n.focus();
+  });
+});
+$$('[data-tab="calc"]').forEach(a => a.addEventListener("click", () => selectTab($("#tab-calc"))));
+
+/* ---------- Tracking (customers only) ---------- */
+const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const LOCALE = { en:"en-GB", ar:"ar-IQ", ckb:"ckb-IQ" };
+function fmtDate(iso, withTime = true){
+  if (!iso) return "";
+  const d = new Date(iso); if (isNaN(d)) return esc(iso);
+  const opt = withTime ? {dateStyle:"medium", timeStyle:"short"} : {dateStyle:"full"};
+  try{ return new Intl.DateTimeFormat(LOCALE[LANG] + "-u-nu-latn", opt).format(d); }
+  catch{ return d.toLocaleString("en-GB", opt); }
+}
+const STATUS = { "pre-transit":["st_pre","i-file"], transit:["st_transit","i-plane"], delivered:["st_delivered","i-check"], failure:["st_failure","i-alert"] };
+
+const trackingEndpoint = () => (CONFIG.trackingApi || (Auth.mode === "supabase" ? CONFIG.supabaseUrl + "/functions/v1/track" : "")).replace(/\/$/, "");
+const askOnWhatsApp = id => window.open("https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(t("track_msg").replace("{n}", id)), "_blank", "noopener");
+function updateTrackHelp(){ $("#trackHelp").textContent = t(trackingEndpoint() ? "track_help_live" : "track_help"); }
+
+let lastTrack = null;
+function renderTrack(){
+  const body = $("#trkBody"), st = lastTrack;
+  if (!st) return;
+  $("#trkTitle").textContent = st.id;
+  if (st.state === "loading"){ body.innerHTML = `<div class="trk-msg"><div class="spinner"></div><p>${t("trk_loading")}</p></div>`; return; }
+  if (st.state === "error"){
+    const key = {notfound:"trk_notfound", login:"trk_login"}[st.error] || "trk_error";
+    body.innerHTML = `<div class="trk-msg"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-alert"/></svg></span><p>${t(key)}</p>
+      <div class="row-btns" style="margin-top:16px;justify-content:center"><a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(t("track_msg").replace("{n}", st.id))}">${t("i_wa")}</a></div></div>`;
+    return;
+  }
+  const d = st.data, s0 = d.status || {}, [lbl, ic] = STATUS[s0.code] || ["st_unknown","i-package"];
+  const meta = [
+    d.origin && [t("trk_from"), d.origin], d.destination && [t("trk_to"), d.destination],
+    d.estimatedDelivery && s0.code !== "delivered" && [t("trk_eta"), fmtDate(d.estimatedDelivery, false)],
+    s0.time && [t("trk_updated"), fmtDate(s0.time)],
+  ].filter(Boolean);
+  body.innerHTML = `
+    <div class="trk-status ${esc(s0.code)}"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#${ic}"/></svg></span>
+      <div><b>${t(lbl)}</b><span>${esc(s0.text)}${s0.location && !String(s0.text).includes(s0.location) ? " · " + esc(s0.location) : ""}</span></div></div>
+    ${meta.length ? `<div class="trk-meta">${meta.map(([a, b]) => `<div><small>${a}</small><b>${esc(b)}</b></div>`).join("")}</div>` : ""}
+    ${d.events?.length ? `<h3 class="trk-h">${t("trk_history")}</h3><ol class="timeline">${d.events.map(e => `
+      <li><div class="ev" dir="ltr" style="text-align:start">${esc(e.text)}</div><div class="when">${fmtDate(e.time)}${e.location && !String(e.text).includes(e.location) ? " · " + esc(e.location) : ""}</div></li>`).join("")}</ol>` : ""}`;
+}
+
+async function trackShipment(id){
+  lastTrack = { id, state:"loading" }; renderTrack();
+  const dlg = $("#trackDlg"); if (!dlg.open) dlg.showModal();
+  try{
+    const headers = {}, tok = await Auth.token();
+    if (tok){ headers.Authorization = "Bearer " + tok; headers.apikey = CONFIG.supabaseAnonKey; }
+    const res = await fetch(trackingEndpoint() + "?id=" + encodeURIComponent(id), { headers });
+    const data = await res.json().catch(() => ({}));
+    // tracking key not set up yet: fall back to asking on WhatsApp
+    if (data.error === "config"){ $("#trackDlg").close(); askOnWhatsApp(id); return; }
+    lastTrack = res.ok ? { id, state:"ok", data } : { id, state:"error", error: data.error || "error" };
+  }catch{ lastTrack = { id, state:"error", error:"network" }; }
+  renderTrack();
+}
+
+$("#pnl-track").addEventListener("submit", e => {
+  e.preventDefault();
+  if (!Auth.user){ openAuth("login"); return; }
+  const inp = $("#trackNo"), v = inp.value.replace(/[\s-]+/g,"").toUpperCase();
+  if (!v){ inp.setAttribute("aria-invalid","true"); $("#trackErr").textContent = t("track_err"); inp.focus(); return; }
+  inp.removeAttribute("aria-invalid"); $("#trackErr").textContent = "";
+  if (trackingEndpoint()) trackShipment(v);
+  else askOnWhatsApp(v);
+});
+
+/* =====================================================================
+   SHIPPING QUOTE — MySpace selling prices in USD (profit already included)
+   ===================================================================== */
+const RATES = {"currency":"USD","volDivisor":5000,"rates":{"docs":[[0.5,24.66,32.22,49.14,49.14,49.14,49.14,49.14,49.14],[1.0,26.28,35.73,52.65,53.55,53.01,54.09,54.99,54.99],[1.5,27.9,39.24,56.16,57.96,56.88,59.04,60.84,60.84],[2.0,29.52,42.75,59.67,62.37,60.75,63.99,66.69,66.69]],"pkg":[[0.5,24.66,32.22,49.14,49.14,49.14,49.14,49.14,49.14],[1.0,26.28,35.73,52.65,53.55,53.01,54.09,54.99,54.99],[1.5,27.9,39.24,56.16,57.96,56.88,59.04,60.84,60.84],[2.0,29.52,42.75,59.67,62.37,60.75,63.99,66.69,66.69],[2.5,31.14,46.26,63.18,66.78,64.62,68.94,72.54,72.54],[3.0,32.76,49.77,66.69,71.19,68.49,73.89,78.39,78.39],[3.5,34.38,53.28,70.2,75.6,72.36,78.84,84.24,84.24],[4.0,36.0,56.79,73.71,80.01,76.23,83.79,90.09,90.09],[4.5,37.62,60.3,77.22,84.42,80.1,88.74,95.94,95.94],[5.0,39.24,63.81,80.73,88.83,83.97,93.69,101.79,101.79],[5.5,40.86,67.32,84.24,93.24,87.84,98.64,107.64,107.64],[6.0,42.48,70.83,87.75,97.65,91.71,103.59,113.49,113.49],[6.5,44.1,74.34,91.26,102.06,95.58,108.54,119.34,119.34],[7.0,45.72,77.85,94.77,106.47,99.45,113.49,125.19,125.19],[7.5,47.34,81.36,98.28,110.88,103.32,118.44,131.04,131.04],[8.0,48.96,84.87,101.79,115.29,107.19,123.39,136.89,136.89],[8.5,50.58,88.38,105.3,119.7,111.06,128.34,142.74,142.74],[9.0,52.2,91.89,108.81,124.11,114.93,133.29,148.59,148.59],[9.5,53.82,95.4,112.32,128.52,118.8,138.24,154.44,154.44],[10.0,55.44,98.91,115.83,132.93,122.67,143.19,160.29,160.29],[11.0,35.64,77.22,77.22,97.02,85.14,108.9,128.7,128.7],[12.0,38.88,84.24,84.24,105.84,92.88,118.8,140.4,140.4],[13.0,42.12,91.26,91.26,114.66,100.62,128.7,152.1,152.1],[14.0,45.36,98.28,98.28,123.48,108.36,138.6,163.8,163.8],[15.0,48.6,105.3,105.3,132.3,116.1,148.5,175.5,175.5],[16.0,51.84,112.32,112.32,141.12,123.84,158.4,187.2,187.2],[17.0,55.08,119.34,119.34,149.94,131.58,168.3,198.9,198.9],[18.0,58.32,126.36,126.36,158.76,139.32,178.2,210.6,210.6],[19.0,61.56,133.38,133.38,167.58,147.06,188.1,222.3,222.3],[20.0,64.8,140.4,140.4,176.4,154.8,198.0,234.0,234.0],[21.0,68.04,147.42,147.42,185.22,162.54,207.9,245.7,245.7],[22.0,71.28,154.44,154.44,194.04,170.28,217.8,257.4,257.4],[23.0,74.52,161.46,161.46,202.86,178.02,227.7,269.1,269.1],[24.0,77.76,168.48,168.48,211.68,185.76,237.6,280.8,280.8],[25.0,81.0,175.5,175.5,220.5,193.5,247.5,292.5,292.5],[26.0,84.24,182.52,182.52,229.32,201.24,257.4,304.2,304.2],[27.0,87.48,189.54,189.54,238.14,208.98,267.3,315.9,315.9],[28.0,90.72,196.56,196.56,246.96,216.72,277.2,327.6,327.6],[29.0,93.96,203.58,203.58,255.78,224.46,287.1,339.3,339.3],[30.0,97.2,210.6,210.6,264.6,232.2,297.0,351.0,351.0],[40.0,115.2,252.0,252.0,316.8,280.8,360.0,424.8,424.8],[50.0,144.0,315.0,315.0,396.0,351.0,450.0,531.0,531.0],[60.0,172.8,378.0,378.0,475.2,421.2,540.0,637.2,637.2],[70.0,201.6,441.0,441.0,554.4,491.4,630.0,743.4,743.4]],"perKg":[[70.1,1000.0,2.88,6.3,6.3,7.92,7.02,9.0,10.62,10.62],[1000.1,99999.0,11.54,25.18,25.18,31.66,28.08,35.98,42.46,42.46]]},"surcharges":{"heavyPiece":42.3,"overweightPiece":211.5,"oversizePiece":38.7},"zones":{"AF":["Afghanistan",2],"AL":["Albania",7],"DZ":["Algeria",7],"AS":["American Samoa",8],"AD":["Andorra",8],"AO":["Angola",8],"AI":["Anguilla",8],"AG":["Antigua",8],"AR":["Argentina",8],"AM":["Armenia",7],"AW":["Aruba",8],"AU":["Australia",6],"AT":["Austria",5],"AZ":["Azerbaijan",7],"BS":["Bahamas",8],"BH":["Bahrain",1],"BD":["Bangladesh",3],"BB":["Barbados",8],"BY":["Belarus",7],"BE":["Belgium",5],"BZ":["Belize",8],"BJ":["Benin",8],"BM":["Bermuda",8],"BT":["Bhutan",6],"BO":["Bolivia",8],"XB":["Bonaire",8],"BA":["Bosnia and Herzegovina",5],"BW":["Botswana",8],"BR":["Brazil",8],"BN":["Brunei",6],"BG":["Bulgaria",5],"BF":["Burkina Faso",8],"BI":["Burundi",8],"KH":["Cambodia",6],"CM":["Cameroon",8],"CA":["Canada",4],"IC":["Canary Islands, The",8],"CV":["Cape Verde",8],"KY":["Cayman Islands",8],"CF":["Central African Rep",8],"TD":["Chad",8],"CL":["Chile",8],"CN":["China",6],"CO":["Colombia",8],"KM":["Comoros",8],"CG":["Congo",8],"CD":["Congo, DPR",8],"CK":["Cook Islands",8],"CR":["Costa Rica",8],"CI":["Cote D Ivoire",8],"HR":["Croatia",5],"CU":["Cuba",8],"XC":["Curacao",8],"CY":["Cyprus",5],"CZ":["Czech Rep., The",5],"DK":["Denmark",5],"DJ":["Djibouti",8],"DM":["Dominica",8],"DO":["Dominican Rep.",8],"TL":["East Timor",8],"EC":["Ecuador",8],"EG":["Egypt",2],"SV":["El Salvador",8],"ER":["Eritrea",8],"EE":["Estonia",7],"SZ":["Eswatini",8],"ET":["Ethiopia",8],"FK":["Falkland Islands",8],"FO":["Faroe Islands",8],"FJ":["Fiji",8],"FI":["Finland",5],"FR":["France",5],"GF":["French Guyana",8],"GA":["Gabon",8],"GM":["Gambia",8],"GE":["Georgia",7],"DE":["Germany",5],"GH":["Ghana",8],"GI":["Gibraltar",8],"GR":["Greece",5],"GL":["Greenland",8],"GD":["Grenada",8],"GP":["Guadeloupe",8],"GU":["Guam",8],"GT":["Guatemala",8],"GG":["Guernsey",8],"GN":["Guinea Rep.",8],"GW":["Guinea-Bissau",8],"GQ":["Guinea-Equatorial",8],"GY":["Guyana (British)",8],"HT":["Haiti",8],"HN":["Honduras",8],"HK":["Hong Kong SAR China",6],"HU":["Hungary",5],"IS":["Iceland",8],"IN":["India",3],"ID":["Indonesia",6],"IR":["Iran",2],"IE":["Ireland, Rep. Of",5],"IT":["Italy",5],"JM":["Jamaica",8],"JP":["Japan",6],"JE":["Jersey",8],"JO":["Jordan",1],"KZ":["Kazakhstan",7],"KE":["Kenya",8],"KI":["Kiribati",8],"KP":["Korea, D.P.R Of",6],"KR":["Korea, Rep. Of",6],"KV":["Kosovo",7],"KW":["Kuwait",1],"KG":["Kyrgyzstan",7],"LA":["Laos",8],"LV":["Latvia",7],"LB":["Lebanon",1],"LS":["Lesotho",8],"LR":["Liberia",8],"LY":["Libya",7],"LI":["Liechtenstein",5],"LT":["Lithuania",7],"LU":["Luxembourg",5],"MO":["Macau SAR China",8],"MK":["Macedonia, Rep. Of",5],"MG":["Madagascar",8],"MW":["Malawi",8],"MY":["Malaysia",6],"MV":["Maldives",6],"ML":["Mali",8],"MT":["Malta",8],"MH":["Marshall Islands",8],"MQ":["Martinique",8],"MR":["Mauritania",7],"MU":["Mauritius",8],"YT":["Mayotte",8],"MX":["Mexico",4],"FM":["Micronesia",8],"MD":["Moldova, Rep. Of",7],"MC":["Monaco",5],"MN":["Mongolia",7],"ME":["Montenegro, Rep Of",5],"MS":["Montserrat",8],"MA":["Morocco",7],"MZ":["Mozambique",8],"MM":["Myanmar",6],"NA":["Namibia",8],"NR":["Nauru, Rep. Of",8],"NP":["Nepal",3],"NL":["Netherlands, The",5],"XN":["Nevis",8],"NC":["New Caledonia",8],"NZ":["New Zealand",6],"NI":["Nicaragua",8],"NE":["Niger",8],"NG":["Nigeria",8],"NU":["Niue",8],"MP":["Northern Mariana Islands",8],"NO":["Norway",5],"OM":["Oman",1],"PK":["Pakistan",3],"PW":["Palau",8],"PA":["Panama",8],"PG":["Papua New Guinea",6],"PY":["Paraguay",8],"PE":["Peru",8],"PH":["Philippines, The",6],"PL":["Poland",5],"PT":["Portugal",5],"PR":["Puerto Rico",8],"QA":["Qatar",1],"RE":["Reunion, Island Of",8],"RO":["Romania",5],"RU":["Russian Federation",7],"RW":["Rwanda",8],"SH":["Saint Helena",8],"WS":["Samoa",8],"SM":["San Marino",8],"ST":["Sao Tome And Principe",8],"SA":["Saudi Arabia",1],"SN":["Senegal",8],"RS":["Serbia, Rep. Of",5],"SC":["Seychelles",8],"SL":["Sierra Leone",8],"SG":["Singapore",6],"SK":["Slovakia",5],"SI":["Slovenia",5],"SB":["Solomon Islands",8],"XS":["Somalia Hargeisa",8],"SO":["Somalia Mogadishu",8],"ZA":["South Africa",8],"SS":["South Sudan",8],"ES":["Spain",5],"LK":["Sri Lanka",3],"XY":["St. Barthelemy",8],"XE":["St. Eustatius",8],"KN":["St. Kitts",8],"LC":["St. Lucia",8],"XM":["St. Maarten",8],"VC":["St. Vincent",8],"SD":["Sudan",7],"SR":["Suriname",8],"SE":["Sweden",5],"CH":["Switzerland",5],"SY":["Syria",2],"PF":["Tahiti",8],"TW":["Taiwan",6],"TJ":["Tajikistan",6],"TZ":["Tanzania",8],"TH":["Thailand",6],"TG":["Togo",8],"TO":["Tonga",8],"TT":["Trinidad And Tobago",8],"TN":["Tunisia",7],"TR":["Turkey",2],"TM":["Turkmenistan",7],"TC":["Turks and Caicos Islands",8],"TV":["Tuvalu",8],"US":["USA",4],"UG":["Uganda",8],"UA":["Ukraine",7],"AE":["United Arab Emirates",1],"GB":["United Kingdom",5],"UY":["Uruguay",8],"UZ":["Uzbekistan",7],"VU":["Vanuatu",8],"VA":["Vatican City",5],"VE":["Venezuela",8],"VN":["Vietnam",6],"VG":["Virgin Islands-British",8],"VI":["Virgin Islands-US",8],"YE":["Yemen, Rep. Of",2],"ZM":["Zambia",8],"ZW":["Zimbabwe",8]}};
+const POPULAR = ["US","GB","TR","AE","CN","DE","SA","IN"];
+const LIMITS = { pieceKg: 1000, pieceCm: 300, shipmentKg: 3000 };
+
+const usd = v => "$" + v.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2});
+const kgFmt = v => (Math.round(v * 100) / 100).toLocaleString("en-US", {maximumFractionDigits:2});
+
+function countryName(code){
+  try{
+    if (!/^X|^KV$|^IC$/.test(code)){
+      const n = new Intl.DisplayNames([LANG === "ckb" ? "ckb" : LANG], {type:"region"}).of(code);
+      if (n && n !== code) return n;
+    }
+  }catch{}
+  return RATES.zones[code][0];
+}
+
+function fillRouteSelects(){
+  const codes = Object.keys(RATES.zones);
+  const sorted = codes.map(c => [c, countryName(c)]).sort((a, b) => a[1].localeCompare(b[1], LANG));
+  const opt = ([c, n]) => `<option value="${c}">${n}</option>`;
+  const fromHtml = `<option value="">${t("q_from_ph")}</option>`
+    + `<optgroup label="${t("q_popular")}">${POPULAR.map(c => opt([c, countryName(c)])).join("")}</optgroup>`
+    + `<optgroup label="${t("q_all")}">${sorted.map(opt).join("")}</optgroup>`;
+  const toHtml = t("cities").split("|").map((c, i) => `<option value="${i}">${c}</option>`).join("");
+  $$(".js-from").forEach(sel => { const v = sel.value; sel.innerHTML = fromHtml; sel.value = v; });
+  $$(".js-to").forEach(sel => { const v = sel.value || "0"; sel.innerHTML = toHtml; sel.value = v; });
+}
+
+/* Price for a chargeable weight (kg) from one zone */
+function shippingPrice(zone, w, type){
+  if (type === "docs" && w <= 2){
+    const row = RATES.rates.docs.find(r => r[0] >= w);
+    return { price: row[zone], billed: row[0] };
+  }
+  if (w <= 70){
+    const row = RATES.rates.pkg.find(r => r[0] >= w);
+    return { price: row[zone], billed: row[0] };
+  }
+  const billed = Math.ceil(w);
+  const band = RATES.rates.perKg.find(r => billed <= r[1]) || RATES.rates.perKg.at(-1);
+  return { price: Math.round(band[zone + 1] * billed * 100) / 100, billed };
+}
+
+function computeQuote(q){
+  const zone = RATES.zones[q.from][1];
+  let actual = 0, vol = 0, charge = 0, handling = 0;
+  for (const p of q.pieces){
+    const pv = (p.l * p.w * p.h) / RATES.volDivisor;
+    actual += p.kg * p.qty; vol += pv * p.qty;
+    charge += Math.max(p.kg, pv) * p.qty;
+    const maxSide = Math.max(p.l, p.w, p.h);
+    let fee = 0;
+    if (p.kg > 70) fee += RATES.surcharges.overweightPiece;
+    if (maxSide > 120) fee += RATES.surcharges.oversizePiece;
+    if (!fee && p.kg >= 25) fee += RATES.surcharges.heavyPiece;
+    handling += fee * p.qty;
+  }
+  // round up to the next half kilo
+  const w = Math.ceil(charge * 2) / 2;
+  const ship = shippingPrice(zone, w, q.type);
+  const fuel = Math.round((ship.price + handling) * (CONFIG.fuelPercent || 0)) / 100;
+  const total = Math.round((ship.price + handling + fuel) * 100) / 100;
+  return { actual, vol, w: ship.billed, ship: ship.price, handling, fuel, total };
+}
+
+/* ----- UI ----- */
+let qPieces = [{ qty:1, kg:"", l:"", w:"", h:"" }];
+let lastQuote = null;
+
+function renderPieces(){
+  $("#pieces").innerHTML = qPieces.map((p, i) => `
+    <div class="piece" data-i="${i}">
+      <div class="piece-head"><span>${t("q_piece")} ${i + 1}</span>${qPieces.length > 1 ? `<button class="rm" type="button" data-rm="${i}">${t("q_remove")}</button>` : ""}</div>
+      <div class="piece-grid">
+        <div class="field"><label for="pq${i}">${t("q_qty")}</label><input class="input" id="pq${i}" data-k="qty" type="number" min="1" step="1" inputmode="numeric" value="${p.qty}"></div>
+        <div class="field"><label for="pk${i}">${t("q_weight")}</label><input class="input" id="pk${i}" data-k="kg" type="number" min="0" step="0.1" inputmode="decimal" value="${p.kg}" placeholder="2.5"></div>
+        <div class="field"><label for="pl${i}">${t("c_len")}</label><input class="input" id="pl${i}" data-k="l" type="number" min="0" inputmode="decimal" value="${p.l}" placeholder="40"></div>
+        <div class="field"><label for="pw${i}">${t("c_wid")}</label><input class="input" id="pw${i}" data-k="w" type="number" min="0" inputmode="decimal" value="${p.w}" placeholder="30"></div>
+        <div class="field"><label for="ph${i}">${t("c_hei")}</label><input class="input" id="ph${i}" data-k="h" type="number" min="0" inputmode="decimal" value="${p.h}" placeholder="20"></div>
+      </div>
+    </div>`).join("");
+}
+$("#pieces").addEventListener("input", e => {
+  const inp = e.target.closest("input[data-k]"); if (!inp) return;
+  qPieces[+inp.closest(".piece").dataset.i][inp.dataset.k] = inp.value;
+  inp.removeAttribute("aria-invalid");
+});
+$("#pieces").addEventListener("click", e => {
+  const b = e.target.closest("[data-rm]"); if (!b) return;
+  qPieces.splice(+b.dataset.rm, 1); renderPieces();
+});
+$("#addPiece").addEventListener("click", () => {
+  qPieces.push({ qty:1, kg:"", l:"", w:"", h:"" }); renderPieces();
+  $(`#pk${qPieces.length - 1}`).focus();
+});
+
+function goStep(n, focus = true){
+  $$(".qstep").forEach(el => el.hidden = +el.dataset.q !== n);
+  $$(".stepper li").forEach(li => {
+    const k = +li.dataset.step;
+    if (k === n) li.setAttribute("aria-current", "step"); else li.removeAttribute("aria-current");
+    li.classList.toggle("done", k < n);
+  });
+  if (focus){
+    const first = $(`.qstep[data-q="${n}"] select, .qstep[data-q="${n}"] input, .qstep[data-q="${n}"] .total`);
+    if (first){ first.setAttribute("tabindex", first.matches(".total") ? "-1" : first.getAttribute("tabindex") || "0"); first.focus({preventScroll:true}); }
+  }
+}
+$$("[data-qgo]").forEach(b => b.addEventListener("click", () => goStep(+b.dataset.qgo)));
+
+// keep the two route forms (hero + section) in sync
+$$(".js-from, .js-to").forEach(sel => sel.addEventListener("change", () => {
+  const cls = sel.classList.contains("js-from") ? ".js-from" : ".js-to";
+  $$(cls).forEach(o => { if (o !== sel) o.value = sel.value; });
+  $("#qFromErr").textContent = ""; $("#hErr").textContent = ""; $("#qFrom").removeAttribute("aria-invalid");
+}));
+
+$("#pnl-calc").addEventListener("submit", e => {
+  e.preventDefault();
+  if (!$("#hFrom").value){ $("#hErr").textContent = t("q_err_from"); $("#hFrom").focus(); return; }
+  goStep(2, false);
+  $("#quote").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"});
+  setTimeout(() => $("#pk0") && $("#pk0").focus({preventScroll:true}), 450);
+});
+
+$('.qstep[data-q="1"]').addEventListener("submit", e => {
+  e.preventDefault();
+  if (!$("#qFrom").value){ $("#qFrom").setAttribute("aria-invalid","true"); $("#qFromErr").textContent = t("q_err_from"); $("#qFrom").focus(); return; }
+  goStep(2);
+});
+
+function readPieces(){
+  let bad = null;
+  const out = qPieces.map((p, i) => {
+    const n = v => Math.max(0, parseFloat(v) || 0);
+    const r = { qty: Math.max(1, Math.round(n(p.qty)) || 1), kg: n(p.kg), l: n(p.l), w: n(p.w), h: n(p.h) };
+    if (!r.kg && !bad) bad = $(`#pk${i}`);
+    return r;
+  });
+  return { pieces: out, bad };
+}
+
+$('.qstep[data-q="2"]').addEventListener("submit", e => {
+  e.preventDefault();
+  const err = $("#qPieceErr"); err.textContent = "";
+  const { pieces, bad } = readPieces();
+  if (bad){ bad.setAttribute("aria-invalid","true"); err.textContent = t("q_err_weight"); bad.focus(); return; }
+  const tooBig = pieces.some(p => p.kg > LIMITS.pieceKg || Math.max(p.l, p.w, p.h) > LIMITS.pieceCm)
+    || pieces.reduce((a, p) => a + p.kg * p.qty, 0) > LIMITS.shipmentKg;
+  if (tooBig){ err.textContent = t("q_err_limit"); return; }
+  const type = $('input[name="qType"]:checked').value;
+  const q = { from: $("#qFrom").value, to: +$("#qTo").value, type, pieces };
+  lastQuote = { q, r: computeQuote(q) };
+  renderResult(); goStep(3);
+});
+
+function renderResult(){
+  if (!lastQuote) return;
+  const { q, r } = lastQuote;
+  const city = t("cities").split("|")[q.to];
+  $("#rRoute").textContent = `${countryName(q.from)}  →  ${city}, ${t("q_iraq")}`;
+  $("#rTotal").textContent = usd(r.total);
+  const nPieces = q.pieces.reduce((a, p) => a + p.qty, 0);
+  const lines = [
+    [t("q_pieces"), String(nPieces)],
+    [t("q_actual"), `${kgFmt(r.actual)} ${t("kg")}`],
+    [t("q_vol"), `${kgFmt(r.vol)} ${t("kg")}`],
+    [t("q_cw"), `${kgFmt(r.w)} ${t("kg")}`],
+    [t("q_ship"), usd(r.ship)],
+  ];
+  if (r.handling) lines.push([t("q_handling"), usd(r.handling)]);
+  if (r.fuel) lines.push([`${t("q_fuel")} (${CONFIG.fuelPercent}%)`, usd(r.fuel)]);
+  $("#rLines").innerHTML = lines.map(([a, b]) => `<dt>${a}</dt><dd class="ltr-num">${b}</dd>`).join("");
+  const msg = t("q_book_msg").replace("{from}", countryName(q.from)).replace("{to}", city)
+    .replace("{type}", t(q.type === "docs" ? "q_doc" : "q_pkg")).replace("{pieces}", nPieces)
+    .replace("{w}", kgFmt(r.w)).replace("{total}", usd(r.total) + " USD");
+  $("#qBook").href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(msg);
+}
+
+function refreshQuoteLang(){ fillRouteSelects(); renderPieces(); renderResult(); }
+
+/* ---------- Email notifications (FormSubmit — no server needed) ---------- */
+async function sendEmail(subject, fields){
+  const res = await fetch("https://formsubmit.co/ajax/" + CONFIG.notifyEmail, {
+    method:"POST",
+    headers:{"Content-Type":"application/json","Accept":"application/json"},
+    body: JSON.stringify({_subject: subject, _template:"table", _captcha:"false", ...fields})
+  });
+  // FormSubmit answers 200 even when it did NOT deliver (e.g. "needs activation"), so check the body too
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok || String(data.success) !== "true") throw new Error(data.message || "send failed");
+  return data;
+}
+
+/* ---------- Form validation ---------- */
+const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+function fieldError(input, key){
+  const err = input.closest(".field").querySelector(".error");
+  if (key){ input.setAttribute("aria-invalid","true"); if (err) err.textContent = t(key); }
+  else { input.removeAttribute("aria-invalid"); if (err) err.textContent = ""; }
+  return !key;
+}
+function validate(form){
+  let firstBad = null;
+  $$("input[required],textarea[required]", form).forEach(inp => {
+    const v = inp.value.trim();
+    let key = null;
+    if (!v) key = "err_required";
+    else if (inp.type === "email" && !EMAIL_RE.test(v)) key = "err_email";
+    else if (inp.minLength > 0 && v.length < inp.minLength) key = "err_pw";
+    if (!fieldError(inp, key) && !firstBad) firstBad = inp;
+  });
+  if (firstBad) firstBad.focus();
+  return !firstBad;
+}
+$$("input[required],textarea[required]").forEach(inp => inp.addEventListener("blur", () => {
+  if (inp.getAttribute("aria-invalid") === "true" && inp.value.trim()) fieldError(inp, null);
+}));
+function busy(btn, on){
+  if (on){ btn.dataset.label = btn.textContent; btn.textContent = t("sending"); btn.disabled = true; }
+  else { btn.textContent = btn.dataset.label || btn.textContent; btn.disabled = false; }
+}
+
+/* ---------- Contact form ---------- */
+$("#contactForm").addEventListener("submit", async e => {
+  e.preventDefault();
+  const f = e.currentTarget, status = $("#cfStatus"), btn = $("button[type=submit]", f);
+  status.hidden = true;
+  if (!validate(f)) return;
+  if ($("#cfHoney").value){ status.className = "status ok"; status.textContent = t("sent"); status.hidden = false; f.reset(); return; }
+  busy(btn, true);
+  try{
+    await sendEmail("New message from the MySpace website", {
+      Name: $("#cfName").value.trim(), Email: $("#cfEmail").value.trim(), Phone: $("#cfPhone").value.trim(),
+      Message: $("#cfMsg").value.trim(), Language: LANG
+    });
+    status.className = "status ok"; status.textContent = t("sent"); f.reset();
+  }catch{
+    status.className = "status err"; status.textContent = t("send_err");
+  }
+  status.hidden = false; busy(btn, false);
+});
+
+/* =====================================================================
+   ACCOUNTS
+   - With CONFIG.supabaseUrl set: real accounts (Supabase Auth + "customers" table)
+   - Without it: preview mode, saved in this browser only
+   ===================================================================== */
+const newId = () => "MS" + String(Math.floor(100000 + Math.random() * 900000));
+async function sha(s){
+  try{
+    const buf = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(s));
+    return [...new Uint8Array(buf)].map(b => b.toString(16).padStart(2,"0")).join("");
+  }catch{ let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) | 0; return "x" + h; }
+}
+const loadScript = src => new Promise((ok, fail) => { const s = document.createElement("script"); s.src = src; s.onload = ok; s.onerror = fail; document.head.appendChild(s); });
+const siteUrl = () => location.origin + location.pathname;
+
+const Auth = {
+  mode: CONFIG.supabaseUrl && CONFIG.supabaseAnonKey ? "supabase" : "local",
+  user: null,
+  listeners: [],
+  onChange(fn){ this.listeners.push(fn); },
+  emit(){ this.listeners.forEach(fn => fn(this.user)); },
+
+  async init(){
+    if (this.mode === "supabase"){
+      await loadScript("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js");
+      this.sb = supabase.createClient(CONFIG.supabaseUrl, CONFIG.supabaseAnonKey);
+      this.sb.auth.onAuthStateChange((event, session) => {
+        if (event === "PASSWORD_RECOVERY") setTimeout(() => openAuth("newpw"), 0);
+        // load the profile outside the callback (Supabase recommends not awaiting inside it)
+        setTimeout(() => this.loadProfile(session), 0);
+      });
+      const { data } = await this.sb.auth.getSession();
+      await this.loadProfile(data.session);
+    } else {
+      const email = store.get("ms_session");
+      const u = email && store.get("ms_users", {})[email];
+      this.user = u ? this.publicUser(u) : null;
+      this.emit();
+    }
+  },
+  async loadProfile(session){
+    const u = session?.user;
+    if (!u){ if (this.user){ this.user = null; this.emit(); } else if (!this._emitted){ this._emitted = true; this.emit(); } return; }
+    if (this.user && this.user.uid === u.id) return;
+    let p = null;
+    for (let i = 0; i < 3 && !p; i++){   // the profile row is created by the database right after sign-up
+      const { data } = await this.sb.from("customers").select("ms_id,name,phone,city").eq("id", u.id).maybeSingle();
+      p = data; if (!p) await new Promise(r => setTimeout(r, 600));
+    }
+    const m = u.user_metadata || {};
+    this.user = { uid: u.id, email: u.email, name: p?.name || m.name || "", phone: p?.phone || m.phone || "", city: p?.city || m.city || "", id: p?.ms_id || "" };
+    this._emitted = true; this.emit();
+  },
+  publicUser(u){ return { name:u.name, email:u.email, phone:u.phone, city:u.city, id:u.id }; },
+  async token(){
+    if (this.mode !== "supabase") return null;
+    const { data } = await this.sb.auth.getSession();
+    return data.session?.access_token || null;
+  },
+
+  async signUp(d){
+    if (this.mode === "supabase"){
+      const { data, error } = await this.sb.auth.signUp({ email: d.email, password: d.password,
+        options: { data: { name: d.name, phone: d.phone, city: d.city, lang: LANG }, emailRedirectTo: siteUrl() } });
+      if (error) throw new Error(/already|registered|exists/i.test(error.message) ? "err_exists" : /password/i.test(error.message) ? "err_pw" : "err_generic");
+      // Supabase hides "email already used" by returning a user without identities
+      if (data.user && Array.isArray(data.user.identities) && data.user.identities.length === 0) throw new Error("err_exists");
+      if (!data.session) return { pending: true, email: d.email, name: d.name, phone: d.phone, city: d.city, id: "" };
+      await this.loadProfile(data.session);
+      return this.user;
+    }
+    const users = store.get("ms_users", {}), key = d.email.toLowerCase();
+    if (users[key]) throw new Error("err_exists");
+    const u = { name:d.name, email:key, phone:d.phone, city:d.city, id:newId(), hash: await sha(key + "|" + d.password) };
+    users[key] = u; store.set("ms_users", users); store.set("ms_session", key);
+    this.user = this.publicUser(u); this.emit(); return this.user;
+  },
+
+  async logIn(email, password){
+    if (this.mode === "supabase"){
+      const { data, error } = await this.sb.auth.signInWithPassword({ email, password });
+      if (error) throw new Error(/confirm/i.test(error.message) ? "err_confirm" : /invalid/i.test(error.message) ? "err_creds" : "err_generic");
+      await this.loadProfile(data.session);
+      return;
+    }
+    const key = email.toLowerCase(), u = store.get("ms_users", {})[key];
+    if (!u || u.hash !== await sha(key + "|" + password)) throw new Error("err_creds");
+    store.set("ms_session", key); this.user = this.publicUser(u); this.emit();
+  },
+
+  async reset(email){
+    if (this.mode === "supabase"){ try{ await this.sb.auth.resetPasswordForEmail(email, { redirectTo: siteUrl() }); }catch{} return "reset_sent"; }
+    return "reset_local";
+  },
+  async setPassword(pw){
+    const { error } = await this.sb.auth.updateUser({ password: pw });
+    if (error) throw new Error(/password/i.test(error.message) ? "err_pw" : "err_generic");
+  },
+
+  async logOut(){
+    if (this.mode === "supabase"){ await this.sb.auth.signOut(); this.user = null; this.emit(); }
+    else { store.del("ms_session"); this.user = null; this.emit(); }
+  }
+};
+
+/* ---------- Auth UI ---------- */
+const authDlg = $("#authDlg"), accDlg = $("#accDlg");
+function showView(name){
+  $$("[data-view]", authDlg).forEach(f => { f.hidden = f.dataset.view !== name; $$(".status", f).forEach(s => s.hidden = true); });
+  const first = $(`[data-view="${name}"] input`, authDlg); if (first) setTimeout(() => first.focus(), 30);
+}
+function openAuth(view){ $("[data-demo]").hidden = Auth.mode !== "local"; showView(view); if (!authDlg.open) authDlg.showModal(); }
+function openAccount(){
+  const u = Auth.user; if (!u) return openAuth("login");
+  $("#accName").textContent = u.name.split(" ")[0] || "";
+  $("#accId").textContent = u.id || "—";
+  $("#accEmail").textContent = u.email;
+  $("#accPhone").textContent = u.phone || "";
+  $("#accCity").textContent = u.city ? (u.phone ? "· " : "") + u.city : "";
+  if (!accDlg.open) accDlg.showModal();
+}
+$$(".js-login").forEach(b => b.addEventListener("click", () => openAuth("login")));
+$$(".js-signup").forEach(b => b.addEventListener("click", () => Auth.user ? openAccount() : openAuth("signup")));
+$$(".js-account").forEach(b => b.addEventListener("click", openAccount));
+$$("[data-go]").forEach(b => b.addEventListener("click", () => showView(b.dataset.go)));
+$$("dialog").forEach(d => {
+  $$("[data-close]", d).forEach(b => b.addEventListener("click", () => d.close()));
+  d.addEventListener("click", e => { if (e.target === d) d.close(); });
+});
+$$(".pw-toggle").forEach(b => b.addEventListener("click", () => {
+  const inp = b.previousElementSibling, show = inp.type === "password";
+  inp.type = show ? "text" : "password"; b.textContent = t(show ? "hide" : "show");
+}));
+function formError(form, key){ const s = $(".status", form); s.className = "status err"; s.textContent = t(key); s.hidden = false; }
+
+$("#loginForm").addEventListener("submit", async e => {
+  e.preventDefault(); const f = e.currentTarget, btn = $("button[type=submit]", f);
+  $(".status", f).hidden = true;
+  if (!validate(f)) return;
+  busy(btn, true);
+  try{ await Auth.logIn($("#lEmail").value.trim(), $("#lPw").value); f.reset(); authDlg.close(); setTimeout(openAccount, 300); }
+  catch(err){ formError(f, err.message); }
+  busy(btn, false);
+});
+
+$("#signupForm").addEventListener("submit", async e => {
+  e.preventDefault(); const f = e.currentTarget, btn = $("button[type=submit]", f);
+  $(".status", f).hidden = true;
+  if (!validate(f)) return;
+  busy(btn, true);
+  const d = { name:$("#sName").value.trim(), email:$("#sEmail").value.trim(), phone:$("#sPhone").value.trim(), city:$("#sCity").value.trim(), password:$("#sPw").value };
+  try{
+    const u = await Auth.signUp(d);
+    if (u.pending){
+      const st = $(".status", f); st.className = "status ok"; st.textContent = t("confirm_sent").replace("{email}", u.email); st.hidden = false;
+      sendEmail(`New MySpace customer: ${u.name}`, { Name:u.name, Email:u.email, Phone:u.phone, City:u.city, Language:LANG }).catch(err => console.warn("New-customer email not delivered:", err.message));
+      busy(btn, false); return;
+    }
+    // Let the MySpace team know about the new customer (never sends the password)
+    sendEmail(`New MySpace customer: ${u.name} (${u.id})`, { "Customer ID":u.id, Name:u.name, Email:u.email, Phone:u.phone, City:u.city, Language:LANG }).catch(err => console.warn("New-customer email not delivered:", err.message));
+    f.reset(); authDlg.close(); setTimeout(openAccount, 300);
+  }catch(err){ formError(f, err.message); }
+  busy(btn, false);
+});
+
+$("#resetForm").addEventListener("submit", async e => {
+  e.preventDefault(); const f = e.currentTarget, btn = $("button[type=submit]", f);
+  if (!validate(f)) return;
+  busy(btn, true);
+  const key = await Auth.reset($("#rEmail").value.trim());
+  const s = $(".status", f); s.className = "status ok"; s.textContent = t(key); s.hidden = false;
+  busy(btn, false);
+});
+
+$("#newPwForm").addEventListener("submit", async e => {
+  e.preventDefault(); const f = e.currentTarget, btn = $("button[type=submit]", f);
+  $(".status", f).hidden = true;
+  if (!validate(f)) return;
+  busy(btn, true);
+  try{ await Auth.setPassword($("#nPw").value); f.reset(); const st = $(".status", f); st.className = "status ok"; st.textContent = t("newpw_done"); st.hidden = false; setTimeout(() => authDlg.close(), 1500); }
+  catch(err){ formError(f, err.message); }
+  busy(btn, false);
+});
+
+$("#logoutBtn").addEventListener("click", async () => { await Auth.logOut(); accDlg.close(); });
+
+Auth.onChange(u => {
+  $("#trackLocked").hidden = !!u; $("#trackOpen").hidden = !u;
+  $$(".js-login").forEach(b => b.hidden = !!u);
+  $$(".js-account").forEach(b => b.hidden = !u);
+  $$(".auth-btns .js-signup, .mobile-menu .js-signup").forEach(b => b.hidden = !!u);
+});
+
+/* ---------- Privacy notice ---------- */
+$$(".js-privacy").forEach(b => b.addEventListener("click", () => $("#privDlg").showModal()));
+
+/* ---------- Scroll effects ---------- */
+const header = $(".site-header");
+const onScroll = () => header.classList.toggle("scrolled", scrollY > 8);
+addEventListener("scroll", onScroll, {passive:true}); onScroll();
+if ("IntersectionObserver" in window){
+  // Reveal blocks as they scroll into view; siblings stagger slightly
+  // Content only hides once the observer is confirmed running, so it can never get stuck invisible
+  const ro = new IntersectionObserver(es => { document.documentElement.classList.add("js"); es.forEach(e => { if (e.isIntersecting){ e.target.classList.add("in"); ro.unobserve(e.target); } }); }, {rootMargin:"0px 0px -8% 0px"});
+  $$(".reveal").forEach(el => { const i = [...el.parentElement.children].indexOf(el); el.style.setProperty("--d", Math.min(i, 6) * 60 + "ms"); ro.observe(el); });
+  // Highlight the menu item for the section on screen
+  const links = $$(".nav-links a");
+  const no = new IntersectionObserver(es => es.forEach(e => {
+    if (!e.isIntersecting) return;
+    links.forEach(a => { if (a.getAttribute("href") === "#" + e.target.id) a.setAttribute("aria-current", "true"); else a.removeAttribute("aria-current"); });
+  }), {rootMargin:"-45% 0px -50% 0px"});
+  ["top","how","services","faq","contact"].forEach(id => { const el = document.getElementById(id); if (el) no.observe(el); });
+} else { $$(".reveal").forEach(el => el.classList.add("in")); }
+
+/* ---------- Start ---------- */
+const urlLang = new URLSearchParams(location.search).get("lang");
+const saved = T[urlLang] ? urlLang : store.get("ms_lang");
+const browser = (navigator.language || "en").slice(0,2);
+setLang(saved || (browser === "ar" ? "ar" : (["ku","ckb"].includes(browser) ? "ckb" : "en")));
+Auth.init().catch(() => { Auth.mode = "local"; Auth.init(); });
+</script>
+</body>
+</html>
