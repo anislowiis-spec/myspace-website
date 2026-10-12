@@ -4,14 +4,14 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>MySpace — Shop the world, delivered to Iraq</title>
-<meta name="description" content="MySpace: shop from online stores around the world and get your parcels flown to Iraq by MySpace Express Air. Office in Erbil.">
+<meta name="description" content="MySpace: we collect your shipment anywhere in the world and fly it to your address in Iraq. Instant prices in USD and IQD. Office in Erbil.">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="logo.png">
 <meta name="theme-color" content="#1b2d5b">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MySpace">
 <meta property="og:title" content="MySpace — Shop the world, delivered to Iraq">
-<meta property="og:description" content="Shop from online stores worldwide. We consolidate your parcels and fly them to Iraq with MySpace Express. Office in Erbil.">
+<meta property="og:description" content="We collect shipments anywhere in the world and fly them to your address in Iraq with MySpace Express. Office in Erbil.">
 <meta property="og:url" content="https://anislowiis-spec.github.io/myspace-website/">
 <meta property="og:image" content="https://anislowiis-spec.github.io/myspace-website/og-image.png">
 <meta property="og:image:width" content="1200">
@@ -329,6 +329,13 @@ dialog.wide{width:min(620px,calc(100vw - 32px))}
 .acc-edit{border:1px solid var(--line);border-radius:14px;padding:16px;margin-bottom:18px}
 .acc-edit .grid2{gap:0 12px}
 
+.addr-card{display:flex;gap:12px;align-items:flex-start;background:var(--bg);border-radius:14px;padding:14px 16px;margin-bottom:18px}
+.addr-card .ic{width:40px;height:40px;border-radius:10px;background:var(--teal-soft);color:var(--teal-ink);display:grid;place-items:center;flex:none}
+.addr-card b{color:var(--navy)}
+.addr-card p{color:var(--muted);white-space:pre-line}
+.iqd{display:block;font:700 18px var(--body);color:#c9d3ea;text-align:end}
+.pay{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--navy);background:var(--teal-soft);border-radius:999px;padding:6px 14px;margin-bottom:12px}
+
 .faq{background:var(--surface)}
 .faq-list{max-width:820px;margin-inline:auto}
 .faq details{border-bottom:1px solid var(--line)}
@@ -512,9 +519,9 @@ dialog[open]{animation:pop .22s var(--ease)}
 <section class="hero" id="top" style="padding:0">
   <div class="wrap hero-grid">
     <div>
-      <span class="eyebrow"><svg class="icon sm" aria-hidden="true"><use href="#i-globe"/></svg><span data-i18n="hero_eyebrow">Global addresses · Bigger possibilities</span></span>
+      <span class="eyebrow"><svg class="icon sm" aria-hidden="true"><use href="#i-globe"/></svg><span data-i18n="hero_eyebrow">Worldwide pickup · Delivered to Iraq</span></span>
       <h1><span data-i18n="hero_t1">Shop the world.</span> <span class="line2" data-i18n="hero_t2">We fly it to Iraq.</span></h1>
-      <p class="lead" data-i18n="hero_sub">Order from almost any online store abroad. MySpace receives your parcels, combines them into one box and flies them to your door with MySpace Express Air.</p>
+      <p class="lead" data-i18n="hero_sub">Bought something abroad, or need a parcel from family or a supplier? We collect it anywhere in the world and fly it to the address you choose in Iraq with MySpace Express Air.</p>
       <div class="hero-ctas">
         <button class="btn btn-primary js-signup" type="button"><svg class="icon sm" aria-hidden="true"><use href="#i-userplus"/></svg><span data-i18n="cta_signup">Create free account</span></button>
         <a class="btn btn-ghost" href="#how" data-i18n="cta_how">How it works</a>
@@ -669,7 +676,7 @@ dialog[open]{animation:pop .22s var(--ease)}
   <div class="wrap">
     <ul>
       <li><span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-plane"/></svg></span><div><h3 data-i18n="t1">MySpace Express Air</h3><p data-i18n="t1d">Fast, tracked air freight from around the world.</p></div></li>
-      <li><span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg></span><div><h3 data-i18n="t2">Parcel consolidation</h3><p data-i18n="t2d">We combine your orders into one box to lower costs.</p></div></li>
+      <li><span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg></span><div><h3 data-i18n="t2">Pickup worldwide</h3><p data-i18n="t2d">We collect your shipment from the seller or sender abroad.</p></div></li>
       <li><span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-shield"/></svg></span><div><h3 data-i18n="t3">Customs handled</h3><p data-i18n="t3d">We take care of clearance paperwork for you.</p></div></li>
       <li><span class="badge"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg></span><div><h3 data-i18n="t4">Door delivery in Iraq</h3><p data-i18n="t4d">From our Erbil office to your doorstep.</p></div></li>
     </ul>
@@ -722,7 +729,8 @@ dialog[open]{animation:pop .22s var(--ease)}
       <div class="qstep" data-q="3" hidden>
         <div class="qresult" aria-live="polite">
           <p class="qroute" id="rRoute"></p>
-          <div class="total"><span data-i18n="q_total">Total</span><strong id="rTotal" class="ltr-num"></strong></div>
+          <div class="total"><span data-i18n="q_total">Total</span><strong class="ltr-num"><span id="rTotal"></span><span class="iqd" id="rTotalIqd"></span></strong></div>
+          <p class="pay"><svg class="icon sm" aria-hidden="true"><use href="#i-coins"/></svg><span data-i18n="q_pay">Payment: cash</span></p>
           <dl class="lines" id="rLines"></dl>
           <p class="note" data-i18n="q_note">Customs duties and taxes are not included. The final price is confirmed after your parcel is weighed and measured at our warehouse.</p>
         </div>
@@ -744,10 +752,10 @@ dialog[open]{animation:pop .22s var(--ease)}
       <p data-i18n="how_sub">Four simple steps from checkout to your door.</p>
     </div>
     <ol class="steps">
-      <li class="step reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-userplus"/></svg></div><h3 data-i18n="s1">Sign up free</h3><p data-i18n="s1d">Create your account and get your personal MySpace ID.</p></li>
-      <li class="step reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg></div><h3 data-i18n="s2">Shop online</h3><p data-i18n="s2d">Buy from your favourite stores abroad and ship to our address with your ID.</p></li>
-      <li class="step reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-package"/></svg></div><h3 data-i18n="s3">We consolidate</h3><p data-i18n="s3d">We receive, check and pack your parcels together into one shipment.</p></li>
-      <li class="step reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-plane"/></svg></div><h3 data-i18n="s4">Delivered to you</h3><p data-i18n="s4d">Your box flies to Iraq and is delivered to your door.</p></li>
+      <li class="step reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-userplus"/></svg></div><h3 data-i18n="s1">Sign up free</h3><p data-i18n="s1d">Create your account and add your delivery address in Iraq.</p></li>
+      <li class="step reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-calc"/></svg></div><h3 data-i18n="s2">Get your price</h3><p data-i18n="s2d">Tell us where the shipment comes from and its weight. You see the price instantly.</p></li>
+      <li class="step reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-truck"/></svg></div><h3 data-i18n="s3">We collect it</h3><p data-i18n="s3d">We arrange pickup from the seller or sender abroad.</p></li>
+      <li class="step reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-plane"/></svg></div><h3 data-i18n="s4">Delivered to you</h3><p data-i18n="s4d">Your shipment flies to Iraq and is delivered to the address you chose.</p></li>
     </ol>
   </div>
 </section>
@@ -761,8 +769,8 @@ dialog[open]{animation:pop .22s var(--ease)}
       <p data-i18n="svc_sub">Everything you need to bring your purchases to Iraq — in one place.</p>
     </div>
     <div class="svc-grid">
-      <article class="svc reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-bag"/></svg></div><h3 data-i18n="sv1">Shop &amp; Ship</h3><p data-i18n="sv1d">Use our addresses to shop from stores that don't deliver to Iraq.</p></article>
-      <article class="svc reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-layers"/></svg></div><h3 data-i18n="sv2">Consolidation &amp; repacking</h3><p data-i18n="sv2d">Several orders, one box, one lower shipping cost.</p></article>
+      <article class="svc reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-globe"/></svg></div><h3 data-i18n="sv1">Import from any country</h3><p data-i18n="sv1d">We pick up from stores, suppliers, friends or family abroad.</p></article>
+      <article class="svc reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></div><h3 data-i18n="sv2">Documents</h3><p data-i18n="sv2d">Contracts, certificates and papers delivered fast.</p></article>
       <article class="svc reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-plane"/></svg></div><h3 data-i18n="sv3">Express air freight</h3><p data-i18n="sv3d">Time-critical shipments flown with MySpace Express.</p></article>
       <article class="svc reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-briefcase"/></svg></div><h3 data-i18n="sv4">Business shipping</h3><p data-i18n="sv4d">Regular imports for shops, clinics and companies.</p></article>
       <article class="svc reveal"><div class="ic"><svg class="icon" aria-hidden="true"><use href="#i-file"/></svg></div><h3 data-i18n="sv5">Customs clearance</h3><p data-i18n="sv5d">Documents and duties handled by our team.</p></article>
@@ -798,7 +806,7 @@ dialog[open]{animation:pop .22s var(--ease)}
     <div class="section-head center reveal">
       <p class="kicker" data-i18n="rs_kicker">Before you buy</p>
       <h2 data-i18n="rs_title">Items we can't fly</h2>
-      <p data-i18n="rs_sub">Air freight has strict safety rules. Please don't order these to your MySpace address.</p>
+      <p data-i18n="rs_sub">Air freight has strict safety rules. Please don't send these with MySpace.</p>
     </div>
     <ul class="rs-grid">
       <li class="rs reveal"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-battery"/></svg></span><b data-i18n="rs1">Loose batteries &amp; power banks</b><small data-i18n="rs1d">Lithium batteries packed on their own</small></li>
@@ -820,8 +828,8 @@ dialog[open]{animation:pop .22s var(--ease)}
     <div class="cta-inner reveal">
       <img src="logo.png" alt="MySpace logo" width="120" height="98" loading="lazy">
       <div>
-        <h2 data-i18n="cta_title">Your global address is one click away</h2>
-        <p data-i18n="cta_sub">Create your free MySpace account to get your ID and start shopping.</p>
+        <h2 data-i18n="cta_title">Start shipping to Iraq today</h2>
+        <p data-i18n="cta_sub">Create your free MySpace account and get your first quote in seconds.</p>
       </div>
       <button class="btn btn-primary js-signup" type="button"><svg class="icon sm" aria-hidden="true"><use href="#i-userplus"/></svg><span data-i18n="cta_signup">Create free account</span></button>
     </div>
@@ -987,7 +995,7 @@ dialog[open]{animation:pop .22s var(--ease)}
     <div class="idcard">
       <small data-i18n="acc_id">Your MySpace ID</small>
       <div class="id-row"><div class="id" id="accId"></div><button class="copy" type="button" id="copyId"><svg class="icon sm" aria-hidden="true"><use href="#i-copy"/></svg><span data-i18n="acc_copy">Copy</span></button></div>
-      <p data-i18n="acc_id_help">Write this ID on every order you ship to us.</p>
+      <p data-i18n="acc_id_help">Mention this ID whenever you contact us about a shipment.</p>
       <img src="logo.png" alt="">
     </div>
     <div class="acc-meta"><span id="accEmail" dir="ltr" style="text-align:start"></span><span><bdi id="accPhone" dir="ltr"></bdi> <span id="accCity"></span></span>
@@ -998,11 +1006,12 @@ dialog[open]{animation:pop .22s var(--ease)}
         <div class="field"><label for="ePhone" data-i18n="f_phone">Phone number</label><input class="input" id="ePhone" type="tel" autocomplete="tel" dir="ltr" required><span class="error"></span></div>
         <div class="field"><label for="eCity" data-i18n="f_city">City</label><input class="input" id="eCity" autocomplete="address-level2" required><span class="error"></span></div>
       </div>
+      <div class="field"><label for="eAddr" data-i18n="f_addr">Delivery address in Iraq</label><textarea class="input" id="eAddr" autocomplete="street-address" rows="2" style="min-height:76px" required aria-describedby="eAddrHelp"></textarea><span class="help" id="eAddrHelp" data-i18n="f_addr_help">Area, street, building and a nearby landmark</span><span class="error"></span></div>
       <div class="status" role="status" hidden></div>
       <div class="row-btns"><button class="btn btn-outline" type="button" id="editCancel" data-i18n="cancel">Cancel</button><button class="btn btn-primary" type="submit" data-i18n="save">Save</button></div>
     </form>
-    <h3 style="font-size:22px;margin-bottom:6px" data-i18n="acc_next">Next step</h3>
-    <p style="color:var(--muted);margin-bottom:18px" data-i18n="acc_next_d">Our team will contact you with your shipping address. You can also message us on WhatsApp.</p>
+    <div class="addr-card"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span>
+      <div><b data-i18n="acc_addr">Delivery address</b><p id="accAddr"></p></div></div>
     <div class="row-btns">
       <a class="btn btn-primary js-wa" href="#" target="_blank" rel="noopener"><svg class="icon sm" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
       <button class="btn btn-outline" type="button" id="logoutBtn"><svg class="icon sm" aria-hidden="true"><use href="#i-logout"/></svg><span data-i18n="logout">Log out</span></button>
@@ -1026,9 +1035,10 @@ const CONFIG = {
   // While these are empty, accounts are only saved in the visitor's own browser (preview mode).
   supabaseUrl: "https://vdqzpquotnmtpufbicqo.supabase.co",
   supabaseAnonKey: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZkcXpwcXVvdG5tdHB1ZmJpY3FvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE4MzU1MDYsImV4cCI6MjEwNzQxMTUwNn0.Ttwe74ZbmO8olCQ_NdRsFhD8Jj6XGRP5xwtJCUTB880",
-  // Fuel surcharge in percent. It changes every week: update it here (e.g. 24.5).
-  // It is added on top of shipping and handling, then included in the customer's total.
+  // Fuel surcharge (%) and dinar rate. The website takes the live values from
+  // Supabase -> Table Editor -> settings; these are only used if that can't be reached.
   fuelPercent: 0,
+  usdToIqd: 1520,
   // Tracking service address. Leave empty to use the Supabase "track" function automatically.
   trackingApi: ""
 };
@@ -1038,37 +1048,37 @@ const CONFIG = {
    ===================================================================== */
 const T = {
 en:{
- acc_copy:"Copy",acc_copied:"Copied!",acc_edit:"Edit my details",cancel:"Cancel",save:"Save",rs_kicker:"Before you buy",rs_title:"Items we can't fly",rs_sub:"Air freight has strict safety rules. Please don't order these to your MySpace address.",rs1:"Loose batteries & power banks",rs1d:"Lithium batteries packed on their own",rs2:"Perfume, aerosols & nail polish",rs2d:"Anything flammable or under pressure",rs3:"Chemicals & flammable liquids",rs3d:"Fuel, paint, solvents, gases",rs4:"Weapons & replicas",rs4d:"Including parts, ammunition and toy guns that look real",rs5:"Medicines & drugs",rs5d:"Prescription medicine needs approval; illegal drugs are never accepted",rs6:"Cash, gold & valuables",rs6d:"Money, precious metals, loose gemstones",rs7:"Fresh food, plants & animals",rs7d:"Anything that can spoil or is alive",rs8:"Items banned in Iraq",rs8d:"Goods not allowed by Iraqi customs",rs_note:"This list isn't complete and rules can change. Not sure about an item? Ask us before you buy.",
+ q_iqd:"IQD",q_pay:"Payment: cash",f_addr_help:"Area, street, building and a nearby landmark",f_addr:"Delivery address in Iraq",acc_addr_none:"No delivery address yet. Add one so we know where to deliver.",acc_addr:"Delivery address",acc_copy:"Copy",acc_copied:"Copied!",acc_edit:"Edit my details",cancel:"Cancel",save:"Save",rs_kicker:"Before you buy",rs_title:"Items we can't fly",rs_sub:"Air freight has strict safety rules. Please don't send these with MySpace.",rs1:"Loose batteries & power banks",rs1d:"Lithium batteries packed on their own",rs2:"Perfume, aerosols & nail polish",rs2d:"Anything flammable or under pressure",rs3:"Chemicals & flammable liquids",rs3d:"Fuel, paint, solvents, gases",rs4:"Weapons & replicas",rs4d:"Including parts, ammunition and toy guns that look real",rs5:"Medicines & drugs",rs5d:"Prescription medicine needs approval; illegal drugs are never accepted",rs6:"Cash, gold & valuables",rs6d:"Money, precious metals, loose gemstones",rs7:"Fresh food, plants & animals",rs7d:"Anything that can spoil or is alive",rs8:"Items banned in Iraq",rs8d:"Goods not allowed by Iraqi customs",rs_note:"This list isn't complete and rules can change. Not sure about an item? Ask us before you buy.",
  q_search:"Search country",q_none:"No country found",
  newpw_title:"Choose a new password",newpw_btn:"Save password",newpw_done:"Your password has been changed.",confirm_sent:"Almost done! We sent a confirmation link to {email}. Click it to activate your account.",err_confirm:"Please confirm your email first. Check your inbox for our link.",
  track_locked:"Log in to track your shipments",track_locked_d:"Tracking is available for MySpace customers. Creating an account is free.",track_help_live:"See where your shipment is right now, with its full history.",trk_title:"Shipment",trk_loading:"Looking up your shipment…",trk_notfound:"We couldn't find a shipment with this number. Check the number and try again. New shipments can take a few hours to appear.",trk_error:"Tracking is temporarily unavailable. Please try again later or ask us on WhatsApp.",trk_login:"Your session has expired. Please log in again.",trk_eta:"Estimated delivery",trk_from:"From",trk_to:"To",trk_history:"Shipment history",trk_updated:"Last update",st_pre:"Shipment created",st_transit:"In transit",st_delivered:"Delivered",st_failure:"Action needed",st_unknown:"Status update",
- nav_quote:"Get a quote",q_title:"Get a rate quote in seconds",q_sub:"Tell us where your shipment comes from and what's inside, and we'll show you the price to Iraq.",q_st1:"Route",q_st2:"Your shipment",q_st3:"Your price",q_from:"Shipping from",q_from_ph:"Select a country",q_to:"Delivering to (Iraq)",q_popular:"Popular",q_all:"All countries",q_next:"Next",q_back:"Back",q_type:"What are you sending?",q_pkg:"Package",q_pkg_d:"Goods, products, anything in a box",q_doc:"Documents",q_doc_d:"Papers only",q_piece:"Piece",q_qty:"Quantity",q_weight:"Weight (kg)",q_add:"Add another piece",q_remove:"Remove",q_show:"Show my price",q_err_from:"Please choose the country you're shipping from.",q_err_weight:"Enter the weight of every piece.",q_err_limit:"This shipment is too large for online pricing. Please contact us for a custom quote.",q_iraq:"Iraq",q_total:"Total",q_cw:"Chargeable weight",q_actual:"Actual weight",q_vol:"Volumetric weight",q_ship:"Shipping",q_handling:"Heavy or large piece handling",q_fuel:"Fuel surcharge",q_note:"Customs duties and taxes are not included. The final price is confirmed after your parcel is weighed and measured at our warehouse.",q_edit:"Change details",q_book:"Book on WhatsApp",q_pieces:"Pieces",q_book_msg:"Hello MySpace, I'd like to book a shipment.\nFrom: {from}\nTo: {to}, Iraq\nType: {type}\nPieces: {pieces}\nChargeable weight: {w} kg\nQuoted price: {total}",cities:"Erbil|Sulaymaniyah|Duhok|Halabja|Kirkuk|Baghdad|Basra|Mosul|Najaf|Karbala|Other city",
+ nav_quote:"Get a quote",q_title:"Get a rate quote in seconds",q_sub:"Tell us where your shipment comes from and what's inside, and we'll show you the price to Iraq.",q_st1:"Route",q_st2:"Your shipment",q_st3:"Your price",q_from:"Shipping from",q_from_ph:"Select a country",q_to:"Delivering to (Iraq)",q_popular:"Popular",q_all:"All countries",q_next:"Next",q_back:"Back",q_type:"What are you sending?",q_pkg:"Package",q_pkg_d:"Goods, products, anything in a box",q_doc:"Documents",q_doc_d:"Papers only",q_piece:"Piece",q_qty:"Quantity",q_weight:"Weight (kg)",q_add:"Add another piece",q_remove:"Remove",q_show:"Show my price",q_err_from:"Please choose the country you're shipping from.",q_err_weight:"Enter the weight of every piece.",q_err_limit:"This shipment is too large for online pricing. Please contact us for a custom quote.",q_iraq:"Iraq",q_total:"Total",q_cw:"Chargeable weight",q_actual:"Actual weight",q_vol:"Volumetric weight",q_ship:"Shipping",q_handling:"Heavy or large piece handling",q_fuel:"Fuel surcharge",q_note:"Customs duties and taxes are not included. The final price is confirmed after your parcel is weighed and measured at our warehouse.",q_edit:"Change details",q_book:"Book on WhatsApp",q_pieces:"Pieces",q_book_msg:"Hello MySpace, I'd like to book a shipment.\nFrom: {from}\nTo: {to}, Iraq\nType: {type}\nPieces: {pieces}\nChargeable weight: {w} kg\nQuoted price: {total}\nDelivery address: {addr}\nPayment: cash",cities:"Erbil|Sulaymaniyah|Duhok|Halabja|Kirkuk|Baghdad|Basra|Mosul|Najaf|Karbala|Other city",
  track_msg:"Hello MySpace, please send me the status of my shipment: {n}",doc_title:"MySpace — Shop the world, delivered to Iraq",privacy:"Privacy",privacy_title:"Privacy notice",privacy_link:"privacy notice",agree:"By creating an account you agree to our",
- p1:"What we collect: your name, email, phone number and city when you create an account, and what you write in the contact form.",
+ p1:"What we collect: your name, email, phone number, city and delivery address when you create an account, and what you write in the contact form.",
  p2:"Why: to create your MySpace account and ID, handle your shipments and reply to your messages.",
  p3:"Who sees it: only the MySpace team. We share shipment details with our shipping partners and customs only when needed to deliver your parcel. We never sell your data.",
  p4:"We use trusted services to run this website: FormSubmit to deliver messages to our inbox and Supabase to store accounts securely. Your password is never sent to us by email.",
  p5:"You can ask us to see, correct or delete your data at any time by email or WhatsApp.",
  skip:"Skip to content",menu:"Menu",lang:"Language",nav_how:"How it works",nav_services:"Services",nav_calc:"Shipping calculator",nav_faq:"FAQ",nav_contact:"Contact",login:"Log in",signup:"Sign up",my_account:"My account",
- hero_eyebrow:"Global addresses · Bigger possibilities",hero_t1:"Shop the world.",hero_t2:"We fly it to Iraq.",
- hero_sub:"Order from almost any online store abroad. MySpace receives your parcels, combines them into one box and flies them to your door with MySpace Express Air.",
+ hero_eyebrow:"Worldwide pickup · Delivered to Iraq",hero_t1:"Shop the world.",hero_t2:"We fly it to Iraq.",
+ hero_sub:"Bought something abroad, or need a parcel from family or a supplier? We collect it anywhere in the world and fly it to the address you choose in Iraq with MySpace Express Air.",
  cta_signup:"Create free account",cta_how:"How it works",hero_office:"Office in Erbil · Delivery across Iraq",
  tab_track:"Track",tab_calc:"Calculate",track_label:"MySpace tracking number",track_ph:"e.g. 1234567890",track_btn:"Track shipment",track_help:"We'll send you your shipment's latest status on WhatsApp.",track_err:"Please enter your tracking number.",
  c_len:"Length (cm)",c_wid:"Width",c_hei:"Height",c_result:"Chargeable weight",kg:"kg",
-  t1:"MySpace Express Air",t1d:"Fast, tracked air freight from around the world.",t2:"Parcel consolidation",t2d:"We combine your orders into one box to lower costs.",t3:"Customs handled",t3d:"We take care of clearance paperwork for you.",t4:"Door delivery in Iraq",t4d:"From our Erbil office to your doorstep.",
- how_title:"How MySpace works",how_sub:"Four simple steps from checkout to your door.",
- s1:"Sign up free",s1d:"Create your account and get your personal MySpace ID.",s2:"Shop online",s2d:"Buy from your favourite stores abroad and ship to our address with your ID.",s3:"We consolidate",s3d:"We receive, check and pack your parcels together into one shipment.",s4:"Delivered to you",s4d:"Your box flies to Iraq and is delivered to your door.",
- svc_title:"What we do",svc_sub:"Everything you need to bring your purchases to Iraq — in one place.",
- sv1:"Shop & Ship",sv1d:"Use our addresses to shop from stores that don't deliver to Iraq.",sv2:"Consolidation & repacking",sv2d:"Several orders, one box, one lower shipping cost.",sv3:"Express air freight",sv3d:"Time-critical shipments flown with MySpace Express.",sv4:"Business shipping",sv4d:"Regular imports for shops, clinics and companies.",sv5:"Customs clearance",sv5d:"Documents and duties handled by our team.",sv6:"Door-to-door delivery",sv6d:"Delivery to your door anywhere in Iraq.",
+  t1:"MySpace Express Air",t1d:"Fast, tracked air freight from around the world.",t2:"Pickup worldwide",t2d:"We collect your shipment from the seller or sender abroad.",t3:"Customs handled",t3d:"We take care of clearance paperwork for you.",t4:"Door delivery in Iraq",t4d:"From our Erbil office to your doorstep.",
+ how_title:"How MySpace works",how_sub:"Four simple steps from abroad to your door.",
+ s1:"Sign up free",s1d:"Create your account and add your delivery address in Iraq.",s2:"Get your price",s2d:"Tell us where the shipment comes from and its weight. You see the price instantly.",s3:"We collect it",s3d:"We arrange pickup from the seller or sender abroad.",s4:"Delivered to you",s4d:"Your shipment flies to Iraq and is delivered to the address you chose.",
+ svc_title:"What we do",svc_sub:"Everything you need to bring your shipments to Iraq, in one place.",
+ sv1:"Import from any country",sv1d:"We pick up from stores, suppliers, friends or family abroad.",sv2:"Documents",sv2d:"Contracts, certificates and papers delivered fast.",sv3:"Express air freight",sv3d:"Time-critical shipments flown with MySpace Express.",sv4:"Business shipping",sv4d:"Regular imports for shops, clinics and companies.",sv5:"Customs clearance",sv5d:"Documents and duties handled by our team.",sv6:"Door-to-door delivery",sv6d:"Delivery to your door anywhere in Iraq.",
  cat_kicker:"Shop anything",cat_title:"Everything you love, from anywhere",cat_sub:"From vitamins to electronics — we ship it for you.",cat1:"Vitamins & supplements",cat2:"Electronics",cat3:"Fashion & shoes",cat4:"Beauty & personal care",cat5:"Auto parts",cat6:"Home & kitchen",cat_more:"…and much more",
- cta_title:"Your global address is one click away",cta_sub:"Create your free MySpace account to get your ID and start shopping.",
+ cta_title:"Start shipping to Iraq today",cta_sub:"Create your free MySpace account and get your first quote in seconds.",
  faq_title:"Frequently asked questions",
- q1:"Which countries can I shop from?",a1:"You can order from online stores around the world. After you sign up, our team shares the shipping address to use together with your MySpace ID.",
+ q1:"Which countries can I ship from?",a1:"From almost every country in the world. Choose it in our calculator to see the price straight away.",
  q2:"How is the shipping cost calculated?",a2:"Air freight is priced by chargeable weight — whichever is greater between the actual weight and the volumetric weight (L × W × H ÷ 5000). Use our calculator, then contact us for an exact price.",
  q3:"How long does delivery take?",a3:"Most express air shipments arrive within a few business days after leaving the origin country, plus customs clearance time. We keep you updated at every step.",
- q4:"Can I combine several orders?",a4:"Yes. We hold your parcels until all of them arrive, then pack them together so you save money.",
+ q4:"Can I send several boxes in one shipment?",a4:"Yes. Add each box in the calculator. They travel together as one shipment to your address.",
  q5:"Are there items you cannot ship?",a5:"Yes. Dangerous goods, flammable items, weapons and other restricted products cannot be shipped by air. Contact us if you're unsure about an item.",
- q6:"How do I pay?",a6:"Contact our team to learn about the payment options available in Iraq.",
+ q6:"How do I pay?",a6:"At the moment we accept cash only. When you book, our team tells you how much to pay and where.",
  contact_title:"Get in touch",contact_sub:"Questions or a quote? Send us a message and we'll reply quickly.",
  f_name:"Full name",f_phone:"Phone number",f_email:"Email",f_msg:"Your message",f_city:"City",f_pw:"Password",f_send:"Send message",sending:"Sending…",
  sent:"Thank you! Your message was sent. We'll get back to you soon.",send_err:"Something went wrong. Please try again or contact us on WhatsApp.",
@@ -1078,41 +1088,41 @@ en:{
  reset_title:"Reset password",reset_btn:"Send reset link",reset_sent:"If an account exists for this email, a reset link has been sent.",reset_local:"In preview mode, please contact us on WhatsApp to reset your password.",
  login_btn:"Log in",signup_btn:"Create account",back_login:"Back to log in",close:"Close",
  err_required:"Please fill in this field.",err_email:"Enter a valid email address, like name@example.com.",err_pw:"Password must be at least 8 characters.",err_exists:"An account with this email already exists. Try logging in.",err_creds:"Email or password is incorrect.",err_generic:"Something went wrong. Please try again.",
- acc_hello:"Hello",comma:",",acc_id:"Your MySpace ID",acc_id_help:"Write this ID on every order you ship to us.",acc_next:"Next step",acc_next_d:"Our team will contact you with your shipping address. You can also message us on WhatsApp.",logout:"Log out",
+ acc_hello:"Hello",comma:",",acc_id:"Your MySpace ID",acc_id_help:"Mention this ID whenever you contact us about a shipment.",logout:"Log out",
  demo:"Preview mode: accounts are saved on this device only until online accounts are switched on."
 },
 ar:{
- acc_copy:"نسخ",acc_copied:"تم النسخ!",acc_edit:"تعديل بياناتي",cancel:"إلغاء",save:"حفظ",rs_kicker:"قبل أن تشتري",rs_title:"مواد لا يمكننا شحنها جواً",rs_sub:"للشحن الجوي قواعد سلامة صارمة. يرجى عدم طلب هذه المواد إلى عنوان MySpace الخاص بك.",rs1:"البطاريات المنفردة والباور بانك",rs1d:"بطاريات الليثيوم المغلفة وحدها",rs2:"العطور والبخاخات وطلاء الأظافر",rs2d:"أي شيء قابل للاشتعال أو مضغوط",rs3:"المواد الكيميائية والسوائل القابلة للاشتعال",rs3d:"الوقود والطلاء والمذيبات والغازات",rs4:"الأسلحة والمجسمات",rs4d:"بما في ذلك القطع والذخيرة والألعاب التي تشبه الأسلحة الحقيقية",rs5:"الأدوية والمخدرات",rs5d:"الأدوية بوصفة طبية تحتاج موافقة؛ ولا تُقبل المخدرات أبداً",rs6:"النقود والذهب والمقتنيات الثمينة",rs6d:"الأموال والمعادن الثمينة والأحجار الكريمة",rs7:"الأطعمة الطازجة والنباتات والحيوانات",rs7d:"أي شيء قابل للتلف أو حي",rs8:"المواد الممنوعة في العراق",rs8d:"البضائع غير المسموح بها من الجمارك العراقية",rs_note:"هذه القائمة ليست كاملة وقد تتغير القواعد. لست متأكداً من منتج ما؟ اسألنا قبل الشراء.",
+ q_iqd:"دينار",q_pay:"الدفع: نقداً",f_addr_help:"المنطقة والشارع والبناية وأقرب نقطة دالة",f_addr:"عنوان التوصيل في العراق",acc_addr_none:"لا يوجد عنوان توصيل بعد. أضفه لنعرف أين نوصل شحنتك.",acc_addr:"عنوان التوصيل",acc_copy:"نسخ",acc_copied:"تم النسخ!",acc_edit:"تعديل بياناتي",cancel:"إلغاء",save:"حفظ",rs_kicker:"قبل أن تشتري",rs_title:"مواد لا يمكننا شحنها جواً",rs_sub:"للشحن الجوي قواعد سلامة صارمة. يرجى عدم إرسال هذه المواد عبر MySpace.",rs1:"البطاريات المنفردة والباور بانك",rs1d:"بطاريات الليثيوم المغلفة وحدها",rs2:"العطور والبخاخات وطلاء الأظافر",rs2d:"أي شيء قابل للاشتعال أو مضغوط",rs3:"المواد الكيميائية والسوائل القابلة للاشتعال",rs3d:"الوقود والطلاء والمذيبات والغازات",rs4:"الأسلحة والمجسمات",rs4d:"بما في ذلك القطع والذخيرة والألعاب التي تشبه الأسلحة الحقيقية",rs5:"الأدوية والمخدرات",rs5d:"الأدوية بوصفة طبية تحتاج موافقة؛ ولا تُقبل المخدرات أبداً",rs6:"النقود والذهب والمقتنيات الثمينة",rs6d:"الأموال والمعادن الثمينة والأحجار الكريمة",rs7:"الأطعمة الطازجة والنباتات والحيوانات",rs7d:"أي شيء قابل للتلف أو حي",rs8:"المواد الممنوعة في العراق",rs8d:"البضائع غير المسموح بها من الجمارك العراقية",rs_note:"هذه القائمة ليست كاملة وقد تتغير القواعد. لست متأكداً من منتج ما؟ اسألنا قبل الشراء.",
  q_search:"ابحث عن دولة",q_none:"لم يتم العثور على دولة",
  newpw_title:"اختر كلمة مرور جديدة",newpw_btn:"حفظ كلمة المرور",newpw_done:"تم تغيير كلمة المرور.",confirm_sent:"اقتربت! أرسلنا رابط تأكيد إلى {email}. اضغط عليه لتفعيل حسابك.",err_confirm:"يرجى تأكيد بريدك الإلكتروني أولاً. تحقق من بريدك الوارد.",
  track_locked:"سجّل الدخول لتتبع شحناتك",track_locked_d:"التتبع متاح لعملاء MySpace. إنشاء الحساب مجاني.",track_help_live:"اعرف مكان شحنتك الآن مع سجلها الكامل.",trk_title:"الشحنة",trk_loading:"جارٍ البحث عن شحنتك…",trk_notfound:"لم نعثر على شحنة بهذا الرقم. تحقق من الرقم وحاول مجدداً. قد تستغرق الشحنات الجديدة بضع ساعات لتظهر.",trk_error:"التتبع غير متاح مؤقتاً. حاول لاحقاً أو اسألنا عبر واتساب.",trk_login:"انتهت جلستك. يرجى تسجيل الدخول مرة أخرى.",trk_eta:"موعد التسليم المتوقع",trk_from:"من",trk_to:"إلى",trk_history:"سجل الشحنة",trk_updated:"آخر تحديث",st_pre:"تم إنشاء الشحنة",st_transit:"في الطريق",st_delivered:"تم التسليم",st_failure:"يتطلب إجراء",st_unknown:"تحديث الحالة",
- nav_quote:"احصل على سعر",q_title:"احصل على سعر الشحن خلال ثوانٍ",q_sub:"أخبرنا من أين تأتي شحنتك وما بداخلها، وسنعرض لك سعر الشحن إلى العراق.",q_st1:"المسار",q_st2:"شحنتك",q_st3:"السعر",q_from:"الشحن من",q_from_ph:"اختر الدولة",q_to:"التوصيل إلى (العراق)",q_popular:"الأكثر طلباً",q_all:"جميع الدول",q_next:"التالي",q_back:"رجوع",q_type:"ماذا ترسل؟",q_pkg:"طرد",q_pkg_d:"بضائع ومنتجات وأي شيء في صندوق",q_doc:"مستندات",q_doc_d:"أوراق فقط",q_piece:"قطعة",q_qty:"العدد",q_weight:"الوزن (كغ)",q_add:"إضافة قطعة أخرى",q_remove:"إزالة",q_show:"اعرض السعر",q_err_from:"يرجى اختيار الدولة التي تشحن منها.",q_err_weight:"أدخل وزن كل قطعة.",q_err_limit:"هذه الشحنة كبيرة جداً للتسعير عبر الإنترنت. تواصل معنا للحصول على عرض خاص.",q_iraq:"العراق",q_total:"المجموع",q_cw:"الوزن المحتسب",q_actual:"الوزن الفعلي",q_vol:"الوزن الحجمي",q_ship:"الشحن",q_handling:"رسوم القطع الثقيلة أو الكبيرة",q_fuel:"رسوم الوقود",q_note:"لا يشمل السعر الرسوم الجمركية والضرائب. يتم تأكيد السعر النهائي بعد وزن طردك وقياسه في مستودعنا.",q_edit:"تعديل التفاصيل",q_book:"احجز عبر واتساب",q_pieces:"عدد القطع",q_book_msg:"مرحباً MySpace، أريد حجز شحنة.\nمن: {from}\nإلى: {to}، العراق\nالنوع: {type}\nعدد القطع: {pieces}\nالوزن المحتسب: {w} كغ\nالسعر: {total}",cities:"أربيل|السليمانية|دهوك|حلبجة|كركوك|بغداد|البصرة|الموصل|النجف|كربلاء|مدينة أخرى",
+ nav_quote:"احصل على سعر",q_title:"احصل على سعر الشحن خلال ثوانٍ",q_sub:"أخبرنا من أين تأتي شحنتك وما بداخلها، وسنعرض لك سعر الشحن إلى العراق.",q_st1:"المسار",q_st2:"شحنتك",q_st3:"السعر",q_from:"الشحن من",q_from_ph:"اختر الدولة",q_to:"التوصيل إلى (العراق)",q_popular:"الأكثر طلباً",q_all:"جميع الدول",q_next:"التالي",q_back:"رجوع",q_type:"ماذا ترسل؟",q_pkg:"طرد",q_pkg_d:"بضائع ومنتجات وأي شيء في صندوق",q_doc:"مستندات",q_doc_d:"أوراق فقط",q_piece:"قطعة",q_qty:"العدد",q_weight:"الوزن (كغ)",q_add:"إضافة قطعة أخرى",q_remove:"إزالة",q_show:"اعرض السعر",q_err_from:"يرجى اختيار الدولة التي تشحن منها.",q_err_weight:"أدخل وزن كل قطعة.",q_err_limit:"هذه الشحنة كبيرة جداً للتسعير عبر الإنترنت. تواصل معنا للحصول على عرض خاص.",q_iraq:"العراق",q_total:"المجموع",q_cw:"الوزن المحتسب",q_actual:"الوزن الفعلي",q_vol:"الوزن الحجمي",q_ship:"الشحن",q_handling:"رسوم القطع الثقيلة أو الكبيرة",q_fuel:"رسوم الوقود",q_note:"لا يشمل السعر الرسوم الجمركية والضرائب. يتم تأكيد السعر النهائي بعد وزن طردك وقياسه في مستودعنا.",q_edit:"تعديل التفاصيل",q_book:"احجز عبر واتساب",q_pieces:"عدد القطع",q_book_msg:"مرحباً MySpace، أريد حجز شحنة.\nمن: {from}\nإلى: {to}، العراق\nالنوع: {type}\nعدد القطع: {pieces}\nالوزن المحتسب: {w} كغ\nالسعر: {total}\nعنوان التوصيل: {addr}\nالدفع: نقداً",cities:"أربيل|السليمانية|دهوك|حلبجة|كركوك|بغداد|البصرة|الموصل|النجف|كربلاء|مدينة أخرى",
  track_msg:"مرحباً MySpace، أرجو إرسال حالة شحنتي: {n}",doc_title:"MySpace — تسوّق من العالم ونوصله إلى العراق",privacy:"الخصوصية",privacy_title:"إشعار الخصوصية",privacy_link:"إشعار الخصوصية",agree:"بإنشاء حساب، فإنك توافق على",
- p1:"ما نجمعه: اسمك وبريدك الإلكتروني ورقم هاتفك ومدينتك عند إنشاء الحساب، وما تكتبه في نموذج التواصل.",
+ p1:"ما نجمعه: اسمك وبريدك الإلكتروني ورقم هاتفك ومدينتك وعنوان التوصيل عند إنشاء الحساب، وما تكتبه في نموذج التواصل.",
  p2:"لماذا: لإنشاء حساب MySpace ورقمك الخاص، ومتابعة شحناتك، والرد على رسائلك.",
  p3:"من يطّلع عليها: فريق MySpace فقط. نشارك تفاصيل الشحنة مع شركاء الشحن والجمارك عند الحاجة لتوصيل طردك فقط. لا نبيع بياناتك أبداً.",
  p4:"نستخدم خدمات موثوقة لتشغيل الموقع: FormSubmit لإيصال الرسائل إلى بريدنا، وSupabase لحفظ الحسابات بأمان. لا تُرسَل كلمة المرور إلينا بالبريد أبداً.",
  p5:"يمكنك أن تطلب منا الاطلاع على بياناتك أو تصحيحها أو حذفها في أي وقت عبر البريد الإلكتروني أو واتساب.",
  skip:"انتقل إلى المحتوى",menu:"القائمة",lang:"اللغة",nav_how:"كيف نعمل",nav_services:"خدماتنا",nav_calc:"حاسبة الشحن",nav_faq:"الأسئلة الشائعة",nav_contact:"اتصل بنا",login:"تسجيل الدخول",signup:"إنشاء حساب",my_account:"حسابي",
- hero_eyebrow:"عناوين عالمية · إمكانيات أكبر",hero_t1:"تسوّق من العالم.",hero_t2:"ونوصله جواً إلى العراق.",
- hero_sub:"اطلب من أي متجر إلكتروني تقريباً في الخارج. تستلم MySpace طرودك، وتجمعها في صندوق واحد، وتشحنها جواً عبر MySpace Express حتى باب بيتك.",
+ hero_eyebrow:"استلام من أي مكان · توصيل إلى العراق",hero_t1:"تسوّق من العالم.",hero_t2:"ونوصله جواً إلى العراق.",
+ hero_sub:"اشتريت شيئاً من الخارج، أو تحتاج طرداً من عائلتك أو من مورّد؟ نستلمه من أي مكان في العالم ونوصله جواً إلى العنوان الذي تختاره في العراق عبر MySpace Express.",
  cta_signup:"أنشئ حساباً مجانياً",cta_how:"كيف نعمل",hero_office:"مكتبنا في أربيل · توصيل إلى جميع أنحاء العراق",
  tab_track:"تتبّع",tab_calc:"احسب",track_label:"رقم تتبع MySpace",track_ph:"مثال: 1234567890",track_btn:"تتبّع الشحنة",track_help:"سنرسل لك آخر حالة لشحنتك عبر واتساب.",track_err:"يرجى إدخال رقم التتبع.",
  c_len:"الطول (سم)",c_wid:"العرض",c_hei:"الارتفاع",c_result:"الوزن المحتسب",kg:"كغ",
-  t1:"شحن جوي سريع مع MySpace",t1d:"شحن جوي سريع وقابل للتتبع من حول العالم.",t2:"تجميع الطرود",t2d:"نجمع طلباتك في صندوق واحد لتقليل التكلفة.",t3:"التخليص الجمركي",t3d:"نتولى أوراق التخليص نيابةً عنك.",t4:"توصيل إلى الباب في العراق",t4d:"من مكتبنا في أربيل إلى باب بيتك.",
- how_title:"كيف تعمل MySpace",how_sub:"أربع خطوات بسيطة من الشراء إلى باب بيتك.",
- s1:"سجّل مجاناً",s1d:"أنشئ حسابك واحصل على رقم MySpace الخاص بك.",s2:"تسوّق أونلاين",s2d:"اشترِ من متاجرك المفضلة في الخارج واشحن إلى عنواننا مع رقمك.",s3:"نجمع شحناتك",s3d:"نستلم طرودك ونفحصها ونغلفها معاً في شحنة واحدة.",s4:"تصلك إلى الباب",s4d:"يطير صندوقك إلى العراق ويُسلَّم إلى باب بيتك.",
- svc_title:"ماذا نقدّم",svc_sub:"كل ما تحتاجه لإيصال مشترياتك إلى العراق — في مكان واحد.",
- sv1:"تسوّق واشحن",sv1d:"استخدم عناويننا للشراء من متاجر لا توصل إلى العراق.",sv2:"التجميع وإعادة التغليف",sv2d:"عدة طلبات، صندوق واحد، تكلفة شحن أقل.",sv3:"شحن جوي سريع",sv3d:"شحنات عاجلة تُنقل جواً مع MySpace Express.",sv4:"شحن الأعمال",sv4d:"استيراد منتظم للمحلات والعيادات والشركات.",sv5:"التخليص الجمركي",sv5d:"فريقنا يتولى المستندات والرسوم.",sv6:"توصيل من الباب إلى الباب",sv6d:"توصيل إلى بابك في أي مكان في العراق.",
+  t1:"شحن جوي سريع مع MySpace",t1d:"شحن جوي سريع وقابل للتتبع من حول العالم.",t2:"استلام من أي مكان في العالم",t2d:"نستلم شحنتك من البائع أو المرسل في الخارج.",t3:"التخليص الجمركي",t3d:"نتولى أوراق التخليص نيابةً عنك.",t4:"توصيل إلى الباب في العراق",t4d:"من مكتبنا في أربيل إلى باب بيتك.",
+ how_title:"كيف تعمل MySpace",how_sub:"أربع خطوات بسيطة من الخارج إلى باب بيتك.",
+ s1:"سجّل مجاناً",s1d:"أنشئ حسابك وأضف عنوان التوصيل في العراق.",s2:"اعرف السعر",s2d:"أخبرنا من أين تأتي الشحنة وما وزنها، وسترى السعر فوراً.",s3:"نستلمها",s3d:"نرتّب استلام الشحنة من البائع أو المرسل في الخارج.",s4:"تصلك إلى الباب",s4d:"تطير شحنتك إلى العراق وتُسلَّم إلى العنوان الذي اخترته.",
+ svc_title:"ماذا نقدّم",svc_sub:"كل ما تحتاجه لإيصال شحناتك إلى العراق — في مكان واحد.",
+ sv1:"الاستيراد من أي دولة",sv1d:"نستلم من المتاجر والمورّدين والأصدقاء والعائلة في الخارج.",sv2:"المستندات",sv2d:"عقود وشهادات وأوراق تصل بسرعة.",sv3:"شحن جوي سريع",sv3d:"شحنات عاجلة تُنقل جواً مع MySpace Express.",sv4:"شحن الأعمال",sv4d:"استيراد منتظم للمحلات والعيادات والشركات.",sv5:"التخليص الجمركي",sv5d:"فريقنا يتولى المستندات والرسوم.",sv6:"توصيل من الباب إلى الباب",sv6d:"توصيل إلى بابك في أي مكان في العراق.",
  cat_kicker:"تسوّق أي شيء",cat_title:"كل ما تحبه، من أي مكان",cat_sub:"من الفيتامينات إلى الإلكترونيات — نشحنها لك.",cat1:"الفيتامينات والمكملات",cat2:"الإلكترونيات",cat3:"الأزياء والأحذية",cat4:"الجمال والعناية الشخصية",cat5:"قطع غيار السيارات",cat6:"المنزل والمطبخ",cat_more:"…والكثير غير ذلك",
- cta_title:"عنوانك العالمي على بُعد نقرة واحدة",cta_sub:"أنشئ حساب MySpace المجاني لتحصل على رقمك وتبدأ التسوّق.",
+ cta_title:"ابدأ الشحن إلى العراق اليوم",cta_sub:"أنشئ حساب MySpace المجاني واحصل على أول سعر خلال ثوانٍ.",
  faq_title:"الأسئلة الشائعة",
- q1:"من أي الدول يمكنني التسوّق؟",a1:"يمكنك الطلب من متاجر إلكترونية حول العالم. بعد التسجيل، يرسل لك فريقنا عنوان الشحن الذي تستخدمه مع رقم MySpace الخاص بك.",
+ q1:"من أي الدول يمكنني الشحن؟",a1:"من كل دول العالم تقريباً. اخترها في الحاسبة لترى السعر فوراً.",
  q2:"كيف تُحسب تكلفة الشحن؟",a2:"يُسعَّر الشحن الجوي حسب الوزن المحتسب، وهو الأكبر بين الوزن الفعلي والوزن الحجمي (الطول × العرض × الارتفاع ÷ 5000). استخدم الحاسبة ثم تواصل معنا لمعرفة السعر الدقيق.",
  q3:"كم يستغرق التوصيل؟",a3:"تصل معظم الشحنات الجوية السريعة خلال أيام عمل قليلة من مغادرتها بلد المنشأ، إضافةً إلى وقت التخليص الجمركي. نبقيك على اطلاع في كل خطوة.",
- q4:"هل يمكنني تجميع عدة طلبات؟",a4:"نعم. نحتفظ بطرودك حتى تصل جميعها، ثم نغلفها معاً لتوفّر المال.",
+ q4:"هل يمكنني إرسال عدة صناديق في شحنة واحدة؟",a4:"نعم. أضف كل صندوق في الحاسبة، وستُشحن معاً كشحنة واحدة إلى عنوانك.",
  q5:"هل هناك مواد لا يمكن شحنها؟",a5:"نعم. لا يمكن شحن المواد الخطرة والقابلة للاشتعال والأسلحة وغيرها من المواد المحظورة جواً. تواصل معنا إذا لم تكن متأكداً من منتج ما.",
- q6:"كيف أدفع؟",a6:"تواصل مع فريقنا لمعرفة طرق الدفع المتاحة في العراق.",
+ q6:"كيف أدفع؟",a6:"حالياً نقبل الدفع نقداً فقط. عند الحجز يخبرك فريقنا بالمبلغ ومكان الدفع.",
  contact_title:"تواصل معنا",contact_sub:"لديك سؤال أو تريد عرض سعر؟ أرسل لنا رسالة وسنرد بسرعة.",
  f_name:"الاسم الكامل",f_phone:"رقم الهاتف",f_email:"البريد الإلكتروني",f_msg:"رسالتك",f_city:"المدينة",f_pw:"كلمة المرور",f_send:"إرسال الرسالة",sending:"جارٍ الإرسال…",
  sent:"شكراً لك! تم إرسال رسالتك وسنعود إليك قريباً.",send_err:"حدث خطأ. حاول مرة أخرى أو راسلنا على واتساب.",
@@ -1122,41 +1132,41 @@ ar:{
  reset_title:"إعادة تعيين كلمة المرور",reset_btn:"إرسال رابط إعادة التعيين",reset_sent:"إذا كان هناك حساب بهذا البريد، فقد أُرسل رابط إعادة التعيين.",reset_local:"في وضع المعاينة، يرجى مراسلتنا على واتساب لإعادة تعيين كلمة المرور.",
  login_btn:"تسجيل الدخول",signup_btn:"إنشاء الحساب",back_login:"العودة لتسجيل الدخول",close:"إغلاق",
  err_required:"يرجى ملء هذا الحقل.",err_email:"أدخل بريداً إلكترونياً صحيحاً، مثل name@example.com.",err_pw:"يجب أن تتكون كلمة المرور من 8 أحرف على الأقل.",err_exists:"يوجد حساب بهذا البريد بالفعل. جرّب تسجيل الدخول.",err_creds:"البريد الإلكتروني أو كلمة المرور غير صحيحة.",err_generic:"حدث خطأ. حاول مرة أخرى.",
- acc_hello:"مرحباً",comma:"،",acc_id:"رقم MySpace الخاص بك",acc_id_help:"اكتب هذا الرقم على كل طلب تشحنه إلينا.",acc_next:"الخطوة التالية",acc_next_d:"سيتواصل معك فريقنا لتزويدك بعنوان الشحن. يمكنك أيضاً مراسلتنا على واتساب.",logout:"تسجيل الخروج",
+ acc_hello:"مرحباً",comma:"،",acc_id:"رقم MySpace الخاص بك",acc_id_help:"اذكر هذا الرقم عندما تتواصل معنا بخصوص أي شحنة.",logout:"تسجيل الخروج",
  demo:"وضع المعاينة: تُحفظ الحسابات على هذا الجهاز فقط حتى يتم تفعيل الحسابات عبر الإنترنت."
 },
 ckb:{
- acc_copy:"کۆپی",acc_copied:"کۆپی کرا!",acc_edit:"دەستکاریکردنی زانیارییەکانم",cancel:"هەڵوەشاندنەوە",save:"پاشەکەوتکردن",rs_kicker:"پێش کڕین",rs_title:"ئەو کاڵایانەی ناتوانین بە ئاسماندا بیانگوازینەوە",rs_sub:"بارکردنی ئاسمانی یاسای سەلامەتیی توندی هەیە. تکایە ئەمانە بۆ ناونیشانی MySpaceی خۆت داوا مەکە.",rs1:"پاتری و پاوەر بانکی جیا",rs1d:"پاتریی لیسیۆم کە بە تەنها پێچرابێت",rs2:"بۆن، سپرەی و بۆیەی نینۆک",rs2d:"هەر شتێکی ئاگرگرتوو یان پەستاودار",rs3:"کیمیاوی و شلەی ئاگرگرتوو",rs3d:"سووتەمەنی، بۆیە، توێنەر، گاز",rs4:"چەک و لاسایی چەک",rs4d:"لەوانە پارچە، فیشەک و یاریی وەک چەکی ڕاستەقینە",rs5:"دەرمان و ماددەی هۆشبەر",rs5d:"دەرمانی ڕەچەتە پێویستی بە ڕەزامەندییە؛ ماددەی هۆشبەر هەرگیز وەرناگیرێت",rs6:"پارە، زێڕ و شتی بەنرخ",rs6d:"پارە، کانزای بەنرخ، بەردی گرانبەها",rs7:"خۆراکی تازە، ڕووەک و ئاژەڵ",rs7d:"هەر شتێک کە خراپ دەبێت یان زیندووە",rs8:"کاڵای قەدەغەکراو لە عێراق",rs8d:"ئەو کاڵایانەی گومرگی عێراق ڕێگەیان پێ نادات",rs_note:"ئەم لیستە تەواو نییە و یاساکان دەگۆڕێن. دڵنیا نیت لە کاڵایەک؟ پێش کڕین لێمان بپرسە.",
+ q_iqd:"دینار",q_pay:"پارەدان: نەختینە",f_addr_help:"گەڕەک، شەقام، باڵەخانە و نیشانەیەکی نزیک",f_addr:"ناونیشانی گەیاندن لە عێراق",acc_addr_none:"هێشتا ناونیشانی گەیاندنت نییە. زیادی بکە بۆ ئەوەی بزانین بۆ کوێ بیگەیەنین.",acc_addr:"ناونیشانی گەیاندن",acc_copy:"کۆپی",acc_copied:"کۆپی کرا!",acc_edit:"دەستکاریکردنی زانیارییەکانم",cancel:"هەڵوەشاندنەوە",save:"پاشەکەوتکردن",rs_kicker:"پێش کڕین",rs_title:"ئەو کاڵایانەی ناتوانین بە ئاسماندا بیانگوازینەوە",rs_sub:"بارکردنی ئاسمانی یاسای سەلامەتیی توندی هەیە. تکایە ئەمانە لەگەڵ MySpace مەنێرە.",rs1:"پاتری و پاوەر بانکی جیا",rs1d:"پاتریی لیسیۆم کە بە تەنها پێچرابێت",rs2:"بۆن، سپرەی و بۆیەی نینۆک",rs2d:"هەر شتێکی ئاگرگرتوو یان پەستاودار",rs3:"کیمیاوی و شلەی ئاگرگرتوو",rs3d:"سووتەمەنی، بۆیە، توێنەر، گاز",rs4:"چەک و لاسایی چەک",rs4d:"لەوانە پارچە، فیشەک و یاریی وەک چەکی ڕاستەقینە",rs5:"دەرمان و ماددەی هۆشبەر",rs5d:"دەرمانی ڕەچەتە پێویستی بە ڕەزامەندییە؛ ماددەی هۆشبەر هەرگیز وەرناگیرێت",rs6:"پارە، زێڕ و شتی بەنرخ",rs6d:"پارە، کانزای بەنرخ، بەردی گرانبەها",rs7:"خۆراکی تازە، ڕووەک و ئاژەڵ",rs7d:"هەر شتێک کە خراپ دەبێت یان زیندووە",rs8:"کاڵای قەدەغەکراو لە عێراق",rs8d:"ئەو کاڵایانەی گومرگی عێراق ڕێگەیان پێ نادات",rs_note:"ئەم لیستە تەواو نییە و یاساکان دەگۆڕێن. دڵنیا نیت لە کاڵایەک؟ پێش کڕین لێمان بپرسە.",
  q_search:"گەڕان بۆ وڵات",q_none:"هیچ وڵاتێک نەدۆزرایەوە",
  newpw_title:"وشەی نهێنیی نوێ هەڵبژێرە",newpw_btn:"پاشەکەوتکردنی وشەی نهێنی",newpw_done:"وشەی نهێنییەکەت گۆڕدرا.",confirm_sent:"نزیکە تەواو بێت! بەستەرێکی پشتڕاستکردنەوەمان بۆ {email} نارد. کلیکی لێ بکە بۆ چالاککردنی هەژمارەکەت.",err_confirm:"تکایە سەرەتا ئیمەیڵەکەت پشتڕاست بکەرەوە. سندوقی نامەکانت بپشکنە.",
  track_locked:"بچۆ ژوورەوە بۆ بەدواداچوونی بارەکانت",track_locked_d:"بەدواداچوون بۆ کڕیارانی MySpace بەردەستە. دروستکردنی هەژمار بەخۆڕاییە.",track_help_live:"بزانە بارەکەت ئێستا لە کوێیە، لەگەڵ هەموو مێژووەکەی.",trk_title:"بار",trk_loading:"بەدوای بارەکەتدا دەگەڕێین…",trk_notfound:"هیچ بارێکمان بەم ژمارەیە نەدۆزییەوە. ژمارەکە بپشکنە و دووبارە هەوڵ بدەرەوە. لەوانەیە بارە نوێیەکان چەند کاتژمێرێک بخایەنن تا دەردەکەون.",trk_error:"بەدواداچوون بە شێوەیەکی کاتی بەردەست نییە. دواتر هەوڵ بدەرەوە یان لە واتسئاپ لێمان بپرسە.",trk_login:"دانیشتنەکەت کۆتایی هات. تکایە دووبارە بچۆ ژوورەوە.",trk_eta:"کاتی گەیاندنی چاوەڕوانکراو",trk_from:"لە",trk_to:"بۆ",trk_history:"مێژووی بار",trk_updated:"دوایین نوێکردنەوە",st_pre:"بار تۆمارکرا",st_transit:"لە ڕێگادایە",st_delivered:"گەیەندرا",st_failure:"پێویستی بە کردارە",st_unknown:"نوێکردنەوەی دۆخ",
- nav_quote:"نرخ وەربگرە",q_title:"لە چەند چرکەیەکدا نرخی بارکردن وەربگرە",q_sub:"پێمان بڵێ بارەکەت لە کوێوە دێت و چی تێدایە، نرخی گەیاندنی بۆ عێراق پیشانت دەدەین.",q_st1:"ڕێگا",q_st2:"بارەکەت",q_st3:"نرخەکەت",q_from:"ناردن لە",q_from_ph:"وڵاتێک هەڵبژێرە",q_to:"گەیاندن بۆ (عێراق)",q_popular:"باوترین",q_all:"هەموو وڵاتان",q_next:"دواتر",q_back:"گەڕانەوە",q_type:"چی دەنێریت؟",q_pkg:"پاکەت",q_pkg_d:"کاڵا، بەرهەم، هەر شتێک لە سندوقدا",q_doc:"بەڵگەنامە",q_doc_d:"تەنها کاغەز",q_piece:"پارچە",q_qty:"ژمارە",q_weight:"کێش (کگم)",q_add:"زیادکردنی پارچەیەکی تر",q_remove:"لابردن",q_show:"نرخەکەم پیشان بدە",q_err_from:"تکایە ئەو وڵاتە هەڵبژێرە کە لێیەوە دەنێریت.",q_err_weight:"کێشی هەموو پارچەکان بنووسە.",q_err_limit:"ئەم بارە زۆر گەورەیە بۆ نرخدانانی ئۆنلاین. تکایە پەیوەندیمان پێوە بکە بۆ نرخێکی تایبەت.",q_iraq:"عێراق",q_total:"کۆی گشتی",q_cw:"کێشی ژمێردراو",q_actual:"کێشی ڕاستەقینە",q_vol:"کێشی قەبارەیی",q_ship:"بارکردن",q_handling:"پارچەی قورس یان گەورە",q_fuel:"باجی سووتەمەنی",q_note:"باجی گومرگ و باجەکان لەخۆناگرێت. نرخی کۆتایی دوای کێشان و پێوانی پاکەتەکەت لە کۆگاکەمان دەسەلمێنرێت.",q_edit:"گۆڕینی وردەکارییەکان",q_book:"لە واتسئاپ داوا بکە",q_pieces:"ژمارەی پارچەکان",q_book_msg:"سڵاو MySpace، دەمەوێت بارێک بنێرم.\nلە: {from}\nبۆ: {to}، عێراق\nجۆر: {type}\nژمارەی پارچەکان: {pieces}\nکێشی ژمێردراو: {w} کگم\nنرخ: {total}",cities:"هەولێر|سلێمانی|دهۆک|هەڵەبجە|کەرکووک|بەغدا|بەسرە|مووسڵ|نەجەف|کەربەلا|شارێکی تر",
+ nav_quote:"نرخ وەربگرە",q_title:"لە چەند چرکەیەکدا نرخی بارکردن وەربگرە",q_sub:"پێمان بڵێ بارەکەت لە کوێوە دێت و چی تێدایە، نرخی گەیاندنی بۆ عێراق پیشانت دەدەین.",q_st1:"ڕێگا",q_st2:"بارەکەت",q_st3:"نرخەکەت",q_from:"ناردن لە",q_from_ph:"وڵاتێک هەڵبژێرە",q_to:"گەیاندن بۆ (عێراق)",q_popular:"باوترین",q_all:"هەموو وڵاتان",q_next:"دواتر",q_back:"گەڕانەوە",q_type:"چی دەنێریت؟",q_pkg:"پاکەت",q_pkg_d:"کاڵا، بەرهەم، هەر شتێک لە سندوقدا",q_doc:"بەڵگەنامە",q_doc_d:"تەنها کاغەز",q_piece:"پارچە",q_qty:"ژمارە",q_weight:"کێش (کگم)",q_add:"زیادکردنی پارچەیەکی تر",q_remove:"لابردن",q_show:"نرخەکەم پیشان بدە",q_err_from:"تکایە ئەو وڵاتە هەڵبژێرە کە لێیەوە دەنێریت.",q_err_weight:"کێشی هەموو پارچەکان بنووسە.",q_err_limit:"ئەم بارە زۆر گەورەیە بۆ نرخدانانی ئۆنلاین. تکایە پەیوەندیمان پێوە بکە بۆ نرخێکی تایبەت.",q_iraq:"عێراق",q_total:"کۆی گشتی",q_cw:"کێشی ژمێردراو",q_actual:"کێشی ڕاستەقینە",q_vol:"کێشی قەبارەیی",q_ship:"بارکردن",q_handling:"پارچەی قورس یان گەورە",q_fuel:"باجی سووتەمەنی",q_note:"باجی گومرگ و باجەکان لەخۆناگرێت. نرخی کۆتایی دوای کێشان و پێوانی پاکەتەکەت لە کۆگاکەمان دەسەلمێنرێت.",q_edit:"گۆڕینی وردەکارییەکان",q_book:"لە واتسئاپ داوا بکە",q_pieces:"ژمارەی پارچەکان",q_book_msg:"سڵاو MySpace، دەمەوێت بارێک بنێرم.\nلە: {from}\nبۆ: {to}، عێراق\nجۆر: {type}\nژمارەی پارچەکان: {pieces}\nکێشی ژمێردراو: {w} کگم\nنرخ: {total}\nناونیشانی گەیاندن: {addr}\nپارەدان: نەختینە",cities:"هەولێر|سلێمانی|دهۆک|هەڵەبجە|کەرکووک|بەغدا|بەسرە|مووسڵ|نەجەف|کەربەلا|شارێکی تر",
  track_msg:"سڵاو MySpace، تکایە دۆخی بارەکەم بۆ بنێرە: {n}",doc_title:"MySpace — لە جیهان بازاڕ بکە، دەیگەیەنینە عێراق",privacy:"تایبەتمەندی",privacy_title:"ئاگاداری تایبەتمەندی",privacy_link:"ئاگاداری تایبەتمەندی",agree:"بە دروستکردنی هەژمار، ڕازی دەبیت بە",
- p1:"ئەوەی کۆی دەکەینەوە: ناو، ئیمەیڵ، ژمارەی مۆبایل و شارەکەت کاتێک هەژمار دروست دەکەیت، و ئەوەی لە فۆرمی پەیوەندیدا دەینووسیت.",
+ p1:"ئەوەی کۆی دەکەینەوە: ناو، ئیمەیڵ، ژمارەی مۆبایل، شار و ناونیشانی گەیاندنت کاتێک هەژمار دروست دەکەیت، و ئەوەی لە فۆرمی پەیوەندیدا دەینووسیت.",
  p2:"بۆچی: بۆ دروستکردنی هەژماری MySpace و ناسنامەکەت، ڕاپەڕاندنی بارەکانت و وەڵامدانەوەی نامەکانت.",
  p3:"کێ دەیبینێت: تەنها تیمی MySpace. وردەکاری بار تەنها کاتی پێویست بۆ گەیاندنی پاکەتەکەت لەگەڵ هاوبەشانی بارکردن و گومرگ هاوبەش دەکەین. هەرگیز زانیارییەکانت نافرۆشین.",
  p4:"خزمەتگوزاریی متمانەپێکراو بۆ کارپێکردنی ماڵپەڕەکە بەکاردەهێنین: FormSubmit بۆ گەیاندنی نامەکان بە ئیمەیڵەکەمان و Supabase بۆ پاشەکەوتکردنی پارێزراوی هەژمارەکان. وشەی نهێنی هەرگیز بە ئیمەیڵ بۆمان نانێردرێت.",
  p5:"دەتوانیت لە هەر کاتێکدا داوامان لێ بکەیت زانیارییەکانت ببینیت، ڕاستی بکەیتەوە یان بیسڕیتەوە، لە ڕێگەی ئیمەیڵ یان واتسئاپەوە.",
  skip:"بڕۆ بۆ ناوەڕۆک",menu:"لیست",lang:"زمان",nav_how:"چۆن کار دەکەین",nav_services:"خزمەتگوزارییەکان",nav_calc:"ژمێرەری بارکردن",nav_faq:"پرسیارە باوەکان",nav_contact:"پەیوەندی",login:"چوونەژوورەوە",signup:"خۆتۆمارکردن",my_account:"هەژمارەکەم",
- hero_eyebrow:"ناونیشانی جیهانی · دەرفەتی گەورەتر",hero_t1:"لە جیهان بازاڕ بکە.",hero_t2:"ئێمە بە ئاسماندا دەیگەیەنینە عێراق.",
- hero_sub:"لە نزیکەی هەموو فرۆشگا ئۆنلاینەکانی دەرەوە داوا بکە. MySpace پاکەتەکانت وەردەگرێت، لە یەک سندوقدا کۆیان دەکاتەوە و بە بارکردنی ئاسمانیی خێرای MySpace Express دەیانگەیەنێتە بەردەم دەرگاکەت.",
+ hero_eyebrow:"وەرگرتن لە هەموو جیهان · گەیاندن بۆ عێراق",hero_t1:"لە جیهان بازاڕ بکە.",hero_t2:"ئێمە بە ئاسماندا دەیگەیەنینە عێراق.",
+ hero_sub:"شتێکت لە دەرەوە کڕیوە، یان پاکەتێکت لە خێزان یان دابینکەرێک پێویستە؟ لە هەر شوێنێکی جیهان وەریدەگرین و بە MySpace Express بە ئاسماندا دەیگەیەنینە ئەو ناونیشانەی لە عێراق هەڵیدەبژێریت.",
  cta_signup:"هەژماری بەخۆڕایی دروست بکە",cta_how:"چۆن کار دەکەین",hero_office:"نووسینگەمان لە هەولێرە · گەیاندن بۆ هەموو عێراق",
  tab_track:"بەدواداچوون",tab_calc:"هەژمارکردن",track_label:"ژمارەی بەدواداچوونی MySpace",track_ph:"نموونە: 1234567890",track_btn:"بەدواداچوونی بار",track_help:"دوایین دۆخی بارەکەت لە واتسئاپ بۆت دەنێرین.",track_err:"تکایە ژمارەی بەدواداچوون بنووسە.",
  c_len:"درێژی (سم)",c_wid:"پانی",c_hei:"بەرزی",c_result:"کێشی ژمێردراو",kg:"کگم",
-  t1:"بارکردنی ئاسمانیی خێرا لەگەڵ MySpace",t1d:"بارکردنی ئاسمانیی خێرا و بەدواداچووندار لە هەموو جیهانەوە.",t2:"کۆکردنەوەی پاکەتەکان",t2d:"داواکارییەکانت لە یەک سندوقدا کۆدەکەینەوە بۆ کەمکردنەوەی تێچوون.",t3:"ڕاپەڕاندنی گومرگ",t3d:"کاغەزەکانی گومرگ بۆ تۆ ڕادەپەڕێنین.",t4:"گەیاندن بۆ بەردەم دەرگا لە عێراق",t4d:"لە نووسینگەکەمان لە هەولێرەوە بۆ بەردەم دەرگاکەت.",
- how_title:"MySpace چۆن کار دەکات",how_sub:"چوار هەنگاوی سادە لە کڕینەوە تا بەردەم دەرگاکەت.",
- s1:"بەخۆڕایی خۆت تۆمار بکە",s1d:"هەژمارەکەت دروست بکە و ناسنامەی MySpaceی تایبەت بە خۆت وەربگرە.",s2:"ئۆنلاین بازاڕ بکە",s2d:"لە فرۆشگا دڵخوازەکانت لە دەرەوە بکڕە و بە ناسنامەکەتەوە بۆ ناونیشانەکەمان بینێرە.",s3:"کۆی دەکەینەوە",s3d:"پاکەتەکانت وەردەگرین، دەیانپشکنین و پێکەوە لە یەک باردا دەیانپێچینەوە.",s4:"دەگاتە دەستت",s4d:"سندوقەکەت بە ئاسماندا دەگاتە عێراق و دەگەیەنرێتە بەردەم دەرگاکەت.",
- svc_title:"چی پێشکەش دەکەین",svc_sub:"هەموو ئەوەی پێویستتە بۆ هێنانی کڕینەکانت بۆ عێراق — لە یەک شوێندا.",
- sv1:"بکڕە و بینێرە",sv1d:"ناونیشانەکانمان بەکاربهێنە بۆ کڕین لەو فرۆشگایانەی کە ناگەیەننە عێراق.",sv2:"کۆکردنەوە و دووبارە پێچانەوە",sv2d:"چەند داواکارییەک، یەک سندوق، تێچوونی بارکردنی کەمتر.",sv3:"بارکردنی ئاسمانیی خێرا",sv3d:"بارە بەپەلەکان بە MySpace Express دەگوازرێنەوە.",sv4:"بارکردنی بازرگانی",sv4d:"هاوردەی بەردەوام بۆ دوکان، کلینیک و کۆمپانیاکان.",sv5:"ڕاپەڕاندنی گومرگ",sv5d:"تیمەکەمان بەڵگەنامە و باجەکان ڕادەپەڕێنێت.",sv6:"گەیاندن لە دەرگاوە بۆ دەرگا",sv6d:"گەیاندن بۆ بەردەم دەرگاکەت لە هەر شوێنێکی عێراق.",
+  t1:"بارکردنی ئاسمانیی خێرا لەگەڵ MySpace",t1d:"بارکردنی ئاسمانیی خێرا و بەدواداچووندار لە هەموو جیهانەوە.",t2:"وەرگرتن لە هەموو جیهان",t2d:"بارەکەت لە فرۆشیار یان نێرەر لە دەرەوە وەردەگرین.",t3:"ڕاپەڕاندنی گومرگ",t3d:"کاغەزەکانی گومرگ بۆ تۆ ڕادەپەڕێنین.",t4:"گەیاندن بۆ بەردەم دەرگا لە عێراق",t4d:"لە نووسینگەکەمان لە هەولێرەوە بۆ بەردەم دەرگاکەت.",
+ how_title:"MySpace چۆن کار دەکات",how_sub:"چوار هەنگاوی سادە لە دەرەوەوە تا بەردەم دەرگاکەت.",
+ s1:"بەخۆڕایی خۆت تۆمار بکە",s1d:"هەژمارەکەت دروست بکە و ناونیشانی گەیاندنت لە عێراق زیاد بکە.",s2:"نرخەکەت بزانە",s2d:"پێمان بڵێ بارەکە لە کوێوە دێت و کێشی چەندە، دەستبەجێ نرخەکە دەبینیت.",s3:"وەریدەگرین",s3d:"وەرگرتنی بارەکە لە فرۆشیار یان نێرەر لە دەرەوە ڕێکدەخەین.",s4:"دەگاتە دەستت",s4d:"بارەکەت بە ئاسماندا دەگاتە عێراق و دەگەیەنرێتە ئەو ناونیشانەی هەڵتبژاردووە.",
+ svc_title:"چی پێشکەش دەکەین",svc_sub:"هەموو ئەوەی پێویستتە بۆ هێنانی بارەکانت بۆ عێراق — لە یەک شوێندا.",
+ sv1:"هاوردە لە هەر وڵاتێک",sv1d:"لە فرۆشگا، دابینکەر، هاوڕێ یان خێزان لە دەرەوە وەریدەگرین.",sv2:"بەڵگەنامە",sv2d:"گرێبەست، بڕوانامە و کاغەز بە خێرایی دەگەن.",sv3:"بارکردنی ئاسمانیی خێرا",sv3d:"بارە بەپەلەکان بە MySpace Express دەگوازرێنەوە.",sv4:"بارکردنی بازرگانی",sv4d:"هاوردەی بەردەوام بۆ دوکان، کلینیک و کۆمپانیاکان.",sv5:"ڕاپەڕاندنی گومرگ",sv5d:"تیمەکەمان بەڵگەنامە و باجەکان ڕادەپەڕێنێت.",sv6:"گەیاندن لە دەرگاوە بۆ دەرگا",sv6d:"گەیاندن بۆ بەردەم دەرگاکەت لە هەر شوێنێکی عێراق.",
  cat_kicker:"هەر شتێک بکڕە",cat_title:"هەموو ئەوەی خۆشت دەوێت، لە هەر شوێنێکەوە",cat_sub:"لە ڤیتامینەوە تا ئەلیکترۆنیات — بۆت دەگەیەنین.",cat1:"ڤیتامین و تەواوکەرە خۆراکییەکان",cat2:"ئەلیکترۆنیات",cat3:"جل و پێڵاو",cat4:"جوانکاری و خۆپاراستن",cat5:"پارچەی ئۆتۆمبێل",cat6:"ماڵ و چێشتخانە",cat_more:"…و زۆری تر",
- cta_title:"ناونیشانی جیهانیت تەنها یەک کلیک دوورە",cta_sub:"هەژماری بەخۆڕایی MySpace دروست بکە بۆ وەرگرتنی ناسنامەکەت و دەستپێکردنی بازاڕکردن.",
+ cta_title:"ئەمڕۆ دەست بە ناردن بۆ عێراق بکە",cta_sub:"هەژماری بەخۆڕایی MySpace دروست بکە و لە چەند چرکەیەکدا یەکەم نرخت وەربگرە.",
  faq_title:"پرسیارە باوەکان",
- q1:"لە چ وڵاتانێکەوە دەتوانم بکڕم؟",a1:"دەتوانیت لە فرۆشگا ئۆنلاینەکانی هەموو جیهان داوا بکەیت. دوای خۆتۆمارکردن، تیمەکەمان ئەو ناونیشانەی بارکردنەت بۆ دەنێرێت کە لەگەڵ ناسنامەی MySpace بەکاری دەهێنیت.",
+ q1:"لە چ وڵاتانێکەوە دەتوانم بنێرم؟",a1:"لە نزیکەی هەموو وڵاتانی جیهان. لە ژمێرەرەکەدا هەڵیبژێرە بۆ ئەوەی دەستبەجێ نرخەکە ببینیت.",
  q2:"تێچوونی بارکردن چۆن هەژمار دەکرێت؟",a2:"نرخی بارکردنی ئاسمانی بەپێی کێشی ژمێردراوە، واتە گەورەترین لە نێوان کێشی ڕاستەقینە و کێشی قەبارەیی (درێژی × پانی × بەرزی ÷ 5000). ژمێرەرەکە بەکاربهێنە و پاشان بۆ نرخی ورد پەیوەندیمان پێوە بکە.",
  q3:"گەیاندن چەندی پێدەچێت؟",a3:"زۆربەی بارە ئاسمانییە خێراکان لە ماوەی چەند ڕۆژێکی کاردا دوای جێهێشتنی وڵاتی سەرچاوە دەگەن، جگە لە کاتی ڕاپەڕاندنی گومرگ. لە هەموو هەنگاوێکدا ئاگادارت دەکەینەوە.",
- q4:"دەتوانم چەند داواکارییەک کۆبکەمەوە؟",a4:"بەڵێ. پاکەتەکانت هەڵدەگرین تا هەموویان دەگەن، پاشان پێکەوە دەیانپێچینەوە بۆ ئەوەی پارە پاشەکەوت بکەیت.",
+ q4:"دەتوانم چەند سندوقێک لە یەک باردا بنێرم؟",a4:"بەڵێ. هەر سندوقێک لە ژمێرەرەکەدا زیاد بکە. پێکەوە وەک یەک بار دەگەنە ناونیشانەکەت.",
  q5:"ئایا کاڵایەک هەیە کە نەتوانرێت بنێردرێت؟",a5:"بەڵێ. کاڵای مەترسیدار، ئاگرگرتوو، چەک و کاڵا قەدەغەکراوەکانی تر ناتوانرێت بە ئاسماندا بنێردرێن. ئەگەر دڵنیا نیت لە کاڵایەک پەیوەندیمان پێوە بکە.",
- q6:"چۆن پارە بدەم؟",a6:"پەیوەندی بە تیمەکەمانەوە بکە بۆ زانینی ڕێگاکانی پارەدان لە عێراق.",
+ q6:"چۆن پارە بدەم؟",a6:"لە ئێستادا تەنها پارەی نەختینە وەردەگرین. کاتی داواکردن تیمەکەمان پێت دەڵێت چەند و لە کوێ پارە بدەیت.",
  contact_title:"پەیوەندیمان پێوە بکە",contact_sub:"پرسیارت هەیە یان نرخت دەوێت؟ نامەیەکمان بۆ بنێرە و بە خێرایی وەڵام دەدەینەوە.",
  f_name:"ناوی تەواو",f_phone:"ژمارەی مۆبایل",f_email:"ئیمەیڵ",f_msg:"نامەکەت",f_city:"شار",f_pw:"وشەی نهێنی",f_send:"ناردنی نامە",sending:"دەنێردرێت…",
  sent:"سوپاس! نامەکەت نێردرا و بەم زووانە وەڵامت دەدەینەوە.",send_err:"هەڵەیەک ڕوویدا. تکایە دووبارە هەوڵ بدەرەوە یان لە واتسئاپ نامەمان بۆ بنێرە.",
@@ -1166,7 +1176,7 @@ ckb:{
  reset_title:"گۆڕینی وشەی نهێنی",reset_btn:"ناردنی بەستەری گۆڕین",reset_sent:"ئەگەر هەژمارێک بەم ئیمەیڵە هەبێت، بەستەری گۆڕین نێردراوە.",reset_local:"لە دۆخی پێشبینیندا، تکایە لە واتسئاپ پەیوەندیمان پێوە بکە بۆ گۆڕینی وشەی نهێنی.",
  login_btn:"چوونەژوورەوە",signup_btn:"دروستکردنی هەژمار",back_login:"گەڕانەوە بۆ چوونەژوورەوە",close:"داخستن",
  err_required:"تکایە ئەم خانەیە پڕ بکەرەوە.",err_email:"ئیمەیڵێکی دروست بنووسە، وەک name@example.com.",err_pw:"وشەی نهێنی دەبێت لانیکەم 8 پیت بێت.",err_exists:"هەژمارێک بەم ئیمەیڵە پێشتر هەیە. هەوڵی چوونەژوورەوە بدە.",err_creds:"ئیمەیڵ یان وشەی نهێنی هەڵەیە.",err_generic:"هەڵەیەک ڕوویدا. تکایە دووبارە هەوڵ بدەرەوە.",
- acc_hello:"سڵاو",comma:"،",acc_id:"ناسنامەی MySpaceی تۆ",acc_id_help:"ئەم ناسنامەیە لەسەر هەموو ئەو داواکارییانە بنووسە کە بۆمانی دەنێریت.",acc_next:"هەنگاوی داهاتوو",acc_next_d:"تیمەکەمان پەیوەندیت پێوە دەکات بۆ پێدانی ناونیشانی بارکردن. هەروەها دەتوانیت لە واتسئاپ نامەمان بۆ بنێریت.",logout:"چوونەدەرەوە",
+ acc_hello:"سڵاو",comma:"،",acc_id:"ناسنامەی MySpaceی تۆ",acc_id_help:"هەر کاتێک دەربارەی بارێک پەیوەندیت پێوە کردین ئەم ناسنامەیە بڵێ.",logout:"چوونەدەرەوە",
  demo:"دۆخی پێشبینین: هەژمارەکان تەنها لەسەر ئەم ئامێرە پاشەکەوت دەکرێن تا هەژمارە ئۆنلاینەکان چالاک دەکرێن."
 }};
 
@@ -1299,6 +1309,10 @@ const POPULAR = ["US","GB","TR","AE","CN","DE","SA","IN"];
 const LIMITS = { pieceKg: 1000, pieceCm: 300, shipmentKg: 3000 };
 
 const usd = v => "$" + v.toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2});
+// dinars, rounded up to the nearest 250 IQD
+const toIqd = v => Math.ceil(v * CONFIG.usdToIqd / 250) * 250;
+const iqd = v => toIqd(v).toLocaleString("en-US") + " " + t("q_iqd");
+const both = v => `${usd(v)} · ${iqd(v)}`;
 const kgFmt = v => (Math.round(v * 100) / 100).toLocaleString("en-US", {maximumFractionDigits:2});
 
 // Sorani names for the most-used countries (browsers don't have Kurdish country names yet)
@@ -1562,24 +1576,27 @@ $('.qstep[data-q="2"]').addEventListener("submit", e => {
 
 function renderResult(){
   if (!lastQuote) return;
+  lastQuote.r = computeQuote(lastQuote.q);
   const { q, r } = lastQuote;
   const city = t("cities").split("|")[q.to];
   $("#rRoute").textContent = `${countryName(q.from)}  →  ${city}, ${t("q_iraq")}`;
   $("#rTotal").textContent = usd(r.total);
+  $("#rTotalIqd").textContent = iqd(r.total);
   const nPieces = q.pieces.reduce((a, p) => a + p.qty, 0);
   const lines = [
     [t("q_pieces"), String(nPieces)],
     [t("q_actual"), `${kgFmt(r.actual)} ${t("kg")}`],
     [t("q_vol"), `${kgFmt(r.vol)} ${t("kg")}`],
     [t("q_cw"), `${kgFmt(r.w)} ${t("kg")}`],
-    [t("q_ship"), usd(r.ship)],
+    [t("q_ship"), both(r.ship)],
   ];
-  if (r.handling) lines.push([t("q_handling"), usd(r.handling)]);
-  if (r.fuel) lines.push([`${t("q_fuel")} (${CONFIG.fuelPercent}%)`, usd(r.fuel)]);
+  if (r.handling) lines.push([t("q_handling"), both(r.handling)]);
+  if (r.fuel) lines.push([`${t("q_fuel")} (${CONFIG.fuelPercent}%)`, both(r.fuel)]);
   $("#rLines").innerHTML = lines.map(([a, b]) => `<dt>${a}</dt><dd class="ltr-num">${b}</dd>`).join("");
   const msg = t("q_book_msg").replace("{from}", countryName(q.from)).replace("{to}", city)
     .replace("{type}", t(q.type === "docs" ? "q_doc" : "q_pkg")).replace("{pieces}", nPieces)
-    .replace("{w}", kgFmt(r.w)).replace("{total}", usd(r.total) + " USD");
+    .replace("{w}", kgFmt(r.w)).replace("{total}", `${usd(r.total)} USD / ${iqd(r.total)}`)
+    .replace("{addr}", Auth.user?.address ? `${Auth.user.address}${Auth.user.city ? ", " + Auth.user.city : ""}` : "-");
   $("#qBook").href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(msg);
 }
 
@@ -1660,6 +1677,17 @@ async function sha(s){
   }catch{ let h = 0; for (const c of s) h = (h * 31 + c.charCodeAt(0)) | 0; return "x" + h; }
 }
 const loadScript = src => new Promise((ok, fail) => { const s = document.createElement("script"); s.src = src; s.onload = ok; s.onerror = fail; document.head.appendChild(s); });
+// fuel surcharge + exchange rate, edited by the owner in Supabase (table "settings")
+async function loadSettings(sb){
+  try{
+    const { data } = await sb.from("settings").select("key,value");
+    for (const r of data || []){
+      if (r.key === "fuel_percent") CONFIG.fuelPercent = Number(r.value) || 0;
+      if (r.key === "usd_to_iqd" && Number(r.value) > 0) CONFIG.usdToIqd = Number(r.value);
+    }
+    if (typeof renderResult === "function") renderResult();
+  }catch{}
+}
 const siteUrl = () => location.origin + location.pathname;
 
 const Auth = {
@@ -1673,6 +1701,7 @@ const Auth = {
     if (this.mode === "supabase"){
       await loadScript("https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js");
       this.sb = supabase.createClient(CONFIG.supabaseUrl, CONFIG.supabaseAnonKey);
+      loadSettings(this.sb);
       this.sb.auth.onAuthStateChange((event, session) => {
         if (event === "PASSWORD_RECOVERY") setTimeout(() => openAuth("newpw"), 0);
         // load the profile outside the callback (Supabase recommends not awaiting inside it)
@@ -1693,14 +1722,14 @@ const Auth = {
     if (this.user && this.user.uid === u.id) return;
     let p = null;
     for (let i = 0; i < 3 && !p; i++){   // the profile row is created by the database right after sign-up
-      const { data } = await this.sb.from("customers").select("ms_id,name,phone,city").eq("id", u.id).maybeSingle();
+      const { data } = await this.sb.from("customers").select("ms_id,name,phone,city,address").eq("id", u.id).maybeSingle();
       p = data; if (!p) await new Promise(r => setTimeout(r, 600));
     }
     const m = u.user_metadata || {};
-    this.user = { uid: u.id, email: u.email, name: p?.name || m.name || "", phone: p?.phone || m.phone || "", city: p?.city || m.city || "", id: p?.ms_id || "" };
+    this.user = { uid: u.id, email: u.email, name: p?.name || m.name || "", phone: p?.phone || m.phone || "", city: p?.city || m.city || "", address: p?.address || "", id: p?.ms_id || "" };
     this._emitted = true; this.emit();
   },
-  publicUser(u){ return { name:u.name, email:u.email, phone:u.phone, city:u.city, id:u.id }; },
+  publicUser(u){ return { name:u.name, email:u.email, phone:u.phone, city:u.city, address:u.address || "", id:u.id }; },
   async token(){
     if (this.mode !== "supabase") return null;
     const { data } = await this.sb.auth.getSession();
@@ -1748,7 +1777,7 @@ const Auth = {
 
   async updateProfile(d){
     if (this.mode === "supabase"){
-      const { error } = await this.sb.from("customers").update({ name: d.name, phone: d.phone, city: d.city }).eq("id", this.user.uid);
+      const { error } = await this.sb.from("customers").update({ name: d.name, phone: d.phone, city: d.city, address: d.address }).eq("id", this.user.uid);
       if (error) throw new Error("err_generic");
     } else {
       const users = store.get("ms_users", {}), u = users[this.user.email];
@@ -1777,6 +1806,7 @@ function openAccount(){
   $("#accEmail").textContent = u.email;
   $("#accPhone").textContent = u.phone || "";
   $("#accCity").textContent = u.city ? (u.phone ? "· " : "") + u.city : "";
+  $("#accAddr").textContent = u.address || t("acc_addr_none");
   $("#editForm").hidden = true; $("#editBtn").hidden = false;
   if (!accDlg.open) accDlg.showModal();
 }
@@ -1851,7 +1881,7 @@ $("#copyId").addEventListener("click", async () => {
 });
 $("#editBtn").addEventListener("click", () => {
   const u = Auth.user; if (!u) return;
-  $("#eName").value = u.name; $("#ePhone").value = u.phone; $("#eCity").value = u.city;
+  $("#eName").value = u.name; $("#ePhone").value = u.phone; $("#eCity").value = u.city; $("#eAddr").value = u.address || "";
   $(".status", $("#editForm")).hidden = true;
   $("#editForm").hidden = false; $("#editBtn").hidden = true; $("#eName").focus();
 });
@@ -1862,7 +1892,7 @@ $("#editForm").addEventListener("submit", async e => {
   if (!validate(f)) return;
   busy(btn, true);
   try{
-    await Auth.updateProfile({ name: $("#eName").value.trim(), phone: $("#ePhone").value.trim(), city: $("#eCity").value.trim() });
+    await Auth.updateProfile({ name: $("#eName").value.trim(), phone: $("#ePhone").value.trim(), city: $("#eCity").value.trim(), address: $("#eAddr").value.trim() });
     f.hidden = true; $("#editBtn").hidden = false; openAccount();
   }catch(err){ formError(f, err.message); }
   busy(btn, false);
