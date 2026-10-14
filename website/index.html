@@ -1313,7 +1313,12 @@ async function trackShipment(id){
     if (Auth.mode === "supabase"){
       const { data, error } = await Auth.sb.rpc("track_shipment", { p_number: id });
       checkedOwn = !error;
-      if (!error && data){ lastTrack = { id, state:"ok", data }; renderTrack(); return; }
+      if (!error && data){
+        lastTrack = { id, state:"ok", data }; renderTrack();
+        enrichFromCarrier(id, data);          // add automatic carrier updates, if a tracking service is connected
+        return;
+      }
+      if (!error && !data){ lastTrack = { id, state:"error", error:"notfound" }; renderTrack(); return; }
       if (error && /login|permission/i.test(error.message)){ lastTrack = { id, state:"error", error:"login" }; renderTrack(); return; }
     }
     const headers = {}, tok = await Auth.token();
@@ -1325,6 +1330,24 @@ async function trackShipment(id){
     lastTrack = res.ok ? { id, state:"ok", data } : { id, state:"error", error: checkedOwn ? "notfound" : (data.error || "error") };
   }catch{ lastTrack = { id, state:"error", error: checkedOwn ? "notfound" : "network" }; }
   renderTrack();
+}
+
+// Merge automatic updates (tracking service) with MySpace's own updates into one timeline
+async function enrichFromCarrier(id, own){
+  try{
+    const tok = await Auth.token(); if (!tok) return;
+    const res = await fetch(trackingEndpoint() + "?id=" + encodeURIComponent(id), { headers: { Authorization: "Bearer " + tok, apikey: CONFIG.supabaseAnonKey } });
+    if (!res.ok) return;
+    const auto = await res.json();
+    if (!auto.events?.length || lastTrack?.id !== id) return;
+    const events = [...(own.events || []), ...auto.events]
+      .sort((a, b) => new Date(b.time || 0) - new Date(a.time || 0));
+    const latestOwn = own.status?.time ? new Date(own.status.time) : 0;
+    const latestAuto = auto.status?.time ? new Date(auto.status.time) : 0;
+    const status = latestOwn >= latestAuto ? own.status : auto.status;
+    lastTrack = { id, state:"ok", data: { ...own, events, status, estimatedDelivery: own.estimatedDelivery || auto.estimatedDelivery } };
+    renderTrack();
+  }catch{}
 }
 
 $("#pnl-track").addEventListener("submit", e => {
