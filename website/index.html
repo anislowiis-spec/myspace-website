@@ -336,6 +336,18 @@ dialog.wide{width:min(620px,calc(100vw - 32px))}
 .iqd{display:block;font:700 18px var(--body);color:#c9d3ea;text-align:end}
 .pay{display:inline-flex;align-items:center;gap:8px;font-weight:600;color:var(--navy);background:var(--teal-soft);border-radius:999px;padding:6px 14px;margin-bottom:12px}
 
+.myship{margin-bottom:18px}
+.myship h3{font-size:20px;margin-bottom:8px}
+.myship-list{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.myship-list button{width:100%;display:flex;align-items:center;gap:12px;text-align:start;border:1px solid var(--line);border-radius:12px;background:#fff;padding:10px 12px;cursor:pointer;font:inherit;color:inherit;min-height:56px}
+.myship-list button:hover{border-color:var(--teal)}
+.myship-list .ic{width:36px;height:36px;border-radius:50%;background:var(--teal-soft);color:var(--teal-ink);display:grid;place-items:center;flex:none}
+.myship-list .delivered .ic{background:#e1f3ea;color:var(--ok)}
+.myship-list .failure .ic{background:#fbe9e7;color:var(--err)}
+.myship-list b{display:block;color:var(--navy);direction:ltr;unicode-bidi:isolate;text-align:start}
+.myship-list small{color:var(--muted)}
+.myship-list .empty{color:var(--muted);font-size:14px}
+
 .faq{background:var(--surface)}
 .faq-list{max-width:820px;margin-inline:auto}
 .faq details{border-bottom:1px solid var(--line)}
@@ -1010,6 +1022,10 @@ dialog[open]{animation:pop .22s var(--ease)}
       <div class="status" role="status" hidden></div>
       <div class="row-btns"><button class="btn btn-outline" type="button" id="editCancel" data-i18n="cancel">Cancel</button><button class="btn btn-primary" type="submit" data-i18n="save">Save</button></div>
     </form>
+    <div class="myship">
+      <h3 data-i18n="my_ship">My shipments</h3>
+      <ul id="myShipList" class="myship-list" aria-live="polite"></ul>
+    </div>
     <div class="addr-card"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#i-pin"/></svg></span>
       <div><b data-i18n="acc_addr">Delivery address</b><p id="accAddr"></p></div></div>
     <div class="row-btns">
@@ -1048,6 +1064,7 @@ const CONFIG = {
    ===================================================================== */
 const T = {
 en:{
+ my_ship:"My shipments",my_ship_none:"No shipments yet. When we create a shipment for you, it appears here.",st_created:"Shipment created",st_picked_up:"Picked up from sender",st_arrived_iraq:"Arrived in Iraq",st_customs:"In customs clearance",st_out_for_delivery:"Out for delivery",
  q_iqd:"IQD",q_pay:"Payment: cash",f_addr_help:"Area, street, building and a nearby landmark",f_addr:"Delivery address in Iraq",acc_addr_none:"No delivery address yet. Add one so we know where to deliver.",acc_addr:"Delivery address",acc_copy:"Copy",acc_copied:"Copied!",acc_edit:"Edit my details",cancel:"Cancel",save:"Save",rs_kicker:"Before you buy",rs_title:"Items we can't fly",rs_sub:"Air freight has strict safety rules. Please don't send these with MySpace.",rs1:"Loose batteries & power banks",rs1d:"Lithium batteries packed on their own",rs2:"Perfume, aerosols & nail polish",rs2d:"Anything flammable or under pressure",rs3:"Chemicals & flammable liquids",rs3d:"Fuel, paint, solvents, gases",rs4:"Weapons & replicas",rs4d:"Including parts, ammunition and toy guns that look real",rs5:"Medicines & drugs",rs5d:"Prescription medicine needs approval; illegal drugs are never accepted",rs6:"Cash, gold & valuables",rs6d:"Money, precious metals, loose gemstones",rs7:"Fresh food, plants & animals",rs7d:"Anything that can spoil or is alive",rs8:"Items banned in Iraq",rs8d:"Goods not allowed by Iraqi customs",rs_note:"This list isn't complete and rules can change. Not sure about an item? Ask us before you buy.",
  q_search:"Search country",q_none:"No country found",
  newpw_title:"Choose a new password",newpw_btn:"Save password",newpw_done:"Your password has been changed.",confirm_sent:"Almost done! We sent a confirmation link to {email}. Click it to activate your account.",err_confirm:"Please confirm your email first. Check your inbox for our link.",
@@ -1092,6 +1109,7 @@ en:{
  demo:"Preview mode: accounts are saved on this device only until online accounts are switched on."
 },
 ar:{
+ my_ship:"شحناتي",my_ship_none:"لا توجد شحنات بعد. عندما ننشئ شحنة لك ستظهر هنا.",st_created:"تم إنشاء الشحنة",st_picked_up:"تم الاستلام من المرسل",st_arrived_iraq:"وصلت إلى العراق",st_customs:"في التخليص الجمركي",st_out_for_delivery:"خرجت للتوصيل",
  q_iqd:"دينار",q_pay:"الدفع: نقداً",f_addr_help:"المنطقة والشارع والبناية وأقرب نقطة دالة",f_addr:"عنوان التوصيل في العراق",acc_addr_none:"لا يوجد عنوان توصيل بعد. أضفه لنعرف أين نوصل شحنتك.",acc_addr:"عنوان التوصيل",acc_copy:"نسخ",acc_copied:"تم النسخ!",acc_edit:"تعديل بياناتي",cancel:"إلغاء",save:"حفظ",rs_kicker:"قبل أن تشتري",rs_title:"مواد لا يمكننا شحنها جواً",rs_sub:"للشحن الجوي قواعد سلامة صارمة. يرجى عدم إرسال هذه المواد عبر MySpace.",rs1:"البطاريات المنفردة والباور بانك",rs1d:"بطاريات الليثيوم المغلفة وحدها",rs2:"العطور والبخاخات وطلاء الأظافر",rs2d:"أي شيء قابل للاشتعال أو مضغوط",rs3:"المواد الكيميائية والسوائل القابلة للاشتعال",rs3d:"الوقود والطلاء والمذيبات والغازات",rs4:"الأسلحة والمجسمات",rs4d:"بما في ذلك القطع والذخيرة والألعاب التي تشبه الأسلحة الحقيقية",rs5:"الأدوية والمخدرات",rs5d:"الأدوية بوصفة طبية تحتاج موافقة؛ ولا تُقبل المخدرات أبداً",rs6:"النقود والذهب والمقتنيات الثمينة",rs6d:"الأموال والمعادن الثمينة والأحجار الكريمة",rs7:"الأطعمة الطازجة والنباتات والحيوانات",rs7d:"أي شيء قابل للتلف أو حي",rs8:"المواد الممنوعة في العراق",rs8d:"البضائع غير المسموح بها من الجمارك العراقية",rs_note:"هذه القائمة ليست كاملة وقد تتغير القواعد. لست متأكداً من منتج ما؟ اسألنا قبل الشراء.",
  q_search:"ابحث عن دولة",q_none:"لم يتم العثور على دولة",
  newpw_title:"اختر كلمة مرور جديدة",newpw_btn:"حفظ كلمة المرور",newpw_done:"تم تغيير كلمة المرور.",confirm_sent:"اقتربت! أرسلنا رابط تأكيد إلى {email}. اضغط عليه لتفعيل حسابك.",err_confirm:"يرجى تأكيد بريدك الإلكتروني أولاً. تحقق من بريدك الوارد.",
@@ -1136,6 +1154,7 @@ ar:{
  demo:"وضع المعاينة: تُحفظ الحسابات على هذا الجهاز فقط حتى يتم تفعيل الحسابات عبر الإنترنت."
 },
 ckb:{
+ my_ship:"بارەکانم",my_ship_none:"هێشتا هیچ بارێک نییە. کاتێک بارێکت بۆ دروست دەکەین، لێرە دەردەکەوێت.",st_created:"بار تۆمارکرا",st_picked_up:"لە نێرەر وەرگیرا",st_arrived_iraq:"گەیشتە عێراق",st_customs:"لە ڕاپەڕاندنی گومرگدایە",st_out_for_delivery:"بۆ گەیاندن دەرچووە",
  q_iqd:"دینار",q_pay:"پارەدان: نەختینە",f_addr_help:"گەڕەک، شەقام، باڵەخانە و نیشانەیەکی نزیک",f_addr:"ناونیشانی گەیاندن لە عێراق",acc_addr_none:"هێشتا ناونیشانی گەیاندنت نییە. زیادی بکە بۆ ئەوەی بزانین بۆ کوێ بیگەیەنین.",acc_addr:"ناونیشانی گەیاندن",acc_copy:"کۆپی",acc_copied:"کۆپی کرا!",acc_edit:"دەستکاریکردنی زانیارییەکانم",cancel:"هەڵوەشاندنەوە",save:"پاشەکەوتکردن",rs_kicker:"پێش کڕین",rs_title:"ئەو کاڵایانەی ناتوانین بە ئاسماندا بیانگوازینەوە",rs_sub:"بارکردنی ئاسمانی یاسای سەلامەتیی توندی هەیە. تکایە ئەمانە لەگەڵ MySpace مەنێرە.",rs1:"پاتری و پاوەر بانکی جیا",rs1d:"پاتریی لیسیۆم کە بە تەنها پێچرابێت",rs2:"بۆن، سپرەی و بۆیەی نینۆک",rs2d:"هەر شتێکی ئاگرگرتوو یان پەستاودار",rs3:"کیمیاوی و شلەی ئاگرگرتوو",rs3d:"سووتەمەنی، بۆیە، توێنەر، گاز",rs4:"چەک و لاسایی چەک",rs4d:"لەوانە پارچە، فیشەک و یاریی وەک چەکی ڕاستەقینە",rs5:"دەرمان و ماددەی هۆشبەر",rs5d:"دەرمانی ڕەچەتە پێویستی بە ڕەزامەندییە؛ ماددەی هۆشبەر هەرگیز وەرناگیرێت",rs6:"پارە، زێڕ و شتی بەنرخ",rs6d:"پارە، کانزای بەنرخ، بەردی گرانبەها",rs7:"خۆراکی تازە، ڕووەک و ئاژەڵ",rs7d:"هەر شتێک کە خراپ دەبێت یان زیندووە",rs8:"کاڵای قەدەغەکراو لە عێراق",rs8d:"ئەو کاڵایانەی گومرگی عێراق ڕێگەیان پێ نادات",rs_note:"ئەم لیستە تەواو نییە و یاساکان دەگۆڕێن. دڵنیا نیت لە کاڵایەک؟ پێش کڕین لێمان بپرسە.",
  q_search:"گەڕان بۆ وڵات",q_none:"هیچ وڵاتێک نەدۆزرایەوە",
  newpw_title:"وشەی نهێنیی نوێ هەڵبژێرە",newpw_btn:"پاشەکەوتکردنی وشەی نهێنی",newpw_done:"وشەی نهێنییەکەت گۆڕدرا.",confirm_sent:"نزیکە تەواو بێت! بەستەرێکی پشتڕاستکردنەوەمان بۆ {email} نارد. کلیکی لێ بکە بۆ چالاککردنی هەژمارەکەت.",err_confirm:"تکایە سەرەتا ئیمەیڵەکەت پشتڕاست بکەرەوە. سندوقی نامەکانت بپشکنە.",
@@ -1204,6 +1223,7 @@ function setLang(code){
   store.set("ms_lang", LANG);
   if (typeof refreshQuoteLang === "function") refreshQuoteLang();
   if (typeof updateTrackHelp === "function"){ updateTrackHelp(); renderTrack(); }
+  if (typeof renderMyShipments === "function" && $("#accDlg").open) renderMyShipments();
   try{ const u = new URL(location.href); if (LANG === "en") u.searchParams.delete("lang"); else u.searchParams.set("lang", LANG); history.replaceState(null, "", u); }catch{}
 }
 $("#langSel").addEventListener("change", e => setLang(e.target.value));
@@ -1240,11 +1260,20 @@ const LOCALE = { en:"en-GB", ar:"ar-IQ", ckb:"ckb-IQ" };
 function fmtDate(iso, withTime = true){
   if (!iso) return "";
   const d = new Date(iso); if (isNaN(d)) return esc(iso);
-  const opt = withTime ? {dateStyle:"medium", timeStyle:"short"} : {dateStyle:"full"};
-  try{ return new Intl.DateTimeFormat(LOCALE[LANG] + "-u-nu-latn", opt).format(d); }
+  const opt = LANG === "ckb"
+    ? (withTime ? {day:"2-digit", month:"2-digit", year:"numeric", hour:"2-digit", minute:"2-digit", hour12:false} : {day:"2-digit", month:"2-digit", year:"numeric"})
+    : (withTime ? {dateStyle:"medium", timeStyle:"short"} : {dateStyle:"full"});
+  try{ return new Intl.DateTimeFormat((LANG === "ckb" ? "en-GB" : LOCALE[LANG]) + "-u-nu-latn", opt).format(d); }
   catch{ return d.toLocaleString("en-GB", opt); }
 }
-const STATUS = { "pre-transit":["st_pre","i-file"], transit:["st_transit","i-plane"], delivered:["st_delivered","i-check"], failure:["st_failure","i-alert"] };
+const STATUS = {
+  created:["st_created","i-file"], picked_up:["st_picked_up","i-package"], in_transit:["st_transit","i-plane"],
+  arrived_iraq:["st_arrived_iraq","i-pin"], customs:["st_customs","i-shield"], out_for_delivery:["st_out_for_delivery","i-truck"],
+  delivered:["st_delivered","i-check"], problem:["st_failure","i-alert"],
+  "pre-transit":["st_pre","i-file"], transit:["st_transit","i-plane"], failure:["st_failure","i-alert"]
+};
+const STATUS_CLASS = { delivered:"delivered", problem:"failure", failure:"failure" };
+const evText = e => e.text || e.note || t((STATUS[e.code] || ["st_unknown"])[0]);
 
 const trackingEndpoint = () => (CONFIG.trackingApi || (Auth.mode === "supabase" ? CONFIG.supabaseUrl + "/functions/v1/track" : "")).replace(/\/$/, "");
 const askOnWhatsApp = id => window.open("https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(t("track_msg").replace("{n}", id)), "_blank", "noopener");
@@ -1262,32 +1291,39 @@ function renderTrack(){
       <div class="row-btns" style="margin-top:16px;justify-content:center"><a class="btn btn-primary" target="_blank" rel="noopener" href="https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(t("track_msg").replace("{n}", st.id))}">${t("i_wa")}</a></div></div>`;
     return;
   }
-  const d = st.data, s0 = d.status || {}, [lbl, ic] = STATUS[s0.code] || ["st_unknown","i-package"];
+  const d = st.data, s0 = d.status || { code:"created" }, [lbl, ic] = STATUS[s0.code] || ["st_unknown","i-package"];
   const meta = [
     d.origin && [t("trk_from"), d.origin], d.destination && [t("trk_to"), d.destination],
     d.estimatedDelivery && s0.code !== "delivered" && [t("trk_eta"), fmtDate(d.estimatedDelivery, false)],
     s0.time && [t("trk_updated"), fmtDate(s0.time)],
   ].filter(Boolean);
   body.innerHTML = `
-    <div class="trk-status ${esc(s0.code)}"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#${ic}"/></svg></span>
-      <div><b>${t(lbl)}</b><span>${esc(s0.text)}${s0.location && !String(s0.text).includes(s0.location) ? " · " + esc(s0.location) : ""}</span></div></div>
+    <div class="trk-status ${STATUS_CLASS[s0.code] || ""}"><span class="ic"><svg class="icon" aria-hidden="true"><use href="#${ic}"/></svg></span>
+      <div><b>${t(lbl)}</b><span dir="auto">${[s0.text || s0.note, s0.location].filter(Boolean).filter((v, i, a) => i === 0 || !String(a[0]).includes(v)).map(esc).join(" · ")}</span></div></div>
     ${meta.length ? `<div class="trk-meta">${meta.map(([a, b]) => `<div><small>${a}</small><b>${esc(b)}</b></div>`).join("")}</div>` : ""}
     ${d.events?.length ? `<h3 class="trk-h">${t("trk_history")}</h3><ol class="timeline">${d.events.map(e => `
-      <li><div class="ev" dir="ltr" style="text-align:start">${esc(e.text)}</div><div class="when">${fmtDate(e.time)}${e.location && !String(e.text).includes(e.location) ? " · " + esc(e.location) : ""}</div></li>`).join("")}</ol>` : ""}`;
+      <li><div class="ev" dir="auto" style="text-align:start">${esc(evText(e))}</div><div class="when">${fmtDate(e.time)}${e.location && !String(evText(e)).includes(e.location) ? " · " + esc(e.location) : ""}</div></li>`).join("")}</ol>` : ""}`;
 }
 
 async function trackShipment(id){
   lastTrack = { id, state:"loading" }; renderTrack();
   const dlg = $("#trackDlg"); if (!dlg.open) dlg.showModal();
+  let checkedOwn = false;
   try{
+    if (Auth.mode === "supabase"){
+      const { data, error } = await Auth.sb.rpc("track_shipment", { p_number: id });
+      checkedOwn = !error;
+      if (!error && data){ lastTrack = { id, state:"ok", data }; renderTrack(); return; }
+      if (error && /login|permission/i.test(error.message)){ lastTrack = { id, state:"error", error:"login" }; renderTrack(); return; }
+    }
     const headers = {}, tok = await Auth.token();
     if (tok){ headers.Authorization = "Bearer " + tok; headers.apikey = CONFIG.supabaseAnonKey; }
     const res = await fetch(trackingEndpoint() + "?id=" + encodeURIComponent(id), { headers });
     const data = await res.json().catch(() => ({}));
-    // tracking key not set up yet: fall back to asking on WhatsApp
-    if (data.error === "config"){ $("#trackDlg").close(); askOnWhatsApp(id); return; }
-    lastTrack = res.ok ? { id, state:"ok", data } : { id, state:"error", error: data.error || "error" };
-  }catch{ lastTrack = { id, state:"error", error:"network" }; }
+    // no automatic tracking service connected: the number simply isn't in our list yet
+    if (data.error === "config"){ lastTrack = { id, state:"error", error:"notfound" }; renderTrack(); return; }
+    lastTrack = res.ok ? { id, state:"ok", data } : { id, state:"error", error: checkedOwn ? "notfound" : (data.error || "error") };
+  }catch{ lastTrack = { id, state:"error", error: checkedOwn ? "notfound" : "network" }; }
   renderTrack();
 }
 
@@ -1808,8 +1844,31 @@ function openAccount(){
   $("#accCity").textContent = u.city ? (u.phone ? "· " : "") + u.city : "";
   $("#accAddr").textContent = u.address || t("acc_addr_none");
   $("#editForm").hidden = true; $("#editBtn").hidden = false;
+  loadMyShipments();
   if (!accDlg.open) accDlg.showModal();
 }
+let myShips = [];
+async function loadMyShipments(){
+  const ul = $("#myShipList");
+  if (Auth.mode !== "supabase"){ ul.innerHTML = `<li class="empty">${t("my_ship_none")}</li>`; return; }
+  ul.innerHTML = `<li class="empty">${t("trk_loading")}</li>`;
+  const { data, error } = await Auth.sb.rpc("my_shipments");
+  myShips = error ? [] : (data || []);
+  renderMyShipments();
+}
+function renderMyShipments(){
+  const ul = $("#myShipList");
+  if (!myShips.length){ ul.innerHTML = `<li class="empty">${t("my_ship_none")}</li>`; return; }
+  ul.innerHTML = myShips.map(sh => {
+    const code = sh.status?.code || "created", [lbl, ic] = STATUS[code] || ["st_unknown","i-package"];
+    return `<li><button type="button" class="${STATUS_CLASS[code] || ""}" data-track="${esc(sh.id)}"><span class="ic"><svg class="icon sm" aria-hidden="true"><use href="#${ic}"/></svg></span>
+      <span><b>${esc(sh.id)}</b><small>${t(lbl)}${sh.status?.time ? " · " + fmtDate(sh.status.time) : ""}</small></span></button></li>`;
+  }).join("");
+}
+$("#myShipList").addEventListener("click", e => {
+  const b = e.target.closest("[data-track]"); if (!b) return;
+  accDlg.close(); trackShipment(b.dataset.track);
+});
 $$(".js-login").forEach(b => b.addEventListener("click", () => openAuth("login")));
 $$(".js-signup").forEach(b => b.addEventListener("click", () => Auth.user ? openAccount() : openAuth("signup")));
 $$(".js-account").forEach(b => b.addEventListener("click", openAccount));
