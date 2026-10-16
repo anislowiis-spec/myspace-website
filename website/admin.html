@@ -1,0 +1,782 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>MySpace Admin</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap">
+<style>
+:root{
+  --navy:#1b2d5b; --navy-2:#243a72; --navy-deep:#122044;
+  --teal:#2f9c93; --teal-ink:#1c7068; --teal-soft:#d7efed; --chart:#0f9488;
+  --bg:#f3f6f9; --surface:#fff; --fg:#14213d; --muted:#56637c; --line:#dde4ec; --grid:#e8edf3;
+  --ok:#1f7a4d; --ok-bg:#e1f3ea; --err:#b3261e; --err-bg:#fbe9e7; --warn:#8a5a00; --warn-bg:#fff4dc;
+  --radius:14px; --shadow:0 1px 2px rgba(20,33,61,.06),0 6px 18px rgba(20,33,61,.06);
+  --display:"Barlow Condensed","Arial Narrow",Arial,sans-serif; --body:"Barlow","Segoe UI",Arial,sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 var(--body)}
+h1,h2,h3{font-family:var(--display);color:var(--navy);margin:0;line-height:1.1}
+a{color:var(--teal-ink)}
+button{font:inherit}
+:focus-visible{outline:3px solid var(--teal);outline-offset:2px;border-radius:6px}
+.icon{width:20px;height:20px;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.muted{color:var(--muted)}
+.num{font-variant-numeric:tabular-nums}
+.ltr{direction:ltr;unicode-bidi:isolate}
+
+/* buttons & inputs */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:8px 16px;border-radius:10px;border:1.5px solid transparent;font-weight:600;cursor:pointer;text-decoration:none;white-space:nowrap;transition:background .15s,border-color .15s}
+.btn-primary{background:var(--teal-ink);color:#fff}.btn-primary:hover{background:#155a53}
+.btn-navy{background:var(--navy);color:#fff}.btn-navy:hover{background:var(--navy-deep)}
+.btn-ghost{background:var(--surface);color:var(--navy);border-color:var(--line)}.btn-ghost:hover{border-color:var(--navy)}
+.btn-danger{background:var(--surface);color:var(--err);border-color:#f0c4bf}.btn-danger:hover{background:var(--err-bg)}
+.btn-sm{min-height:34px;padding:4px 12px;font-size:14px}
+.btn[disabled]{opacity:.5;cursor:progress}
+.input{width:100%;min-height:42px;padding:8px 12px;border:1.5px solid #c9d3df;border-radius:10px;background:#fff;color:var(--fg);font:15px var(--body)}
+.input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(47,156,147,.18)}
+textarea.input{min-height:80px;resize:vertical}
+.field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;min-width:0}
+.field label{font-weight:600;font-size:13px;color:var(--navy)}
+.field .help{font-size:12px;color:var(--muted)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:0 14px}
+@media (max-width:640px){.grid2,.grid3{grid-template-columns:1fr}}
+.status{padding:10px 12px;border-radius:10px;font-weight:600;margin-bottom:12px}
+.status.ok{background:var(--ok-bg);color:var(--ok)}.status.err{background:var(--err-bg);color:var(--err)}
+
+/* login */
+.login{min-height:100dvh;display:grid;place-items:center;padding:20px;background:linear-gradient(180deg,#e4f4f4,#c4e5e6)}
+.login-card{width:min(400px,100%);background:#fff;border-radius:20px;box-shadow:0 20px 50px rgba(27,45,91,.16);padding:28px}
+.login-card img{width:72px;margin:0 auto 10px;display:block}
+.login-card h1{text-align:center;font-size:30px;margin-bottom:4px}
+.login-card p.sub{text-align:center;color:var(--muted);margin:0 0 20px}
+
+/* shell */
+.shell{display:grid;grid-template-columns:230px 1fr;min-height:100dvh}
+.side{background:var(--navy-deep);color:#c9d3ea;padding:18px 14px;display:flex;flex-direction:column;gap:4px;position:sticky;top:0;height:100dvh}
+.side .brand{display:flex;align-items:center;gap:10px;color:#fff;text-decoration:none;margin:0 6px 18px}
+.side .brand img{width:40px;background:#fff;border-radius:50%;padding:2px}
+.side .brand b{font:800 22px var(--display);letter-spacing:.03em}
+.side .brand small{display:block;font:600 11px var(--body);color:#8fa2cc;letter-spacing:.12em;text-transform:uppercase}
+.nav-btn{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border:0;border-radius:10px;background:none;color:#c9d3ea;text-align:start;cursor:pointer;font-weight:600}
+.nav-btn:hover{background:rgba(255,255,255,.07);color:#fff}
+.nav-btn[aria-current="page"]{background:rgba(47,156,147,.25);color:#fff}
+.nav-btn .count{margin-inline-start:auto;background:#e8673f;color:#fff;border-radius:999px;font-size:12px;padding:1px 8px}
+.side .bottom{margin-top:auto;display:grid;gap:6px}
+.side .who{font-size:12px;color:#8fa2cc;padding:0 12px;word-break:break-all}
+.main{padding:24px clamp(16px,3vw,32px) 48px;min-width:0}
+.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:20px}
+.top h1{font-size:32px}
+.top .actions{display:flex;gap:8px;flex-wrap:wrap}
+@media (max-width:900px){
+  .shell{grid-template-columns:1fr}
+  .side{position:sticky;height:auto;flex-direction:row;flex-wrap:nowrap;overflow-x:auto;padding:10px;gap:6px;z-index:10}
+  .side .brand{margin:0 8px 0 0}.side .brand small,.side .brand b{display:none}
+  .nav-btn{width:auto;flex:none}.nav-btn span.lbl{display:none}
+  .side .bottom{margin:0;display:flex}.side .who{display:none}
+}
+
+/* cards */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow);padding:18px}
+.card h2{font-size:22px;margin-bottom:12px}
+.card-head{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.card-head h2{margin:0}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:16px}
+.tile{background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);padding:14px 16px;box-shadow:var(--shadow)}
+.tile small{display:block;color:var(--muted);font-weight:600;font-size:13px}
+.tile b{display:block;font:800 34px var(--display);color:var(--navy);line-height:1.1;margin-top:4px}
+.tile span{font-size:13px;color:var(--muted)}
+@media (max-width:1100px){.tiles{grid-template-columns:repeat(2,1fr)}}
+.cols{display:grid;grid-template-columns:2fr 1fr;gap:16px;margin-bottom:16px}
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:16px}
+@media (max-width:1100px){.cols,.cols3{grid-template-columns:1fr}}
+.filters{display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:16px}
+.filters .input{width:auto;min-width:160px}
+.filters .grow{flex:1;min-width:200px}
+
+/* chart */
+.chart-wrap{position:relative}
+.chart svg{display:block;width:100%;height:240px}
+.chart .gridline{stroke:var(--grid);stroke-width:1}
+.chart .axis{font:12px var(--body);fill:var(--muted)}
+.chart .bar{fill:var(--chart)}
+.chart .hit{fill:transparent;cursor:default}
+.chart .hit:hover + .bar,.chart .hit:focus + .bar{fill:#0b766d}
+.tooltip{position:absolute;pointer-events:none;background:var(--navy-deep);color:#fff;border-radius:8px;padding:6px 10px;font-size:13px;white-space:nowrap;transform:translate(-50%,-110%);z-index:5}
+.tooltip b{font-size:16px;display:block}
+details.table-view summary{cursor:pointer;color:var(--teal-ink);font-weight:600;font-size:14px;margin-top:8px}
+.hbars{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.hbars li{display:grid;grid-template-columns:minmax(80px,40%) 1fr auto;gap:10px;align-items:center;font-size:14px}
+.hbars .track{height:10px;background:var(--grid);border-radius:999px;overflow:hidden}
+.hbars .fill{height:100%;background:var(--chart);border-radius:999px;min-width:2px}
+.hbars .val{font-weight:700;color:var(--fg);font-variant-numeric:tabular-nums}
+.empty{color:var(--muted);font-size:14px;padding:6px 0}
+
+/* tables */
+.table-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:#fff}
+table{width:100%;border-collapse:collapse;font-size:14px}
+th,td{padding:10px 12px;text-align:start;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);background:#fafbfd;white-space:nowrap}
+tbody tr:last-child td{border-bottom:0}
+tr.click{cursor:pointer}tr.click:hover td{background:#f6fbfa}
+.badge{display:inline-flex;align-items:center;gap:6px;border-radius:999px;padding:2px 10px;font-size:12px;font-weight:700;background:#eef2f7;color:var(--navy);white-space:nowrap}
+.badge::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor;opacity:.7}
+.badge.delivered{background:var(--ok-bg);color:var(--ok)}
+.badge.problem{background:var(--err-bg);color:var(--err)}
+.badge.moving{background:var(--teal-soft);color:var(--teal-ink)}
+.badge.new{background:#fde9e1;color:#a4421d}
+.badge.plain::before{display:none}
+
+/* messages */
+.msg{border:1px solid var(--line);border-radius:12px;background:#fff;padding:14px 16px;margin-bottom:10px}
+.msg.new{border-color:#f3b9a3;box-shadow:inset 3px 0 0 #e8673f}
+.msg header{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px}
+.msg p{white-space:pre-wrap;margin:6px 0 10px}
+.msg .row{display:flex;gap:8px;flex-wrap:wrap}
+
+/* dialogs */
+dialog{border:0;border-radius:18px;padding:0;width:min(720px,calc(100vw - 24px));max-height:calc(100dvh - 24px);box-shadow:0 30px 80px rgba(18,32,68,.35);color:var(--fg)}
+dialog::backdrop{background:rgba(18,32,68,.5)}
+.dlg-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:18px 20px 0}
+.dlg-head h2{font-size:26px}
+.dlg-body{padding:16px 20px 22px}
+.close{width:40px;height:40px;border:0;border-radius:50%;background:var(--bg);cursor:pointer;display:grid;place-items:center}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:16px}
+.kv div{background:var(--bg);border-radius:10px;padding:8px 12px}
+.kv small{display:block;color:var(--muted);font-size:12px;font-weight:600}
+.kv b{word-break:break-word}
+.section-title{font:700 18px var(--display);color:var(--navy);margin:18px 0 8px}
+.timeline{list-style:none;margin:0 0 14px;padding:0}
+.timeline li{display:flex;gap:10px;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--line)}
+.timeline li:last-child{border-bottom:0}
+.timeline .when{color:var(--muted);font-size:13px}
+.timeline .x{margin-inline-start:auto}
+.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--navy-deep);color:#fff;padding:10px 18px;border-radius:10px;font-weight:600;z-index:100;box-shadow:var(--shadow)}
+.toast.err{background:var(--err)}
+.loading{opacity:.55;transition:opacity .2s}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></symbol>
+  <symbol id="i-users" viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></symbol>
+  <symbol id="i-package" viewBox="0 0 24 24"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><path d="M3.29 7 12 12l8.71-5"/><path d="M12 22V12"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></symbol>
+  <symbol id="i-calc" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><path d="M8 6h8M8 10h.01M12 10h.01M16 10h.01M8 14h.01M12 14h.01M16 14h.01M8 18h.01M12 18h.01M16 18h.01"/></symbol>
+  <symbol id="i-gear" viewBox="0 0 24 24"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"/><circle cx="12" cy="12" r="3"/></symbol>
+  <symbol id="i-ext" viewBox="0 0 24 24"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></symbol>
+  <symbol id="i-logout" viewBox="0 0 24 24"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5"/><path d="M21 12H9"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></symbol>
+  <symbol id="i-refresh" viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 16v-5M12 16V8M17 16v-9"/></symbol>
+</svg>
+
+<!-- ================= LOGIN ================= -->
+<div class="login" id="loginView">
+  <form class="login-card" id="loginForm" novalidate>
+    <img src="logo.png" alt="MySpace">
+    <h1>Admin portal</h1>
+    <p class="sub">Sign in with your MySpace admin account</p>
+    <div class="status err" id="loginErr" role="alert" hidden></div>
+    <div class="field"><label for="lEmail">Email</label><input class="input" id="lEmail" type="email" autocomplete="username" required></div>
+    <div class="field"><label for="lPw">Password</label><input class="input" id="lPw" type="password" autocomplete="current-password" required></div>
+    <button class="btn btn-primary" style="width:100%" type="submit">Sign in</button>
+    <p class="sub" style="margin:14px 0 0;font-size:13px"><a href="./">Back to the website</a></p>
+  </form>
+</div>
+
+<!-- ================= APP ================= -->
+<div class="shell" id="app" hidden>
+  <nav class="side" aria-label="Admin">
+    <a class="brand" href="./" title="Open website"><img src="logo.png" alt=""><span><b>MYSPACE</b><small>Admin</small></span></a>
+    <button class="nav-btn" data-view="dashboard"><svg class="icon" aria-hidden="true"><use href="#i-home"/></svg><span class="lbl">Dashboard</span></button>
+    <button class="nav-btn" data-view="customers"><svg class="icon" aria-hidden="true"><use href="#i-users"/></svg><span class="lbl">Customers</span></button>
+    <button class="nav-btn" data-view="shipments"><svg class="icon" aria-hidden="true"><use href="#i-package"/></svg><span class="lbl">Shipments</span></button>
+    <button class="nav-btn" data-view="messages"><svg class="icon" aria-hidden="true"><use href="#i-mail"/></svg><span class="lbl">Messages</span><span class="count" id="navMsgCount" hidden></span></button>
+    <button class="nav-btn" data-view="quotes"><svg class="icon" aria-hidden="true"><use href="#i-calc"/></svg><span class="lbl">Quotes &amp; bookings</span></button>
+    <button class="nav-btn" data-view="visitors"><svg class="icon" aria-hidden="true"><use href="#i-chart"/></svg><span class="lbl">Visitors</span></button>
+    <button class="nav-btn" data-view="settings"><svg class="icon" aria-hidden="true"><use href="#i-gear"/></svg><span class="lbl">Settings</span></button>
+    <div class="bottom">
+      <a class="nav-btn" href="./" target="_blank" rel="noopener"><svg class="icon" aria-hidden="true"><use href="#i-ext"/></svg><span class="lbl">View website</span></a>
+      <button class="nav-btn" id="logoutBtn"><svg class="icon" aria-hidden="true"><use href="#i-logout"/></svg><span class="lbl">Log out</span></button>
+      <div class="who" id="whoAmI"></div>
+    </div>
+  </nav>
+
+  <main class="main" id="main">
+
+    <!-- DASHBOARD -->
+    <section data-section="dashboard">
+      <div class="top"><h1>Dashboard</h1><div class="actions"><button class="btn btn-ghost btn-sm" data-refresh><svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg>Refresh</button></div></div>
+      <div class="tiles" id="dashTiles"></div>
+      <div class="cols">
+        <div class="card"><div class="card-head"><h2>Visitors per day</h2><span class="muted" style="font-size:13px">Last 30 days · unique visitors</span></div><div id="dashChart" class="chart-wrap"></div></div>
+        <div class="card"><h2>Shipments by status</h2><ul class="hbars" id="dashStatus"></ul></div>
+      </div>
+      <div class="cols3">
+        <div class="card"><h2>Where visitors come from</h2><ul class="hbars" id="dashSources"></ul></div>
+        <div class="card"><h2>Most-quoted countries</h2><ul class="hbars" id="dashCountries"></ul><p class="muted" style="font-size:12px;margin:8px 0 0">Price checks, last 30 days</p></div>
+        <div class="card"><h2>Devices &amp; languages</h2><ul class="hbars" id="dashDevices"></ul><hr style="border:0;border-top:1px solid var(--line);margin:14px 0"><ul class="hbars" id="dashLangs"></ul></div>
+      </div>
+      <div class="cols">
+        <div class="card"><div class="card-head"><h2>Newest customers</h2><button class="btn btn-ghost btn-sm" data-goto="customers">All customers</button></div><div id="dashCustomers"></div></div>
+        <div class="card"><div class="card-head"><h2>New messages</h2><button class="btn btn-ghost btn-sm" data-goto="messages">All messages</button></div><div id="dashMessages"></div></div>
+      </div>
+    </section>
+
+    <!-- CUSTOMERS -->
+    <section data-section="customers" hidden>
+      <div class="top"><h1>Customers</h1><div class="actions"><button class="btn btn-ghost btn-sm" data-refresh><svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg>Refresh</button><button class="btn btn-ghost btn-sm" id="exportCustomers">Export to Excel (CSV)</button></div></div>
+      <div class="filters"><label class="sr-only" for="custSearch">Search customers</label><input class="input grow" id="custSearch" type="search" placeholder="Search name, MySpace ID, phone, email, city…"></div>
+      <div class="table-wrap"><table><thead><tr><th>MySpace ID</th><th>Name</th><th>Phone</th><th>City</th><th>Joined</th><th>Last login</th><th>Shipments</th></tr></thead><tbody id="custRows"></tbody></table></div>
+    </section>
+
+    <!-- SHIPMENTS -->
+    <section data-section="shipments" hidden>
+      <div class="top"><h1>Shipments</h1><div class="actions"><button class="btn btn-ghost btn-sm" data-refresh><svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg>Refresh</button><button class="btn btn-primary" id="newShipBtn"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>New shipment</button></div></div>
+      <div class="filters">
+        <label class="sr-only" for="shipSearch">Search shipments</label><input class="input grow" id="shipSearch" type="search" placeholder="Search tracking number, customer, country…">
+        <label class="sr-only" for="shipFilter">Status</label>
+        <select class="input" id="shipFilter"><option value="">All statuses</option><option value="active">Active (not delivered)</option></select>
+      </div>
+      <div class="table-wrap"><table><thead><tr><th>Tracking number</th><th>Customer</th><th>From → To</th><th>Status</th><th>Last update</th><th>Expected</th></tr></thead><tbody id="shipRows"></tbody></table></div>
+    </section>
+
+    <!-- MESSAGES -->
+    <section data-section="messages" hidden>
+      <div class="top"><h1>Messages</h1><div class="actions"><button class="btn btn-ghost btn-sm" data-refresh><svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg>Refresh</button></div></div>
+      <div class="filters"><label class="sr-only" for="msgFilter">Show</label><select class="input" id="msgFilter"><option value="new">New</option><option value="all">All</option><option value="handled">Handled</option></select></div>
+      <div id="msgList"></div>
+    </section>
+
+    <!-- QUOTES -->
+    <section data-section="quotes" hidden>
+      <div class="top"><h1>Quotes &amp; bookings</h1><div class="actions"><button class="btn btn-ghost btn-sm" data-refresh><svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg>Refresh</button></div></div>
+      <div class="tiles" id="quoteTiles"></div>
+      <div class="filters"><label class="sr-only" for="quoteFilter">Show</label><select class="input" id="quoteFilter"><option value="all">Price checks and bookings</option><option value="booked">Bookings only (clicked “Book on WhatsApp”)</option></select></div>
+      <div class="table-wrap"><table><thead><tr><th>When</th><th>From</th><th>To</th><th>Type</th><th>Pieces</th><th>Weight</th><th>Price</th><th></th><th>Customer</th></tr></thead><tbody id="quoteRows"></tbody></table></div>
+      <p class="muted" style="font-size:13px">Latest 300 entries. A price check is logged when someone clicks “Show my price”; a booking when they click “Book on WhatsApp”.</p>
+    </section>
+
+    <!-- VISITORS -->
+    <section data-section="visitors" hidden>
+      <div class="top"><h1>Visitors</h1><div class="actions"><button class="btn btn-ghost btn-sm" data-refresh><svg class="icon" aria-hidden="true"><use href="#i-refresh"/></svg>Refresh</button></div></div>
+      <div class="filters"><label for="visDays" class="muted" style="font-weight:600">Period</label><select class="input" id="visDays"><option value="7">Last 7 days</option><option value="30" selected>Last 30 days</option><option value="90">Last 90 days</option><option value="365">Last 12 months</option></select></div>
+      <div class="tiles" id="visTiles"></div>
+      <div class="card" style="margin-bottom:16px"><div class="card-head"><h2>Visitors per day</h2><span class="muted" style="font-size:13px">Unique visitors · hover a bar for details</span></div><div id="visChart" class="chart-wrap"></div></div>
+      <div class="cols3">
+        <div class="card"><h2>Sources</h2><ul class="hbars" id="visSources"></ul></div>
+        <div class="card"><h2>Devices</h2><ul class="hbars" id="visDevices"></ul></div>
+        <div class="card"><h2>Languages</h2><ul class="hbars" id="visLangs"></ul></div>
+      </div>
+      <p class="muted" style="font-size:13px">Visitors are counted anonymously (a random number in their browser — no names or IP addresses). Times are Iraq time.</p>
+    </section>
+
+    <!-- SETTINGS -->
+    <section data-section="settings" hidden>
+      <div class="top"><h1>Settings</h1></div>
+      <form class="card" id="settingsForm" style="max-width:760px" novalidate>
+        <div class="status" id="setStatus" role="status" hidden></div>
+        <h2>Prices</h2>
+        <div class="grid3">
+          <div class="field"><label for="sFuel">Fuel surcharge (%)</label><input class="input num" id="sFuel" type="number" step="0.01" min="0" max="100"><span class="help">Changes weekly. Added to shipping + handling.</span></div>
+          <div class="field"><label for="sRate">Dinars for 1 US dollar</label><input class="input num" id="sRate" type="number" step="1" min="1"><span class="help">Used to show prices in IQD.</span></div>
+          <div class="field"><label for="sAdjust">Price adjustment (%)</label><input class="input num" id="sAdjust" type="number" step="0.1" min="-50" max="200"><span class="help">+5 raises all prices 5%, −3 lowers them.</span></div>
+        </div>
+        <h2 style="margin-top:6px">Contact details on the website</h2>
+        <div class="grid3">
+          <div class="field"><label for="sPhone">Phone (as shown)</label><input class="input ltr" id="sPhone" type="tel"></div>
+          <div class="field"><label for="sWa">WhatsApp number</label><input class="input ltr" id="sWa" inputmode="numeric"><span class="help">Digits only with country code, e.g. 9647507422734</span></div>
+          <div class="field"><label for="sEmail">Email (as shown)</label><input class="input ltr" id="sEmail" type="email"></div>
+        </div>
+        <p class="muted" style="font-size:13px;margin-top:0" id="setUpdated"></p>
+        <button class="btn btn-primary" type="submit">Save settings</button>
+      </form>
+    </section>
+  </main>
+</div>
+
+<!-- ================= DIALOGS ================= -->
+<dialog id="custDlg" aria-labelledby="custDlgTitle">
+  <div class="dlg-head"><h2 id="custDlgTitle">Customer</h2><button class="close" data-close aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button></div>
+  <div class="dlg-body">
+    <div class="kv" id="custKv"></div>
+    <form id="custForm" novalidate>
+      <div class="status" role="status" hidden></div>
+      <div class="grid2">
+        <div class="field"><label for="cName">Name</label><input class="input" id="cName" required></div>
+        <div class="field"><label for="cPhone">Phone</label><input class="input ltr" id="cPhone"></div>
+        <div class="field"><label for="cCity">City</label><input class="input" id="cCity"></div>
+        <div class="field"><label for="cLang">Language</label><select class="input" id="cLang"><option value="en">English</option><option value="ar">Arabic</option><option value="ckb">Kurdish (Sorani)</option></select></div>
+      </div>
+      <div class="field"><label for="cAddr">Delivery address</label><textarea class="input" id="cAddr" rows="2"></textarea></div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-primary" type="submit">Save changes</button>
+        <a class="btn btn-ghost" id="cWa" target="_blank" rel="noopener">WhatsApp</a>
+        <a class="btn btn-ghost" id="cMail">Email</a>
+        <button class="btn btn-ghost" type="button" id="cNewShip"><svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg>New shipment</button>
+        <button class="btn btn-danger" type="button" id="cDelete" style="margin-inline-start:auto">Delete customer</button>
+      </div>
+    </form>
+    <div class="section-title">Shipments</div><div id="custShips"></div>
+    <div class="section-title">Recent price checks</div><div id="custQuotes"></div>
+  </div>
+</dialog>
+
+<dialog id="shipDlg" aria-labelledby="shipDlgTitle">
+  <div class="dlg-head"><h2 id="shipDlgTitle">Shipment</h2><button class="close" data-close aria-label="Close"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button></div>
+  <div class="dlg-body">
+    <form id="shipForm" novalidate>
+      <div class="status" role="status" hidden></div>
+      <div class="grid2">
+        <div class="field"><label for="shNum">Tracking number</label><input class="input ltr" id="shNum" required autocomplete="off" placeholder="e.g. 1659071094"><span class="help">Capital letters and digits; spaces are removed.</span></div>
+        <div class="field"><label for="shCust">Customer (MySpace ID)</label><input class="input ltr" id="shCust" list="custOptions" autocomplete="off" placeholder="MS123456"><datalist id="custOptions"></datalist><span class="help" id="shCustName">Optional — links the shipment to the customer's account.</span></div>
+        <div class="field"><label for="shFrom">From (country)</label><input class="input" id="shFrom" list="countryOptions" autocomplete="off" placeholder="United States"><datalist id="countryOptions"></datalist></div>
+        <div class="field"><label for="shTo">To (city in Iraq)</label><input class="input" id="shTo" list="cityOptions" autocomplete="off" placeholder="Erbil"><datalist id="cityOptions"><option>Erbil</option><option>Sulaymaniyah</option><option>Duhok</option><option>Halabja</option><option>Kirkuk</option><option>Baghdad</option><option>Basra</option><option>Mosul</option><option>Najaf</option><option>Karbala</option></datalist></div>
+        <div class="field"><label for="shEta">Expected delivery</label><input class="input" id="shEta" type="date"></div>
+        <div class="field" id="shFirstWrap"><label for="shFirst">First status</label><select class="input" id="shFirst"></select></div>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button class="btn btn-primary" type="submit" id="shSave">Save shipment</button>
+        <button class="btn btn-danger" type="button" id="shDelete" style="margin-inline-start:auto" hidden>Delete shipment</button>
+      </div>
+    </form>
+    <div id="shipUpdatesWrap" hidden>
+      <div class="section-title">Status history</div>
+      <ul class="timeline" id="shipTimeline"></ul>
+      <form id="updForm" class="card" style="box-shadow:none;background:var(--bg)" novalidate>
+        <h3 style="font-size:18px;margin-bottom:10px">Add a status update</h3>
+        <div class="status" role="status" hidden></div>
+        <div class="grid2">
+          <div class="field"><label for="uStatus">Status</label><select class="input" id="uStatus"></select></div>
+          <div class="field"><label for="uWhen">When</label><input class="input" id="uWhen" type="datetime-local"></div>
+          <div class="field"><label for="uLoc">Location (optional)</label><input class="input" id="uLoc" placeholder="e.g. Dubai"></div>
+          <div class="field"><label for="uNote">Note (optional)</label><input class="input" id="uNote" placeholder="Shown to the customer exactly as written"></div>
+        </div>
+        <button class="btn btn-primary" type="submit">Add update</button>
+      </form>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="confirmDlg" aria-labelledby="confirmTitle" style="width:min(440px,calc(100vw - 24px))">
+  <div class="dlg-head"><h2 id="confirmTitle">Are you sure?</h2></div>
+  <div class="dlg-body"><p id="confirmText" style="margin-top:0"></p>
+    <div style="display:flex;gap:8px;justify-content:flex-end"><button class="btn btn-ghost" id="confirmNo">Cancel</button><button class="btn btn-danger" id="confirmYes">Delete</button></div></div>
+</dialog>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.min.js"></script>
+<script>
+/* Same Supabase project as the public website. Every action is checked by the
+   database (admin-only rules), not just by this page. */
+const SUPABASE_URL = "https://vdqzpquotnmtpufbicqo.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZkcXpwcXVvdG5tdHB1ZmJpY3FvIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTE4MzU1MDYsImV4cCI6MjEwNzQxMTUwNn0.Ttwe74ZbmO8olCQ_NdRsFhD8Jj6XGRP5xwtJCUTB880";
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+const $ = (s, r=document) => r.querySelector(s);
+const $$ = (s, r=document) => [...r.querySelectorAll(s)];
+const esc = v => String(v ?? "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const fmtDate = (v, time = true) => v ? new Intl.DateTimeFormat("en-GB", time ? {day:"2-digit", month:"short", year:"numeric", hour:"2-digit", minute:"2-digit", timeZone:"Asia/Baghdad"} : {day:"2-digit", month:"short", year:"numeric", timeZone:"Asia/Baghdad"}).format(new Date(v)) : "—";
+const ago = v => { if (!v) return "never"; const s = (Date.now() - new Date(v)) / 1000; if (s < 60) return "just now"; if (s < 3600) return Math.floor(s/60) + " min ago"; if (s < 86400) return Math.floor(s/3600) + " h ago"; if (s < 86400*30) return Math.floor(s/86400) + " days ago"; return fmtDate(v, false); };
+const usd = v => "$" + Number(v || 0).toLocaleString("en-US", {minimumFractionDigits:2, maximumFractionDigits:2});
+const int = v => Number(v || 0).toLocaleString("en-US");
+const regionName = (() => { let dn; try{ dn = new Intl.DisplayNames(["en"], {type:"region"}); }catch{} return c => { try{ const n = dn && dn.of(c); return n && n !== c ? n : c; }catch{ return c; } }; })();
+
+const STATUS = {
+  created:["Shipment created","moving"], picked_up:["Picked up from sender","moving"], in_transit:["In transit","moving"],
+  arrived_iraq:["Arrived in Iraq","moving"], customs:["In customs clearance","moving"], out_for_delivery:["Out for delivery","moving"],
+  delivered:["Delivered","delivered"], problem:["Action needed","problem"], no_updates:["No updates yet",""]
+};
+const badge = code => { const [l, c] = STATUS[code] || [code, ""]; return `<span class="badge ${c}">${esc(l)}</span>`; };
+const statusOptions = Object.entries(STATUS).filter(([k]) => k !== "no_updates").map(([k, [l]]) => `<option value="${k}">${esc(l)}</option>`).join("");
+$("#uStatus").innerHTML = statusOptions;
+$("#shFirst").innerHTML = `<option value="">— none —</option>` + statusOptions;
+
+function toast(msg, err = false){
+  const el = document.createElement("div"); el.className = "toast" + (err ? " err" : ""); el.setAttribute("role", "status"); el.textContent = msg;
+  document.body.appendChild(el); setTimeout(() => el.remove(), 2800);
+}
+function formStatus(form, msg, ok){ const s = $(".status", form); s.className = "status " + (ok ? "ok" : "err"); s.textContent = msg; s.hidden = !msg; }
+function confirmAction(text, yes = "Delete"){
+  return new Promise(res => {
+    const d = $("#confirmDlg"); $("#confirmText").textContent = text; $("#confirmYes").textContent = yes;
+    const done = v => { d.close(); res(v); };
+    $("#confirmYes").onclick = () => done(true); $("#confirmNo").onclick = () => done(false);
+    d.oncancel = () => res(false); d.showModal();
+  });
+}
+$$("dialog [data-close]").forEach(b => b.addEventListener("click", () => b.closest("dialog").close()));
+
+/* ================= Auth ================= */
+async function start(){
+  const { data } = await sb.auth.getSession();
+  if (data.session) await enter(data.session); else showLogin();
+}
+function showLogin(msg){ $("#app").hidden = true; $("#loginView").hidden = false; if (msg){ $("#loginErr").textContent = msg; $("#loginErr").hidden = false; } }
+async function enter(session){
+  const { data: ok, error } = await sb.rpc("is_admin");
+  if (error || !ok){ await sb.auth.signOut(); return showLogin("This account doesn't have admin access."); }
+  $("#whoAmI").textContent = session.user.email;
+  $("#loginView").hidden = true; $("#app").hidden = false;
+  go(location.hash.slice(1) || "dashboard");
+}
+$("#loginForm").addEventListener("submit", async e => {
+  e.preventDefault(); $("#loginErr").hidden = true;
+  const btn = $("button[type=submit]", e.currentTarget); btn.disabled = true;
+  const { data, error } = await sb.auth.signInWithPassword({ email: $("#lEmail").value.trim(), password: $("#lPw").value });
+  btn.disabled = false;
+  if (error) return showLogin(/invalid/i.test(error.message) ? "Email or password is incorrect." : error.message);
+  $("#lPw").value = ""; enter(data.session);
+});
+$("#logoutBtn").addEventListener("click", async () => { await sb.auth.signOut(); location.hash = ""; showLogin(); });
+
+/* ================= Navigation ================= */
+let current = "dashboard";
+const loaders = { dashboard: loadDashboard, customers: loadCustomers, shipments: loadShipments, messages: loadMessages, quotes: loadQuotes, visitors: loadVisitors, settings: loadSettings };
+function go(view){
+  if (!loaders[view]) view = "dashboard";
+  current = view; history.replaceState(null, "", "#" + view);
+  $$("[data-section]").forEach(s => s.hidden = s.dataset.section !== view);
+  $$(".nav-btn[data-view]").forEach(b => b.dataset.view === view ? b.setAttribute("aria-current", "page") : b.removeAttribute("aria-current"));
+  refresh();
+}
+async function refresh(){
+  const sec = $(`[data-section="${current}"]`); sec.classList.add("loading");
+  try{ await loaders[current](); }catch(err){ console.error(err); toast("Could not load: " + (err.message || err), true); }
+  sec.classList.remove("loading");
+  updateMsgCount();
+}
+$$(".nav-btn[data-view]").forEach(b => b.addEventListener("click", () => go(b.dataset.view)));
+$$("[data-refresh]").forEach(b => b.addEventListener("click", refresh));
+document.addEventListener("click", e => { const g = e.target.closest("[data-goto]"); if (g) go(g.dataset.goto); });
+async function updateMsgCount(){
+  const { count } = await sb.from("messages").select("id", { count:"exact", head:true }).eq("handled", false);
+  const el = $("#navMsgCount"); el.hidden = !count; el.textContent = count || "";
+}
+
+/* ================= Shared data ================= */
+let customers = [], shipments = [];
+const must = ({ data, error }) => { if (error) throw error; return data; };
+async function fetchCustomers(){ customers = must(await sb.rpc("admin_customers")) || []; fillCustomerOptions(); return customers; }
+async function fetchShipments(){
+  const ships = must(await sb.from("shipments").select("*").order("created_at", { ascending:false }));
+  const ups = must(await sb.from("shipment_updates").select("*").order("happened_at", { ascending:false }).order("id", { ascending:false }));
+  shipments = ships.map(s => ({ ...s, updates: ups.filter(u => u.tracking_number === s.tracking_number) }));
+  return shipments;
+}
+const custByMs = ms => customers.find(c => c.ms_id === ms);
+function fillCustomerOptions(){ $("#custOptions").innerHTML = customers.map(c => `<option value="${esc(c.ms_id)}">${esc(c.name)} · ${esc(c.phone || c.email)}</option>`).join(""); }
+(function fillCountries(){
+  const codes = "AF AL DZ AD AO AR AM AU AT AZ BH BD BY BE BJ BO BA BW BR BN BG BF BI KH CM CA CV CF TD CL CN CO KM CG CD CR CI HR CU CY CZ DK DJ DM DO EC EG SV ER EE SZ ET FJ FI FR GA GM GE DE GH GR GD GT GN GW GY HT HN HK HU IS IN ID IR IE IT JM JP JO KZ KE KW KG LA LV LB LS LR LY LI LT LU MO MG MW MY MV ML MT MR MU MX MD MC MN ME MA MZ MM NA NP NL NZ NI NE NG MK NO OM PK PA PG PY PE PH PL PT QA RO RU RW SA SN RS SC SL SG SK SI SO ZA KR SS ES LK SD SR SE CH SY TW TJ TZ TH TG TN TR TM UG UA AE GB US UY UZ VE VN YE ZM ZW".split(" ");
+  $("#countryOptions").innerHTML = codes.map(regionName).sort().map(n => `<option value="${esc(n)}">`).join("");
+})();
+
+/* ================= Charts (single series, no legend; hover + table view) ================= */
+function barChart(el, points, valueKey = "visitors", label = "visitors"){
+  const W = 760, H = 240, pad = { l: 36, r: 8, t: 12, b: 26 };
+  const max = Math.max(1, ...points.map(p => p[valueKey]));
+  const step = Math.pow(10, Math.floor(Math.log10(max))); const top = Math.ceil(max / step) * step || 1;
+  const iw = W - pad.l - pad.r, ih = H - pad.t - pad.b, bw = iw / Math.max(1, points.length), gap = Math.min(4, bw * 0.25);
+  const ticks = [0, top / 2, top];
+  const every = Math.ceil(points.length / 8);
+  let g = ticks.map(v => { const y = pad.t + ih - (v / top) * ih; return `<line class="gridline" x1="${pad.l}" x2="${W - pad.r}" y1="${y}" y2="${y}"/><text class="axis" x="${pad.l - 6}" y="${y + 4}" text-anchor="end">${int(v)}</text>`; }).join("");
+  points.forEach((p, i) => {
+    const v = p[valueKey], h = (v / top) * ih, x = pad.l + i * bw + gap / 2, y = pad.t + ih - h, w = Math.max(1, bw - gap);
+    const r = Math.min(4, w / 2, h);
+    const path = h > 0 ? `M${x},${pad.t + ih} V${y + r} Q${x},${y} ${x + r},${y} H${x + w - r} Q${x + w},${y} ${x + w},${y + r} V${pad.t + ih} Z` : "";
+    g += `<rect class="hit" data-i="${i}" x="${pad.l + i * bw}" y="${pad.t}" width="${bw}" height="${ih}" tabindex="0" aria-label="${esc(fmtDate(p.day, false))}: ${v} ${label}"/>`;
+    g += path ? `<path class="bar" d="${path}"/>` : "";
+    if (i % every === 0) g += `<text class="axis" x="${pad.l + i * bw + bw / 2}" y="${H - 8}" text-anchor="middle">${esc(new Date(p.day).toLocaleDateString("en-GB", {day:"numeric", month:"short"}))}</text>`;
+  });
+  el.innerHTML = `<div class="chart" role="img" aria-label="Bar chart of ${label} per day. Peak ${int(max)}."><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${g}</svg></div><div class="tooltip" hidden></div>
+    <details class="table-view"><summary>Show as table</summary><div class="table-wrap" style="margin-top:8px;max-height:260px;overflow:auto"><table><thead><tr><th>Day</th><th>Visitors</th><th>Page views</th></tr></thead><tbody>
+    ${points.slice().reverse().map(p => `<tr><td>${esc(fmtDate(p.day, false))}</td><td class="num">${int(p.visitors)}</td><td class="num">${int(p.views)}</td></tr>`).join("")}</tbody></table></div></details>`;
+  const tip = $(".tooltip", el), svg = $("svg", el);
+  const show = t => {
+    const p = points[+t.dataset.i], box = t.getBoundingClientRect(), host = el.getBoundingClientRect();
+    tip.innerHTML = `<b>${int(p.visitors)} visitors</b>${int(p.views)} page views · ${esc(fmtDate(p.day, false))}`;
+    tip.style.left = (box.left - host.left + box.width / 2) + "px"; tip.style.top = (svg.getBoundingClientRect().top - host.top + 18) + "px"; tip.hidden = false;
+  };
+  $$(".hit", el).forEach(t => { t.addEventListener("pointerenter", () => show(t)); t.addEventListener("focus", () => show(t)); t.addEventListener("pointerleave", () => tip.hidden = true); t.addEventListener("blur", () => tip.hidden = true); });
+}
+function hbars(el, rows){
+  if (!rows.length){ el.innerHTML = `<li class="empty">No data yet</li>`; return; }
+  const max = Math.max(1, ...rows.map(r => r[1]));
+  el.innerHTML = rows.map(([label, v]) => `<li><span>${esc(label)}</span><span class="track"><span class="fill" style="width:${(v / max) * 100}%"></span></span><span class="val">${int(v)}</span></li>`).join("");
+}
+const LANG_NAMES = { en:"English", ar:"Arabic", ckb:"Kurdish" };
+const DEVICE_NAMES = { mobile:"Phone", tablet:"Tablet", desktop:"Computer" };
+const tile = (label, value, sub = "") => `<div class="tile"><small>${esc(label)}</small><b class="num">${value}</b><span>${sub}</span></div>`;
+
+/* ================= Dashboard ================= */
+async function loadDashboard(){
+  const [ov, vis] = await Promise.all([sb.rpc("admin_overview").then(must), sb.rpc("admin_visits", { p_days: 30 }).then(must)]);
+  const st = ov.shipments_by_status || {};
+  const active = Object.entries(st).filter(([k]) => k !== "delivered").reduce((a, [, n]) => a + n, 0);
+  $("#dashTiles").innerHTML = [
+    tile("Visitors today", int(vis.visitors_today), `${int(vis.views_today)} page views`),
+    tile("Visitors · 30 days", int(vis.visitors_period), `${int(vis.views_period)} page views`),
+    tile("Customers", int(ov.customers), `+${int(ov.customers_7d)} this week`),
+    tile("Active shipments", int(active), `${int(ov.shipments)} in total`),
+    tile("Price checks · 7 days", int(ov.quotes_7d), `${int(ov.quotes_30d)} in 30 days`),
+    tile("Bookings · 30 days", int(ov.bookings_30d), `${usd(ov.quote_value_30d)} quoted`),
+    tile("New messages", int(ov.messages_new), ov.messages_new ? "waiting for a reply" : "all handled"),
+    tile("Fuel surcharge", (await currentFuel()) + "%", "change in Settings"),
+  ].join("");
+  barChart($("#dashChart"), vis.daily || []);
+  hbars($("#dashStatus"), Object.entries(st).sort((a, b) => b[1] - a[1]).map(([k, n]) => [(STATUS[k] || [k])[0], n]));
+  hbars($("#dashSources"), (vis.by_source || []).map(r => [r.source, r.visitors]));
+  hbars($("#dashCountries"), (ov.top_countries_30d || []).map(r => [regionName(r.country), r.quotes]));
+  hbars($("#dashDevices"), Object.entries(vis.by_device || {}).map(([k, n]) => [DEVICE_NAMES[k] || k, n]));
+  hbars($("#dashLangs"), Object.entries(vis.by_lang || {}).map(([k, n]) => [LANG_NAMES[k] || k, n]));
+  await fetchCustomers();
+  $("#dashCustomers").innerHTML = customers.length ? `<div class="table-wrap"><table><tbody>${customers.slice(0, 6).map(c => `<tr class="click" data-cust="${c.id}"><td><b>${esc(c.name || "—")}</b><br><span class="muted ltr">${esc(c.ms_id)}</span></td><td>${esc(c.city)}</td><td class="muted">${ago(c.created_at)}</td></tr>`).join("")}</tbody></table></div>` : `<p class="empty">No customers yet.</p>`;
+  const msgs = must(await sb.from("messages").select("*").eq("handled", false).order("created_at", { ascending:false }).limit(4));
+  $("#dashMessages").innerHTML = msgs.length ? msgs.map(m => `<div class="msg new"><header><b>${esc(m.name)}</b><span class="muted">${ago(m.created_at)}</span></header><p style="margin:0">${esc(m.message.slice(0, 160))}${m.message.length > 160 ? "…" : ""}</p></div>`).join("") : `<p class="empty">No new messages.</p>`;
+}
+async function currentFuel(){ const r = must(await sb.from("settings").select("value").eq("key", "fuel_percent").maybeSingle()); return r ? Number(r.value) : 0; }
+document.addEventListener("click", e => { const r = e.target.closest("[data-cust]"); if (r) openCustomer(r.dataset.cust); });
+
+/* ================= Customers ================= */
+async function loadCustomers(){ await fetchCustomers(); renderCustomers(); }
+function renderCustomers(){
+  const q = $("#custSearch").value.trim().toLowerCase();
+  const rows = customers.filter(c => !q || [c.ms_id, c.name, c.email, c.phone, c.city, c.address].join(" ").toLowerCase().includes(q));
+  $("#custRows").innerHTML = rows.length ? rows.map(c => `<tr class="click" data-cust="${c.id}" tabindex="0">
+    <td class="ltr"><b>${esc(c.ms_id)}</b>${c.is_admin ? ' <span class="badge plain">admin</span>' : ""}</td><td>${esc(c.name || "—")}<br><span class="muted" style="font-size:13px">${esc(c.email)}</span></td>
+    <td class="ltr">${esc(c.phone || "—")}</td><td>${esc(c.city || "—")}</td><td>${fmtDate(c.created_at, false)}</td><td>${ago(c.last_sign_in_at)}</td><td class="num">${int(c.shipments)}</td></tr>`).join("")
+    : `<tr><td colspan="7" class="empty">${customers.length ? "No customers match your search." : "No customers yet."}</td></tr>`;
+}
+$("#custSearch").addEventListener("input", renderCustomers);
+$("#custRows").addEventListener("keydown", e => { if (e.key === "Enter" && e.target.dataset.cust) openCustomer(e.target.dataset.cust); });
+$("#exportCustomers").addEventListener("click", () => {
+  const cols = ["ms_id","name","email","phone","city","address","lang","created_at","last_sign_in_at","shipments"];
+  const csv = [cols.join(",")].concat(customers.map(c => cols.map(k => `"${String(c[k] ?? "").replace(/"/g, '""')}"`).join(","))).join("\r\n");
+  const a = document.createElement("a"); a.href = URL.createObjectURL(new Blob(["﻿" + csv], { type:"text/csv" }));
+  a.download = `myspace-customers-${new Date().toISOString().slice(0,10)}.csv`; a.click(); URL.revokeObjectURL(a.href);
+});
+
+let openCust = null;
+async function openCustomer(id){
+  if (!customers.length) await fetchCustomers();
+  const c = customers.find(x => x.id === id); if (!c) return;
+  openCust = c;
+  $("#custDlgTitle").textContent = c.name || c.ms_id;
+  $("#custKv").innerHTML = [["MySpace ID", c.ms_id], ["Email", c.email], ["Joined", fmtDate(c.created_at)], ["Last login", c.last_sign_in_at ? fmtDate(c.last_sign_in_at) : "never"], ["Shipments", int(c.shipments)], ["Price checks", int(c.quotes)]]
+    .map(([k, v]) => `<div><small>${k}</small><b>${esc(v)}</b></div>`).join("");
+  $("#cName").value = c.name; $("#cPhone").value = c.phone; $("#cCity").value = c.city; $("#cLang").value = c.lang || "en"; $("#cAddr").value = c.address;
+  const wa = (c.phone || "").replace(/\D/g, "").replace(/^0/, "964");
+  $("#cWa").href = wa ? "https://wa.me/" + wa : "#"; $("#cWa").hidden = !wa;
+  $("#cMail").href = "mailto:" + c.email;
+  $("#cDelete").hidden = !!c.is_admin;
+  formStatus($("#custForm"), "");
+  if (!$("#custDlg").open) $("#custDlg").showModal();
+  if (!shipments.length) await fetchShipments();
+  const mine = shipments.filter(s => s.customer_ms_id === c.ms_id);
+  $("#custShips").innerHTML = mine.length ? `<div class="table-wrap"><table><tbody>${mine.map(s => `<tr class="click" data-ship="${esc(s.tracking_number)}"><td class="ltr"><b>${esc(s.tracking_number)}</b></td><td>${esc(s.from_country)} → ${esc(s.to_city)}</td><td>${badge(s.updates[0]?.status || "no_updates")}</td></tr>`).join("")}</tbody></table></div>` : `<p class="empty">No shipments yet.</p>`;
+  const qs = must(await sb.from("quotes").select("*").eq("customer_id", c.id).order("created_at", { ascending:false }).limit(10));
+  $("#custQuotes").innerHTML = qs.length ? `<div class="table-wrap"><table><tbody>${qs.map(q => `<tr><td>${fmtDate(q.created_at)}</td><td>${esc(regionName(q.from_country))} → ${esc(q.to_city)}</td><td class="num">${q.chargeable_kg} kg</td><td class="num">${usd(q.total_usd)}</td><td>${q.booked ? '<span class="badge delivered">Booked</span>' : ""}</td></tr>`).join("")}</tbody></table></div>` : `<p class="empty">No price checks while logged in.</p>`;
+}
+$("#custForm").addEventListener("submit", async e => {
+  e.preventDefault(); const f = e.currentTarget, btn = $("button[type=submit]", f); btn.disabled = true;
+  const { error } = await sb.from("customers").update({ name: $("#cName").value.trim(), phone: $("#cPhone").value.trim(), city: $("#cCity").value.trim(), address: $("#cAddr").value.trim(), lang: $("#cLang").value }).eq("id", openCust.id);
+  btn.disabled = false;
+  if (error) return formStatus(f, "Could not save: " + error.message, false);
+  formStatus(f, "Saved.", true); await fetchCustomers(); renderCustomers(); openCustomer(openCust.id);
+});
+$("#cDelete").addEventListener("click", async () => {
+  if (!await confirmAction(`Delete ${openCust.name || openCust.ms_id} (${openCust.ms_id})? Their login and details are removed permanently. Their shipments stay, without a customer.`, "Delete customer")) return;
+  const { error } = await sb.rpc("admin_delete_customer", { p_id: openCust.id });
+  if (error) return toast("Could not delete: " + error.message, true);
+  $("#custDlg").close(); toast("Customer deleted"); customers = []; refresh();
+});
+$("#cNewShip").addEventListener("click", () => { $("#custDlg").close(); openShipment(null, openCust.ms_id); });
+
+/* ================= Shipments ================= */
+async function loadShipments(){ await Promise.all([fetchShipments(), fetchCustomers()]); renderShipments(); }
+function renderShipments(){
+  const q = $("#shipSearch").value.trim().toLowerCase(), f = $("#shipFilter").value;
+  const rows = shipments.filter(s => {
+    const st = s.updates[0]?.status || "no_updates";
+    if (f === "active" && st === "delivered") return false;
+    if (f && f !== "active" && st !== f) return false;
+    const c = custByMs(s.customer_ms_id);
+    return !q || [s.tracking_number, s.customer_ms_id, c?.name, s.from_country, s.to_city].join(" ").toLowerCase().includes(q);
+  });
+  $("#shipRows").innerHTML = rows.length ? rows.map(s => { const c = custByMs(s.customer_ms_id), u = s.updates[0];
+    return `<tr class="click" data-ship="${esc(s.tracking_number)}" tabindex="0"><td class="ltr"><b>${esc(s.tracking_number)}</b></td>
+      <td>${c ? `${esc(c.name)}<br><span class="muted ltr" style="font-size:13px">${esc(c.ms_id)}</span>` : `<span class="muted">${esc(s.customer_ms_id || "—")}</span>`}</td>
+      <td>${esc(s.from_country || "—")} → ${esc(s.to_city || "—")}</td><td>${badge(u?.status || "no_updates")}</td>
+      <td>${u ? ago(u.happened_at) : "—"}</td><td>${s.estimated_delivery ? fmtDate(s.estimated_delivery, false) : "—"}</td></tr>`; }).join("")
+    : `<tr><td colspan="6" class="empty">${shipments.length ? "No shipments match." : "No shipments yet. Click “New shipment” to add one."}</td></tr>`;
+}
+$("#shipFilter").insertAdjacentHTML("beforeend", Object.entries(STATUS).map(([k, [l]]) => `<option value="${k}">${esc(l)}</option>`).join(""));
+$("#shipSearch").addEventListener("input", renderShipments);
+$("#shipFilter").addEventListener("change", renderShipments);
+$("#newShipBtn").addEventListener("click", () => openShipment(null));
+document.addEventListener("click", e => { const r = e.target.closest("[data-ship]"); if (r){ $("#custDlg").open && $("#custDlg").close(); openShipment(r.dataset.ship); } });
+$("#shipRows").addEventListener("keydown", e => { if (e.key === "Enter" && e.target.dataset.ship) openShipment(e.target.dataset.ship); });
+
+let openShip = null;
+const localNow = () => { const d = new Date(); d.setMinutes(d.getMinutes() - d.getTimezoneOffset()); return d.toISOString().slice(0, 16); };
+function openShipment(num, presetCustomer = ""){
+  openShip = num ? shipments.find(s => s.tracking_number === num) : null;
+  const s = openShip, f = $("#shipForm");
+  $("#shipDlgTitle").textContent = s ? s.tracking_number : "New shipment";
+  $("#shNum").value = s?.tracking_number || ""; $("#shNum").readOnly = !!s;
+  $("#shCust").value = s?.customer_ms_id || presetCustomer; showCustName();
+  $("#shFrom").value = s?.from_country || ""; $("#shTo").value = s?.to_city || ""; $("#shEta").value = s?.estimated_delivery || "";
+  $("#shFirstWrap").hidden = !!s; $("#shFirst").value = s ? "" : "created";
+  $("#shDelete").hidden = !s; $("#shSave").textContent = s ? "Save changes" : "Create shipment";
+  formStatus(f, ""); formStatus($("#updForm"), "");
+  $("#shipUpdatesWrap").hidden = !s;
+  if (s) renderTimeline();
+  $("#uWhen").value = localNow(); $("#uStatus").value = nextStatus(s); $("#uLoc").value = ""; $("#uNote").value = "";
+  if (!$("#shipDlg").open) $("#shipDlg").showModal();
+}
+function nextStatus(s){ const order = ["created","picked_up","in_transit","arrived_iraq","customs","out_for_delivery","delivered"]; const cur = s?.updates[0]?.status; const i = order.indexOf(cur); return i >= 0 && i < order.length - 1 ? order[i + 1] : "in_transit"; }
+function showCustName(){ const c = custByMs($("#shCust").value.trim().toUpperCase()); $("#shCustName").textContent = c ? `${c.name} · ${c.phone || c.email} · ${c.city}` : ($("#shCust").value ? "No customer with this MySpace ID." : "Optional — links the shipment to the customer's account."); }
+$("#shCust").addEventListener("input", showCustName);
+function renderTimeline(){
+  const s = openShip;
+  $("#shipTimeline").innerHTML = s.updates.length ? s.updates.map(u => `<li>${badge(u.status)}<div><div>${[u.note && esc(u.note), u.location && `<span class="muted">${esc(u.location)}</span>`].filter(Boolean).join(" · ") || '<span class="muted">—</span>'}</div><div class="when">${fmtDate(u.happened_at)}</div></div>
+    <button class="btn btn-danger btn-sm x" data-del-upd="${u.id}" aria-label="Delete this update">Delete</button></li>`).join("") : `<li class="empty">No status updates yet.</li>`;
+}
+$("#shipForm").addEventListener("submit", async e => {
+  e.preventDefault(); const f = e.currentTarget, btn = $("#shSave");
+  const num = $("#shNum").value.replace(/[\s-]+/g, "").toUpperCase();
+  const ms = $("#shCust").value.trim().toUpperCase();
+  if (!/^[A-Z0-9]{4,35}$/.test(num)) return formStatus(f, "Enter a tracking number (letters and digits only).", false);
+  if (ms && !custByMs(ms)) return formStatus(f, "That MySpace ID doesn't exist. Leave it empty or pick a customer from the list.", false);
+  const row = { customer_ms_id: ms || null, from_country: $("#shFrom").value.trim(), to_city: $("#shTo").value.trim(), estimated_delivery: $("#shEta").value || null };
+  btn.disabled = true;
+  let error;
+  if (openShip) ({ error } = await sb.from("shipments").update(row).eq("tracking_number", openShip.tracking_number));
+  else {
+    ({ error } = await sb.from("shipments").insert({ tracking_number: num, ...row }));
+    if (!error && $("#shFirst").value) ({ error } = await sb.from("shipment_updates").insert({ tracking_number: num, status: $("#shFirst").value }));
+  }
+  btn.disabled = false;
+  if (error) return formStatus(f, /duplicate|unique/i.test(error.message) ? "A shipment with this tracking number already exists." : "Could not save: " + error.message, false);
+  toast(openShip ? "Shipment saved" : "Shipment created");
+  await fetchShipments(); renderShipments(); openShipment(num);
+});
+$("#updForm").addEventListener("submit", async e => {
+  e.preventDefault(); const f = e.currentTarget, btn = $("button[type=submit]", f); btn.disabled = true;
+  const when = $("#uWhen").value ? new Date($("#uWhen").value).toISOString() : new Date().toISOString();
+  const { error } = await sb.from("shipment_updates").insert({ tracking_number: openShip.tracking_number, status: $("#uStatus").value, note: $("#uNote").value.trim(), location: $("#uLoc").value.trim(), happened_at: when });
+  btn.disabled = false;
+  if (error) return formStatus(f, "Could not add: " + error.message, false);
+  toast("Update added — the customer sees it now");
+  await fetchShipments(); renderShipments(); openShipment(openShip.tracking_number);
+});
+$("#shipTimeline").addEventListener("click", async e => {
+  const b = e.target.closest("[data-del-upd]"); if (!b) return;
+  if (!await confirmAction("Delete this status update?")) return;
+  const { error } = await sb.from("shipment_updates").delete().eq("id", +b.dataset.delUpd);
+  if (error) return toast("Could not delete: " + error.message, true);
+  await fetchShipments(); renderShipments(); openShipment(openShip.tracking_number);
+});
+$("#shDelete").addEventListener("click", async () => {
+  if (!await confirmAction(`Delete shipment ${openShip.tracking_number} and all its status updates? The customer will no longer see it.`, "Delete shipment")) return;
+  const { error } = await sb.from("shipments").delete().eq("tracking_number", openShip.tracking_number);
+  if (error) return toast("Could not delete: " + error.message, true);
+  $("#shipDlg").close(); toast("Shipment deleted"); await fetchShipments(); renderShipments();
+});
+
+/* ================= Messages ================= */
+async function loadMessages(){
+  const f = $("#msgFilter").value;
+  let q = sb.from("messages").select("*").order("created_at", { ascending:false }).limit(300);
+  if (f === "new") q = q.eq("handled", false); if (f === "handled") q = q.eq("handled", true);
+  const msgs = must(await q);
+  const LN = { en:"English", ar:"Arabic", ckb:"Kurdish" };
+  $("#msgList").innerHTML = msgs.length ? msgs.map(m => { const wa = (m.phone || "").replace(/\D/g, "").replace(/^0/, "964");
+    return `<article class="msg ${m.handled ? "" : "new"}"><header><div><b>${esc(m.name)}</b> ${m.handled ? '<span class="badge plain">handled</span>' : '<span class="badge new">new</span>'}<br>
+      <a href="mailto:${esc(m.email)}" class="ltr">${esc(m.email)}</a>${m.phone ? ` · <span class="ltr">${esc(m.phone)}</span>` : ""} · <span class="muted">${LN[m.lang] || m.lang}</span></div><span class="muted">${fmtDate(m.created_at)}</span></header>
+      <p dir="auto">${esc(m.message)}</p>
+      <div class="row"><a class="btn btn-ghost btn-sm" href="mailto:${esc(m.email)}?subject=${encodeURIComponent("Re: your message to MySpace")}">Reply by email</a>
+      ${wa ? `<a class="btn btn-ghost btn-sm" target="_blank" rel="noopener" href="https://wa.me/${wa}">WhatsApp</a>` : ""}
+      <button class="btn btn-ghost btn-sm" data-handle="${m.id}" data-val="${!m.handled}">${m.handled ? "Mark as new" : "Mark as handled"}</button>
+      <button class="btn btn-danger btn-sm" data-del-msg="${m.id}">Delete</button></div></article>`; }).join("")
+    : `<p class="empty">${f === "new" ? "No new messages. 🎉".replace(" 🎉", "") : "No messages."}</p>`;
+}
+$("#msgFilter").addEventListener("change", refresh);
+$("#msgList").addEventListener("click", async e => {
+  const h = e.target.closest("[data-handle]"), d = e.target.closest("[data-del-msg]");
+  if (h){ const { error } = await sb.from("messages").update({ handled: h.dataset.val === "true" }).eq("id", +h.dataset.handle); if (error) return toast(error.message, true); refresh(); }
+  if (d){ if (!await confirmAction("Delete this message permanently?")) return; const { error } = await sb.from("messages").delete().eq("id", +d.dataset.delMsg); if (error) return toast(error.message, true); toast("Message deleted"); refresh(); }
+});
+
+/* ================= Quotes ================= */
+async function loadQuotes(){
+  const [ov] = await Promise.all([sb.rpc("admin_overview").then(must), customers.length ? null : fetchCustomers()]);
+  $("#quoteTiles").innerHTML = [tile("Price checks · 7 days", int(ov.quotes_7d)), tile("Price checks · 30 days", int(ov.quotes_30d)), tile("Bookings · 30 days", int(ov.bookings_30d)), tile("Booked value · 30 days", usd(ov.quote_value_30d))].join("");
+  let q = sb.from("quotes").select("*").order("created_at", { ascending:false }).limit(300);
+  if ($("#quoteFilter").value === "booked") q = q.eq("booked", true);
+  const rows = must(await q);
+  const byId = Object.fromEntries(customers.map(c => [c.id, c]));
+  $("#quoteRows").innerHTML = rows.length ? rows.map(r => { const c = byId[r.customer_id];
+    return `<tr><td>${fmtDate(r.created_at)}</td><td>${esc(regionName(r.from_country))}</td><td>${esc(r.to_city)}</td><td>${r.shipment_type === "docs" ? "Documents" : "Package"}</td>
+    <td class="num">${int(r.pieces)}</td><td class="num">${r.chargeable_kg} kg</td><td class="num">${usd(r.total_usd)}</td><td>${r.booked ? '<span class="badge delivered">Booked</span>' : '<span class="badge plain">Price check</span>'}</td>
+    <td>${c ? `<a href="#" data-cust="${c.id}">${esc(c.name)}</a>` : '<span class="muted">visitor</span>'}</td></tr>`; }).join("")
+    : `<tr><td colspan="9" class="empty">Nothing yet. Entries appear when people use the price calculator on the website.</td></tr>`;
+}
+$("#quoteFilter").addEventListener("change", refresh);
+
+/* ================= Visitors ================= */
+async function loadVisitors(){
+  const days = +$("#visDays").value, v = must(await sb.rpc("admin_visits", { p_days: days }));
+  const label = $("#visDays").selectedOptions[0].textContent.toLowerCase();
+  $("#visTiles").innerHTML = [tile("Visitors today", int(v.visitors_today), `${int(v.views_today)} page views`), tile("Visitors · 7 days", int(v.visitors_7d)),
+    tile("Visitors · " + label, int(v.visitors_period)), tile("Page views · " + label, int(v.views_period))].join("");
+  barChart($("#visChart"), v.daily || []);
+  hbars($("#visSources"), (v.by_source || []).map(r => [r.source, r.visitors]));
+  hbars($("#visDevices"), Object.entries(v.by_device || {}).map(([k, n]) => [DEVICE_NAMES[k] || k, n]));
+  hbars($("#visLangs"), Object.entries(v.by_lang || {}).map(([k, n]) => [LANG_NAMES[k] || k, n]));
+}
+$("#visDays").addEventListener("change", refresh);
+
+/* ================= Settings ================= */
+let settingsRows = [];
+async function loadSettings(){
+  settingsRows = must(await sb.from("settings").select("*"));
+  const get = k => settingsRows.find(r => r.key === k) || {};
+  $("#sFuel").value = get("fuel_percent").value ?? 0; $("#sRate").value = get("usd_to_iqd").value ?? 1520; $("#sAdjust").value = get("price_adjust_percent").value ?? 0;
+  $("#sPhone").value = get("phone").text_value || ""; $("#sWa").value = get("whatsapp").text_value || ""; $("#sEmail").value = get("notify_email").text_value || "";
+  const last = settingsRows.map(r => r.updated_at).sort().pop();
+  $("#setUpdated").textContent = last ? "Last changed " + fmtDate(last) : "";
+  formStatus($("#settingsForm"), "");
+}
+$("#settingsForm").addEventListener("submit", async e => {
+  e.preventDefault(); const f = e.currentTarget, btn = $("button[type=submit]", f);
+  const fuel = parseFloat($("#sFuel").value), rate = parseFloat($("#sRate").value), adj = parseFloat($("#sAdjust").value || "0");
+  const wa = $("#sWa").value.replace(/\D/g, ""), email = $("#sEmail").value.trim(), phone = $("#sPhone").value.trim();
+  if (!(fuel >= 0 && fuel <= 100)) return formStatus(f, "Fuel surcharge must be between 0 and 100.", false);
+  if (!(rate > 0)) return formStatus(f, "Enter the dinar rate (e.g. 1520).", false);
+  if (!(adj >= -50 && adj <= 200)) return formStatus(f, "Price adjustment must be between −50 and 200.", false);
+  if (!/^\d{8,15}$/.test(wa)) return formStatus(f, "WhatsApp number: digits only, with country code (e.g. 9647507422734).", false);
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) return formStatus(f, "Enter a valid email address.", false);
+  btn.disabled = true;
+  const changes = [["fuel_percent", { value: fuel }], ["usd_to_iqd", { value: rate }], ["price_adjust_percent", { value: adj }], ["phone", { text_value: phone }], ["whatsapp", { text_value: wa }], ["notify_email", { text_value: email }]];
+  for (const [key, val] of changes){
+    const { error } = await sb.from("settings").update(val).eq("key", key);
+    if (error){ btn.disabled = false; return formStatus(f, "Could not save " + key + ": " + error.message, false); }
+  }
+  btn.disabled = false; await loadSettings(); formStatus(f, "Saved. The website uses the new settings right away.", true);
+});
+
+start();
+</script>
+</body>
+</html>

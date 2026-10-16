@@ -1054,6 +1054,7 @@ const CONFIG = {
   // Fuel surcharge (%) and dinar rate. The website takes the live values from
   // Supabase -> Table Editor -> settings; these are only used if that can't be reached.
   fuelPercent: 0,
+  priceAdjustPercent: 0,
   usdToIqd: 1520,
   // Tracking service address. Leave empty to use the Supabase "track" function automatically.
   trackingApi: ""
@@ -1074,7 +1075,7 @@ en:{
  p1:"What we collect: your name, email, phone number, city and delivery address when you create an account, and what you write in the contact form.",
  p2:"Why: to create your MySpace account and ID, handle your shipments and reply to your messages.",
  p3:"Who sees it: only the MySpace team. We share shipment details with our shipping partners and customs only when needed to deliver your parcel. We never sell your data.",
- p4:"We use trusted services to run this website: FormSubmit to deliver messages to our inbox and Supabase to store accounts securely. Your password is never sent to us by email.",
+ p4:"We use trusted services to run this website: FormSubmit to deliver messages to our inbox and Supabase to store accounts securely. Your password is never sent to us by email. We count visits anonymously (a random number in your browser, no names or IP addresses) to see how many people use the website.",
  p5:"You can ask us to see, correct or delete your data at any time by email or WhatsApp.",
  skip:"Skip to content",menu:"Menu",lang:"Language",nav_how:"How it works",nav_services:"Services",nav_calc:"Shipping calculator",nav_faq:"FAQ",nav_contact:"Contact",login:"Log in",signup:"Sign up",my_account:"My account",
  hero_eyebrow:"Worldwide pickup · Delivered to Iraq",hero_t1:"Shop the world.",hero_t2:"We fly it to Iraq.",
@@ -1119,7 +1120,7 @@ ar:{
  p1:"ما نجمعه: اسمك وبريدك الإلكتروني ورقم هاتفك ومدينتك وعنوان التوصيل عند إنشاء الحساب، وما تكتبه في نموذج التواصل.",
  p2:"لماذا: لإنشاء حساب MySpace ورقمك الخاص، ومتابعة شحناتك، والرد على رسائلك.",
  p3:"من يطّلع عليها: فريق MySpace فقط. نشارك تفاصيل الشحنة مع شركاء الشحن والجمارك عند الحاجة لتوصيل طردك فقط. لا نبيع بياناتك أبداً.",
- p4:"نستخدم خدمات موثوقة لتشغيل الموقع: FormSubmit لإيصال الرسائل إلى بريدنا، وSupabase لحفظ الحسابات بأمان. لا تُرسَل كلمة المرور إلينا بالبريد أبداً.",
+ p4:"نستخدم خدمات موثوقة لتشغيل الموقع: FormSubmit لإيصال الرسائل إلى بريدنا، وSupabase لحفظ الحسابات بأمان. لا تُرسَل كلمة المرور إلينا بالبريد أبداً. نحسب عدد الزيارات بشكل مجهول (رقم عشوائي في متصفحك، بدون أسماء أو عناوين IP) لمعرفة عدد مستخدمي الموقع.",
  p5:"يمكنك أن تطلب منا الاطلاع على بياناتك أو تصحيحها أو حذفها في أي وقت عبر البريد الإلكتروني أو واتساب.",
  skip:"انتقل إلى المحتوى",menu:"القائمة",lang:"اللغة",nav_how:"كيف نعمل",nav_services:"خدماتنا",nav_calc:"حاسبة الشحن",nav_faq:"الأسئلة الشائعة",nav_contact:"اتصل بنا",login:"تسجيل الدخول",signup:"إنشاء حساب",my_account:"حسابي",
  hero_eyebrow:"استلام من أي مكان · توصيل إلى العراق",hero_t1:"تسوّق من العالم.",hero_t2:"ونوصله جواً إلى العراق.",
@@ -1164,7 +1165,7 @@ ckb:{
  p1:"ئەوەی کۆی دەکەینەوە: ناو، ئیمەیڵ، ژمارەی مۆبایل، شار و ناونیشانی گەیاندنت کاتێک هەژمار دروست دەکەیت، و ئەوەی لە فۆرمی پەیوەندیدا دەینووسیت.",
  p2:"بۆچی: بۆ دروستکردنی هەژماری MySpace و ناسنامەکەت، ڕاپەڕاندنی بارەکانت و وەڵامدانەوەی نامەکانت.",
  p3:"کێ دەیبینێت: تەنها تیمی MySpace. وردەکاری بار تەنها کاتی پێویست بۆ گەیاندنی پاکەتەکەت لەگەڵ هاوبەشانی بارکردن و گومرگ هاوبەش دەکەین. هەرگیز زانیارییەکانت نافرۆشین.",
- p4:"خزمەتگوزاریی متمانەپێکراو بۆ کارپێکردنی ماڵپەڕەکە بەکاردەهێنین: FormSubmit بۆ گەیاندنی نامەکان بە ئیمەیڵەکەمان و Supabase بۆ پاشەکەوتکردنی پارێزراوی هەژمارەکان. وشەی نهێنی هەرگیز بە ئیمەیڵ بۆمان نانێردرێت.",
+ p4:"خزمەتگوزاریی متمانەپێکراو بۆ کارپێکردنی ماڵپەڕەکە بەکاردەهێنین: FormSubmit بۆ گەیاندنی نامەکان بە ئیمەیڵەکەمان و Supabase بۆ پاشەکەوتکردنی پارێزراوی هەژمارەکان. وشەی نهێنی هەرگیز بە ئیمەیڵ بۆمان نانێردرێت. سەردانەکان بە شێوەیەکی نەناسراو دەژمێرین (ژمارەیەکی هەڕەمەکی لە وێبگەڕەکەتدا، بەبێ ناو یان ناونیشانی IP) بۆ ئەوەی بزانین چەند کەس ماڵپەڕەکە بەکاردەهێنن.",
  p5:"دەتوانیت لە هەر کاتێکدا داوامان لێ بکەیت زانیارییەکانت ببینیت، ڕاستی بکەیتەوە یان بیسڕیتەوە، لە ڕێگەی ئیمەیڵ یان واتسئاپەوە.",
  skip:"بڕۆ بۆ ناوەڕۆک",menu:"لیست",lang:"زمان",nav_how:"چۆن کار دەکەین",nav_services:"خزمەتگوزارییەکان",nav_calc:"ژمێرەری بارکردن",nav_faq:"پرسیارە باوەکان",nav_contact:"پەیوەندی",login:"چوونەژوورەوە",signup:"خۆتۆمارکردن",my_account:"هەژمارەکەم",
  hero_eyebrow:"وەرگرتن لە هەموو جیهان · گەیاندن بۆ عێراق",hero_t1:"لە جیهان بازاڕ بکە.",hero_t2:"ئێمە بە ئاسماندا دەیگەیەنینە عێراق.",
@@ -1229,9 +1230,12 @@ function setLang(code){
 $("#langSel").addEventListener("change", e => setLang(e.target.value));
 
 /* ---------- Contact details ---------- */
-$$(".js-phone").forEach(a => { a.href = "tel:" + CONFIG.phone.replace(/\s/g,""); a.textContent = CONFIG.phone; });
-$$(".js-wa").forEach(a => a.href = "https://wa.me/" + CONFIG.whatsapp);
-$$(".js-email").forEach(a => { a.href = "mailto:" + CONFIG.notifyEmail; a.textContent = CONFIG.notifyEmail; });
+function applyContactDetails(){
+  $$(".js-phone").forEach(a => { a.href = "tel:" + CONFIG.phone.replace(/\s/g,""); a.textContent = CONFIG.phone; });
+  $$(".js-wa").forEach(a => a.href = "https://wa.me/" + CONFIG.whatsapp);
+  $$(".js-email").forEach(a => { a.href = "mailto:" + CONFIG.notifyEmail; a.textContent = CONFIG.notifyEmail; });
+}
+applyContactDetails();
 
 /* ---------- Mobile menu ---------- */
 const menuBtn = $("#menuBtn"), mobileMenu = $("#mobileMenu");
@@ -1537,9 +1541,11 @@ function computeQuote(q){
   // round up to the next half kilo
   const w = Math.ceil(charge * 2) / 2;
   const ship = shippingPrice(zone, w, q.type);
-  const fuel = Math.round((ship.price + handling) * (CONFIG.fuelPercent || 0)) / 100;
-  const total = Math.round((ship.price + handling + fuel) * 100) / 100;
-  return { actual, vol, w: ship.billed, ship: ship.price, handling, fuel, total };
+  const adj = 1 + (CONFIG.priceAdjustPercent || 0) / 100;
+  const shipPrice = Math.round(ship.price * adj * 100) / 100, handlingPrice = Math.round(handling * adj * 100) / 100;
+  const fuel = Math.round((shipPrice + handlingPrice) * (CONFIG.fuelPercent || 0)) / 100;
+  const total = Math.round((shipPrice + handlingPrice + fuel) * 100) / 100;
+  return { actual, vol, w: ship.billed, ship: shipPrice, handling: handlingPrice, fuel, total };
 }
 
 /* ----- UI ----- */
@@ -1630,6 +1636,7 @@ $('.qstep[data-q="2"]').addEventListener("submit", e => {
   const type = $('input[name="qType"]:checked').value;
   const q = { from: $("#qFrom").value, to: +$("#qTo").value, type, pieces };
   lastQuote = { q, r: computeQuote(q) };
+  logQuote(false);
   renderResult(); goStep(3);
 });
 
@@ -1658,6 +1665,14 @@ function renderResult(){
     .replace("{addr}", Auth.user?.address ? `${Auth.user.address}${Auth.user.city ? ", " + Auth.user.city : ""}` : "-");
   $("#qBook").href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(msg);
 }
+
+function logQuote(booked){
+  if (!Auth.sb || !lastQuote || !isLiveSite()) return;
+  const { q, r } = lastQuote;
+  Auth.sb.from("quotes").insert({ from_country: q.from, to_city: t("cities").split("|")[q.to] ? ["Erbil","Sulaymaniyah","Duhok","Halabja","Kirkuk","Baghdad","Basra","Mosul","Najaf","Karbala","Other"][q.to] : "",
+    shipment_type: q.type, pieces: Math.min(500, q.pieces.reduce((a, p) => a + p.qty, 0)), chargeable_kg: r.w, total_usd: r.total, booked }).then(() => {}, () => {});
+}
+$("#qBook").addEventListener("click", () => logQuote(true));
 
 function refreshQuoteLang(){ fillRouteSelects(); renderPieces(); renderResult(); }
 
@@ -1711,6 +1726,9 @@ $("#contactForm").addEventListener("submit", async e => {
   if (!validate(f)) return;
   if ($("#cfHoney").value){ status.className = "status ok"; status.textContent = t("sent"); status.hidden = false; f.reset(); return; }
   busy(btn, true);
+  // keep a copy in the admin portal (independent of the email)
+  if (Auth.sb) Auth.sb.from("messages").insert({ name: $("#cfName").value.trim().slice(0,120), email: $("#cfEmail").value.trim().slice(0,200),
+    phone: $("#cfPhone").value.trim().slice(0,40), message: $("#cfMsg").value.trim().slice(0,4000), lang: LANG }).then(() => {}, () => {});
   try{
     await sendEmail("New message from the MySpace website", {
       Name: $("#cfName").value.trim(), Email: $("#cfEmail").value.trim(), Phone: $("#cfPhone").value.trim(),
@@ -1739,11 +1757,16 @@ const loadScript = src => new Promise((ok, fail) => { const s = document.createE
 // fuel surcharge + exchange rate, edited by the owner in Supabase (table "settings")
 async function loadSettings(sb){
   try{
-    const { data } = await sb.from("settings").select("key,value");
+    const { data } = await sb.from("settings").select("key,value,text_value");
     for (const r of data || []){
       if (r.key === "fuel_percent") CONFIG.fuelPercent = Number(r.value) || 0;
       if (r.key === "usd_to_iqd" && Number(r.value) > 0) CONFIG.usdToIqd = Number(r.value);
+      if (r.key === "price_adjust_percent") CONFIG.priceAdjustPercent = Number(r.value) || 0;
+      if (r.key === "phone" && r.text_value) CONFIG.phone = r.text_value;
+      if (r.key === "whatsapp" && /^\d{8,15}$/.test(r.text_value || "")) CONFIG.whatsapp = r.text_value;
+      if (r.key === "notify_email" && /@/.test(r.text_value || "")) CONFIG.notifyEmail = r.text_value;
     }
+    applyContactDetails();
     if (typeof renderResult === "function") renderResult();
   }catch{}
 }
@@ -2010,12 +2033,34 @@ if ("IntersectionObserver" in window){
   ["top","how","services","faq","contact"].forEach(id => { const el = document.getElementById(id); if (el) no.observe(el); });
 } else { $$(".reveal").forEach(el => el.classList.add("in")); }
 
+/* ---------- Anonymous visitor statistics ---------- */
+const isLiveSite = () => /(^|\.)myspaceapp\.com$|github\.io$/.test(location.hostname);
+function countVisit(){
+  if (!Auth.sb || !isLiveSite()) return;
+  let id = store.get("ms_vid");
+  if (!/^[a-z0-9]{8,40}$/.test(id || "")){ id = Array.from(crypto.getRandomValues(new Uint8Array(12)), b => (b % 36).toString(36)).join(""); store.set("ms_vid", id); }
+  const w = Math.min(screen.width || innerWidth, innerWidth);
+  const device = /iPad|Tablet/i.test(navigator.userAgent) || (w >= 600 && w < 1024 && navigator.maxTouchPoints > 0) ? "tablet" : (w < 600 ? "mobile" : "desktop");
+  const params = new URLSearchParams(location.search);
+  let source = (params.get("utm_source") || "").toLowerCase().replace(/[^a-z0-9.\-]/g, "").slice(0, 40);
+  if (!source){
+    try{
+      const h = document.referrer ? new URL(document.referrer).hostname.replace(/^www\.|^m\.|^l\.|^lm\./, "") : "";
+      const known = { google:"google", bing:"bing", facebook:"facebook", fb:"facebook", instagram:"instagram", whatsapp:"whatsapp", wa:"whatsapp",
+        "t.co":"x / twitter", twitter:"x / twitter", x:"x / twitter", tiktok:"tiktok", linkedin:"linkedin", youtube:"youtube", snapchat:"snapchat", telegram:"telegram", yahoo:"yahoo" };
+      if (!h || h === location.hostname) source = "direct";
+      else source = Object.entries(known).find(([k]) => h === k + ".com" || h.startsWith(k + ".") || h === k)?.[1] || h.slice(0, 60);
+    }catch{ source = "direct"; }
+  }
+  Auth.sb.from("visits").insert({ visitor: id, path: location.pathname.slice(0, 200), lang: LANG, device, source }).then(() => {}, () => {});
+}
+
 /* ---------- Start ---------- */
 const urlLang = new URLSearchParams(location.search).get("lang");
 const saved = T[urlLang] ? urlLang : store.get("ms_lang");
 const browser = (navigator.language || "en").slice(0,2);
 setLang(saved || (browser === "ar" ? "ar" : (["ku","ckb"].includes(browser) ? "ckb" : "en")));
-Auth.init().catch(() => { Auth.mode = "local"; Auth.init(); });
+Auth.init().then(countVisit).catch(() => { Auth.mode = "local"; Auth.init(); });
 </script>
 </body>
 </html>
