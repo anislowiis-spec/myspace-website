@@ -5,7 +5,7 @@ with customer accounts, a shipping-price calculator and shipment tracking.
 
 | Folder | What it is |
 |---|---|
-| `website/` | The website itself (one page: `index.html`, plus logo and images). Published to GitHub Pages (www.myspaceapp.com) automatically on every push to `main`. |
+| `website/` | The website itself (one page: `index.html`, plus logo and images). Published to GitHub Pages (myspaceapp.com) automatically on every push to `main`. |
 | `supabase/migrations/` | Database: the `customers` table and the rule that creates a customer row (with a MySpace ID) at sign-up. |
 | `supabase/functions/track/` | Tracking service for logged-in customers. Its API settings are stored as Supabase secrets. |
 | `.github/workflows/deploy.yml` | Publishes `website/` to GitHub Pages. |
