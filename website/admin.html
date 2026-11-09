@@ -11,8 +11,8 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Barlow:wght@400;500;600;700&display=swap">
 <style>
 :root{
-  --navy:#1b2d5b; --navy-2:#243a72; --navy-deep:#122044;
-  --teal:#2f9c93; --teal-ink:#1c7068; --teal-soft:#d7efed; --chart:#0f9488;
+  --navy:#0b2052; --navy-2:#1a3678; --navy-deep:#061638;
+  --teal:#f58200; --teal-ink:#a84d00; --teal-soft:#ffe9d2; --chart:#f58200;
   --bg:#f3f6f9; --surface:#fff; --fg:#14213d; --muted:#56637c; --line:#dde4ec; --grid:#e8edf3;
   --ok:#1f7a4d; --ok-bg:#e1f3ea; --err:#b3261e; --err-bg:#fbe9e7; --warn:#8a5a00; --warn-bg:#fff4dc;
   --radius:14px; --shadow:0 1px 2px rgba(20,33,61,.06),0 6px 18px rgba(20,33,61,.06);
@@ -34,14 +34,14 @@ button{font:inherit}
 
 /* buttons & inputs */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:40px;padding:8px 16px;border-radius:10px;border:1.5px solid transparent;font-weight:600;cursor:pointer;text-decoration:none;white-space:nowrap;transition:background .15s,border-color .15s}
-.btn-primary{background:var(--teal-ink);color:#fff}.btn-primary:hover{background:#155a53}
+.btn-primary{background:var(--teal-ink);color:#fff}.btn-primary:hover{background:#8a3f00}
 .btn-navy{background:var(--navy);color:#fff}.btn-navy:hover{background:var(--navy-deep)}
 .btn-ghost{background:var(--surface);color:var(--navy);border-color:var(--line)}.btn-ghost:hover{border-color:var(--navy)}
 .btn-danger{background:var(--surface);color:var(--err);border-color:#f0c4bf}.btn-danger:hover{background:var(--err-bg)}
 .btn-sm{min-height:34px;padding:4px 12px;font-size:14px}
 .btn[disabled]{opacity:.5;cursor:progress}
 .input{width:100%;min-height:42px;padding:8px 12px;border:1.5px solid #c9d3df;border-radius:10px;background:#fff;color:var(--fg);font:15px var(--body)}
-.input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(47,156,147,.18)}
+.input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(245,130,0,.18)}
 textarea.input{min-height:80px;resize:vertical}
 .field{display:flex;flex-direction:column;gap:5px;margin-bottom:14px;min-width:0}
 .field label{font-weight:600;font-size:13px;color:var(--navy)}
@@ -53,8 +53,8 @@ textarea.input{min-height:80px;resize:vertical}
 .status.ok{background:var(--ok-bg);color:var(--ok)}.status.err{background:var(--err-bg);color:var(--err)}
 
 /* login */
-.login{min-height:100dvh;display:grid;place-items:center;padding:20px;background:linear-gradient(180deg,#e4f4f4,#c4e5e6)}
-.login-card{width:min(400px,100%);background:#fff;border-radius:20px;box-shadow:0 20px 50px rgba(27,45,91,.16);padding:28px}
+.login{min-height:100dvh;display:grid;place-items:center;padding:20px;background:linear-gradient(180deg,#edf1f9,#d5ddef)}
+.login-card{width:min(400px,100%);background:#fff;border-radius:20px;box-shadow:0 20px 50px rgba(11,32,82,.16);padding:28px}
 .login-card img{width:72px;margin:0 auto 10px;display:block}
 .login-card h1{text-align:center;font-size:30px;margin-bottom:4px}
 .login-card p.sub{text-align:center;color:var(--muted);margin:0 0 20px}
@@ -68,8 +68,8 @@ textarea.input{min-height:80px;resize:vertical}
 .side .brand small{display:block;font:600 11px var(--body);color:#8fa2cc;letter-spacing:.12em;text-transform:uppercase}
 .nav-btn{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border:0;border-radius:10px;background:none;color:#c9d3ea;text-align:start;cursor:pointer;font-weight:600}
 .nav-btn:hover{background:rgba(255,255,255,.07);color:#fff}
-.nav-btn[aria-current="page"]{background:rgba(47,156,147,.25);color:#fff}
-.nav-btn .count{margin-inline-start:auto;background:#e8673f;color:#fff;border-radius:999px;font-size:12px;padding:1px 8px}
+.nav-btn[aria-current="page"]{background:rgba(245,130,0,.25);color:#fff}
+.nav-btn .count{margin-inline-start:auto;background:#f58200;color:#fff;border-radius:999px;font-size:12px;padding:1px 8px}
 .side .bottom{margin-top:auto;display:grid;gap:6px}
 .side .who{font-size:12px;color:#8fa2cc;padding:0 12px;word-break:break-all}
 .main{padding:24px clamp(16px,3vw,32px) 48px;min-width:0}
@@ -109,7 +109,7 @@ textarea.input{min-height:80px;resize:vertical}
 .chart .axis{font:12px var(--body);fill:var(--muted)}
 .chart .bar{fill:var(--chart)}
 .chart .hit{fill:transparent;cursor:default}
-.chart .hit:hover + .bar,.chart .hit:focus + .bar{fill:#0b766d}
+.chart .hit:hover + .bar,.chart .hit:focus + .bar{fill:#a84d00}
 .tooltip{position:absolute;pointer-events:none;background:var(--navy-deep);color:#fff;border-radius:8px;padding:6px 10px;font-size:13px;white-space:nowrap;transform:translate(-50%,-110%);z-index:5}
 .tooltip b{font-size:16px;display:block}
 details.table-view summary{cursor:pointer;color:var(--teal-ink);font-weight:600;font-size:14px;margin-top:8px}
@@ -137,14 +137,14 @@ tr.click{cursor:pointer}tr.click:hover td{background:#f6fbfa}
 
 /* messages */
 .msg{border:1px solid var(--line);border-radius:12px;background:#fff;padding:14px 16px;margin-bottom:10px}
-.msg.new{border-color:#f3b9a3;box-shadow:inset 3px 0 0 #e8673f}
+.msg.new{border-color:#f3b9a3;box-shadow:inset 3px 0 0 #f58200}
 .msg header{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-bottom:6px}
 .msg p{white-space:pre-wrap;margin:6px 0 10px}
 .msg .row{display:flex;gap:8px;flex-wrap:wrap}
 
 /* dialogs */
-dialog{border:0;border-radius:18px;padding:0;width:min(720px,calc(100vw - 24px));max-height:calc(100dvh - 24px);box-shadow:0 30px 80px rgba(18,32,68,.35);color:var(--fg)}
-dialog::backdrop{background:rgba(18,32,68,.5)}
+dialog{border:0;border-radius:18px;padding:0;width:min(720px,calc(100vw - 24px));max-height:calc(100dvh - 24px);box-shadow:0 30px 80px rgba(6,22,56,.35);color:var(--fg)}
+dialog::backdrop{background:rgba(6,22,56,.5)}
 .dlg-head{display:flex;justify-content:space-between;align-items:center;gap:10px;padding:18px 20px 0}
 .dlg-head h2{font-size:26px}
 .dlg-body{padding:16px 20px 22px}
@@ -162,6 +162,10 @@ dialog::backdrop{background:rgba(18,32,68,.5)}
 .toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:var(--navy-deep);color:#fff;padding:10px 18px;border-radius:10px;font-weight:600;z-index:100;box-shadow:var(--shadow)}
 .toast.err{background:var(--err)}
 .loading{opacity:.55;transition:opacity .2s}
+
+/* Brand colours from the logo: navy + orange */
+.btn-primary{background:var(--teal);color:var(--navy)}
+.btn-primary:hover{background:#ff9a2e;color:var(--navy)}
 </style>
 </head>
 <body>
