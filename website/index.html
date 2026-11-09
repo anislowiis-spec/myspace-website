@@ -7,7 +7,7 @@
 <meta name="description" content="MySpace: we collect your shipment anywhere in the world and fly it to your address in Iraq. Instant prices in USD and IQD. Office in Erbil.">
 <link rel="icon" type="image/png" href="favicon.png?v=2">
 <link rel="apple-touch-icon" href="logo.png?v=2">
-<meta name="theme-color" content="#1b2d5b">
+<meta name="theme-color" content="#0b2052">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="MySpace">
 <meta property="og:title" content="MySpace — Shop the world, delivered to Iraq">
@@ -23,11 +23,11 @@
 <style>
 /* ---------- Brand tokens (navy + teal from the MySpace logo) ---------- */
 :root{
-  --navy:#1b2d5b; --navy-2:#243a72; --navy-deep:#122044;
-  --teal:#2f9c93; --teal-ink:#1c7068; --teal-soft:#d7efed;
-  --sky:#e4f4f4; --sky-2:#c4e5e6;
+  --navy:#0b2052; --navy-2:#1a3678; --navy-deep:#061638;
+  --teal:#f58200; --teal-ink:#a84d00; --teal-soft:#ffe9d2;
+  --sky:#edf1f9; --sky-2:#d5ddef;
   --bg:#f5f8fb; --surface:#ffffff; --fg:#14213d; --muted:#4f5d78; --line:#d9e2ec;
-  --coral:#e8673f; --kraft:#d7a56b; --kraft-dark:#b5824b;
+  --coral:#f58200; --kraft:#d7a56b; --kraft-dark:#b5824b;
   --ok:#1f7a4d; --err:#b3261e;
   --radius:16px; --radius-sm:10px;
   --shadow:0 1px 2px rgba(20,33,61,.06),0 8px 24px rgba(20,33,61,.08);
@@ -59,7 +59,7 @@ p{margin:0}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:10px 22px;border-radius:999px;border:2px solid transparent;font:600 16px/1.2 var(--body);cursor:pointer;text-decoration:none;transition:background .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease),transform .15s var(--ease);touch-action:manipulation;white-space:nowrap}
 .btn:active{transform:scale(.97)}
 .btn-primary{background:var(--teal-ink);color:#fff}
-.btn-primary:hover{background:#155a53}
+.btn-primary:hover{background:#8a3f00}
 .btn-navy{background:var(--navy);color:#fff}
 .btn-navy:hover{background:var(--navy-deep)}
 .btn-outline{border-color:var(--navy);color:var(--navy);background:transparent}
@@ -70,27 +70,27 @@ p{margin:0}
 .btn[disabled]{opacity:.55;cursor:progress}
 
 /* ---------- Header ---------- */
-.site-header{position:sticky;top:0;z-index:40;background:rgba(228,244,244,.88);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid rgba(27,45,91,.1)}
+.site-header{position:sticky;top:0;z-index:40;background:rgba(237,241,249,.88);backdrop-filter:saturate(1.4) blur(10px);-webkit-backdrop-filter:saturate(1.4) blur(10px);border-bottom:1px solid rgba(11,32,82,.1)}
 .nav{display:flex;align-items:center;gap:20px;min-height:72px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--navy);flex:none}
 .brand img{width:48px;height:auto}
 .brand span{font:800 26px/1 "Barlow Condensed",Arial,sans-serif;letter-spacing:.03em}
 .nav-links{display:flex;gap:4px;margin-inline:auto;list-style:none;padding:0}
 .nav-links a{display:block;padding:10px 12px;border-radius:8px;color:var(--fg);text-decoration:none;font-weight:500}
-.nav-links a:hover{background:rgba(27,45,91,.07);color:var(--navy)}
+.nav-links a:hover{background:rgba(11,32,82,.07);color:var(--navy)}
 .nav-actions{display:flex;align-items:center;gap:10px}
 .auth-btns{display:flex;gap:10px}
 @media (max-width:480px){.lang select{padding-inline:32px 10px;font-size:14px}.nav{gap:10px}}
 .lang{position:relative;display:flex;align-items:center}
 .lang .icon{position:absolute;inset-inline-start:10px;pointer-events:none;color:var(--navy)}
-.lang select{appearance:none;-webkit-appearance:none;min-height:44px;padding-block:8px;padding-inline:36px 14px;border:1px solid rgba(27,45,91,.25);border-radius:999px;background:rgba(255,255,255,.75);font:600 15px var(--body);color:var(--navy);cursor:pointer}
-.menu-btn{display:none;width:46px;height:46px;border-radius:12px;border:1px solid rgba(27,45,91,.25);background:#fff;color:var(--navy);align-items:center;justify-content:center;cursor:pointer}
+.lang select{appearance:none;-webkit-appearance:none;min-height:44px;padding-block:8px;padding-inline:36px 14px;border:1px solid rgba(11,32,82,.25);border-radius:999px;background:rgba(255,255,255,.75);font:600 15px var(--body);color:var(--navy);cursor:pointer}
+.menu-btn{display:none;width:46px;height:46px;border-radius:12px;border:1px solid rgba(11,32,82,.25);background:#fff;color:var(--navy);align-items:center;justify-content:center;cursor:pointer}
 .mobile-menu{display:none}
 @media (max-width:1020px){
   .nav-links,.nav-actions .auth-btns{display:none}
   .menu-btn{display:inline-flex}
   .nav-actions{margin-inline-start:auto}
-  .mobile-menu{display:block;border-top:1px solid rgba(27,45,91,.1);padding:12px 0 20px}
+  .mobile-menu{display:block;border-top:1px solid rgba(11,32,82,.1);padding:12px 0 20px}
   .mobile-menu[hidden]{display:none!important}
   .mobile-menu ul{list-style:none;margin:0;padding:0}
   .mobile-menu a{display:block;padding:14px 4px;color:var(--fg);font-weight:600;text-decoration:none;border-bottom:1px solid var(--line)}
@@ -109,7 +109,7 @@ p{margin:0}
 .hero-ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
 .hero-meta{display:flex;align-items:center;gap:8px;margin-top:22px;color:var(--navy);font-weight:600;font-size:15px}
 
-.tool-card{background:var(--surface);border-radius:20px;box-shadow:0 20px 50px rgba(27,45,91,.16);position:relative;z-index:5}
+.tool-card{background:var(--surface);border-radius:20px;box-shadow:0 20px 50px rgba(11,32,82,.16);position:relative;z-index:5}
 .tabs{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--line)}
 .tab{display:flex;align-items:center;justify-content:center;gap:8px;min-height:56px;background:none;border:0;border-bottom:3px solid transparent;font:600 16px var(--body);color:var(--muted);cursor:pointer;transition:color .2s,border-color .2s}
 .tab[aria-selected="true"]{color:var(--navy);border-bottom-color:var(--teal)}
@@ -120,7 +120,7 @@ p{margin:0}
 .field .help{font-size:13px;color:var(--muted)}
 .field .error{font-size:13px;color:var(--err);font-weight:600}
 .input{width:100%;min-height:48px;padding:10px 14px;border:1.5px solid #c3cedb;border-radius:var(--radius-sm);font:16px var(--body);color:var(--fg);background:#fff;transition:border-color .2s,box-shadow .2s}
-.input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(47,156,147,.2)}
+.input:focus{outline:none;border-color:var(--teal);box-shadow:0 0 0 3px rgba(245,130,0,.2)}
 .input[aria-invalid="true"]{border-color:var(--err)}
 textarea.input{min-height:120px;resize:vertical}
 .input-icon{position:relative}
@@ -174,7 +174,7 @@ section{padding-block:clamp(64px,8vw,104px)}
 .trust{background:var(--navy);color:#fff;padding-block:36px}
 .trust ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:28px}
 .trust li{display:flex;gap:14px;align-items:flex-start}
-.trust .badge{width:48px;height:48px;border-radius:12px;background:rgba(47,156,147,.22);color:#7fd6cd;display:grid;place-items:center;flex:none}
+.trust .badge{width:48px;height:48px;border-radius:12px;background:rgba(245,130,0,.22);color:#ffb15c;display:grid;place-items:center;flex:none}
 .trust h3{color:#fff;font-size:20px;font-weight:700;margin-bottom:2px}
 :lang(ar) .trust h3,:lang(ckb) .trust h3{font-size:17px}
 .trust p{color:#c5cee3;font-size:15px}
@@ -205,10 +205,10 @@ section{padding-block:clamp(64px,8vw,104px)}
 .cats{background:linear-gradient(135deg,var(--navy) 0%,var(--navy-2) 100%);color:#fff;position:relative;overflow:hidden}
 .cats .section-head h2{color:#fff}
 .cats .section-head p{color:#c5cee3}
-.cats .kicker{color:#7fd6cd}
+.cats .kicker{color:#ffb15c}
 .cat-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:14px;list-style:none;margin:0;padding:0}
 .cat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);border-radius:var(--radius);padding:22px 16px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:12px;font-weight:600}
-.cat .ic{width:56px;height:56px;border-radius:50%;background:rgba(47,156,147,.25);color:#9be3dc;display:grid;place-items:center}
+.cat .ic{width:56px;height:56px;border-radius:50%;background:rgba(245,130,0,.25);color:#ffc78a;display:grid;place-items:center}
 .cats .more{text-align:center;margin-top:24px;color:#c5cee3;font-weight:600}
 @media (max-width:980px){.cat-grid{grid-template-columns:repeat(3,1fr)}}
 @media (max-width:520px){.cat-grid{grid-template-columns:1fr 1fr}}
@@ -222,7 +222,7 @@ section{padding-block:clamp(64px,8vw,104px)}
 @media (max-width:820px){.cta-inner{grid-template-columns:1fr;text-align:center;justify-items:center}}
 
 .quote{background:linear-gradient(180deg,var(--bg),var(--sky))}
-.qcard{max-width:880px;margin-inline:auto;background:var(--surface);border-radius:24px;box-shadow:0 20px 50px rgba(27,45,91,.12);padding:clamp(20px,4vw,40px)}
+.qcard{max-width:880px;margin-inline:auto;background:var(--surface);border-radius:24px;box-shadow:0 20px 50px rgba(11,32,82,.12);padding:clamp(20px,4vw,40px)}
 .stepper{list-style:none;margin:0 0 28px;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;counter-reset:none}
 .stepper li{display:flex;align-items:center;gap:10px;font-weight:600;color:var(--muted);padding-bottom:12px;border-bottom:3px solid var(--line)}
 .stepper .num{width:30px;height:30px;border-radius:50%;background:var(--line);color:var(--muted);display:grid;place-items:center;font-size:14px;flex:none}
@@ -388,8 +388,8 @@ footer{background:var(--navy-deep);color:#c5cee3;padding-block:48px 28px}
 .wa-float svg{width:30px;height:30px}
 
 /* ---------- Dialogs ---------- */
-dialog{border:0;border-radius:22px;padding:0;width:min(460px,calc(100vw - 32px));max-height:calc(100dvh - 32px);box-shadow:0 30px 80px rgba(18,32,68,.35);color:var(--fg)}
-dialog::backdrop{background:rgba(18,32,68,.55);backdrop-filter:blur(3px)}
+dialog{border:0;border-radius:22px;padding:0;width:min(460px,calc(100vw - 32px));max-height:calc(100dvh - 32px);box-shadow:0 30px 80px rgba(6,22,56,.35);color:var(--fg)}
+dialog::backdrop{background:rgba(6,22,56,.55);backdrop-filter:blur(3px)}
 dialog[open]{animation:pop .22s var(--ease)}
 @keyframes pop{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
 .dlg-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:22px 24px 0}
@@ -414,7 +414,7 @@ dialog[open]{animation:pop .22s var(--ease)}
 
 .site-header{transition:box-shadow .25s var(--ease)}
 .site-header.scrolled{box-shadow:0 6px 20px rgba(20,33,61,.08)}
-.nav-links a[aria-current="true"]{color:var(--navy);background:rgba(27,45,91,.08);font-weight:600}
+.nav-links a[aria-current="true"]{color:var(--navy);background:rgba(11,32,82,.08);font-weight:600}
 .js .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s var(--ease),transform .6s var(--ease);transition-delay:var(--d,0ms)}
 .js .reveal.in{opacity:1;transform:none}
 .hp{position:absolute!important;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
@@ -428,6 +428,11 @@ dialog[open]{animation:pop .22s var(--ease)}
   .js .reveal{opacity:1;transform:none}
   *,*::before,*::after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
 }
+
+/* Brand colours from the logo: navy + orange */
+.btn-primary{background:var(--teal);color:var(--navy)}
+.btn-primary:hover{background:#ff9a2e;color:var(--navy)}
+.hero h1 .line2{color:#d96400}
 </style>
 </head>
 <body>
@@ -586,7 +591,7 @@ dialog[open]{animation:pop .22s var(--ease)}
     <svg viewBox="0 0 1440 470" preserveAspectRatio="xMidYMax slice">
       <defs>
         <clipPath id="globeClip"><circle cx="760" cy="360" r="190"/></clipPath>
-        <linearGradient id="gGlobe" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2a4585"/><stop offset="1" stop-color="#14234a"/></linearGradient>
+        <linearGradient id="gGlobe" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#1d3a80"/><stop offset="1" stop-color="#0a1d4a"/></linearGradient>
       </defs>
       <!-- clouds -->
       <g class="cloud-a" fill="#fff" opacity=".9">
@@ -597,7 +602,7 @@ dialog[open]{animation:pop .22s var(--ease)}
         <ellipse cx="560" cy="150" rx="48" ry="13"/><ellipse cx="1330" cy="200" rx="54" ry="14"/>
       </g>
       <!-- far skyline -->
-      <g fill="#9fcfd3">
+      <g fill="#f6c999">
         <rect x="20" y="300" width="46" height="120"/><rect x="72" y="260" width="34" height="160"/><rect x="112" y="320" width="60" height="100"/>
         <rect x="200" y="285" width="40" height="135"/><rect x="246" y="330" width="56" height="90"/><rect x="1010" y="300" width="44" height="120"/>
         <rect x="1060" y="270" width="30" height="150"/><rect x="1096" y="320" width="54" height="100"/><rect x="1290" y="290" width="40" height="130"/>
@@ -605,14 +610,14 @@ dialog[open]{animation:pop .22s var(--ease)}
       </g>
       <!-- globe with orbit (echoes the logo) -->
       <circle cx="760" cy="360" r="190" fill="url(#gGlobe)"/>
-      <g clip-path="url(#globeClip)" fill="#2f9c93" opacity=".9">
+      <g clip-path="url(#globeClip)" fill="#f58200" opacity=".9">
         <path d="M620 230c30-20 80-24 110-10 22 10 10 34-14 40-30 8-40 30-70 26-34-4-48-38-26-56z"/>
         <path d="M760 200c40-14 110 0 140 24 22 18-6 40-40 36-30-4-44 14-74 8-34-6-56-50-26-68z"/>
         <path d="M800 290c30 0 60 26 56 60-4 40-30 70-56 70-24 0-30-30-24-60 6-28-6-70 24-70z"/>
         <path d="M640 330c22-6 50 14 52 40 2 30-22 50-44 40-20-8-34-74-8-80z"/>
         <path d="M900 330c24-6 44 10 40 30-4 18-34 20-46 8-10-12-8-34 6-38z"/>
       </g>
-      <ellipse cx="760" cy="330" rx="270" ry="56" fill="none" stroke="#2f9c93" stroke-width="10" transform="rotate(-12 760 330)" opacity=".9"/>
+      <ellipse cx="760" cy="330" rx="270" ry="56" fill="none" stroke="#f58200" stroke-width="10" transform="rotate(-12 760 330)" opacity=".9"/>
       <!-- routes from the world to Erbil -->
       <g fill="none" stroke="#fff" stroke-width="2.5" opacity=".9" class="route">
         <path d="M660 250 Q 640 170 560 210"/>
@@ -622,17 +627,17 @@ dialog[open]{animation:pop .22s var(--ease)}
       <circle cx="980" cy="220" r="6" fill="#fff"/><circle cx="980" cy="220" r="6" fill="#fff" class="ping"/>
       <!-- Erbil citadel -->
       <g>
-        <path d="M330 420 L372 352 L612 352 L654 420Z" fill="#4f8fa8"/>
-        <path d="M372 352 L380 318 L604 318 L612 352Z" fill="#3d7c95"/>
-        <g fill="#3d7c95">
+        <path d="M330 420 L372 352 L612 352 L654 420Z" fill="#3d63b3"/>
+        <path d="M372 352 L380 318 L604 318 L612 352Z" fill="#2a4f9e"/>
+        <g fill="#2a4f9e">
           <rect x="380" y="306" width="18" height="14"/><rect x="420" y="306" width="18" height="14"/><rect x="460" y="306" width="18" height="14"/>
           <rect x="506" y="306" width="18" height="14"/><rect x="546" y="306" width="18" height="14"/><rect x="586" y="306" width="18" height="14"/>
         </g>
-        <path d="M478 352v-26a14 14 0 0 1 28 0v26Z" fill="#2c6378"/>
-        <rect x="520" y="270" width="8" height="40" fill="#3d7c95"/><circle cx="524" cy="266" r="9" fill="#3d7c95"/>
+        <path d="M478 352v-26a14 14 0 0 1 28 0v26Z" fill="#1f3f80"/>
+        <rect x="520" y="270" width="8" height="40" fill="#2a4f9e"/><circle cx="524" cy="266" r="9" fill="#2a4f9e"/>
       </g>
       <!-- Mudhafaria minaret -->
-      <g fill="#3d7c95">
+      <g fill="#2a4f9e">
         <path d="M1192 420 L1200 230 L1222 230 L1230 420Z"/>
         <rect x="1194" y="300" width="34" height="10" rx="3"/>
         <rect x="1196" y="236" width="30" height="8" rx="3"/>
@@ -644,22 +649,22 @@ dialog[open]{animation:pop .22s var(--ease)}
         <rect x="1286" y="350" width="14" height="70" fill="#c6935b"/>
         <rect x="1270" y="296" width="70" height="54" fill="#e2b47e"/><rect x="1340" y="296" width="18" height="54" fill="#b5824b"/>
         <rect x="1298" y="296" width="12" height="54" fill="#c6935b"/>
-        <rect x="1258" y="392" width="40" height="16" rx="2" fill="#2f9c93"/>
+        <rect x="1258" y="392" width="40" height="16" rx="2" fill="#f58200"/>
         <text x="1278" y="404" text-anchor="middle" font-family="Barlow Condensed,Arial" font-weight="800" font-size="10" fill="#fff">MYSPACE</text>
       </g>
       <!-- ground -->
-      <rect x="0" y="418" width="1440" height="52" fill="#1b2d5b"/>
-      <rect x="0" y="418" width="1440" height="5" fill="#2f9c93"/>
+      <rect x="0" y="418" width="1440" height="52" fill="#0b2052"/>
+      <rect x="0" y="418" width="1440" height="5" fill="#f58200"/>
       <g fill="#fff" opacity=".35"><rect x="80" y="442" width="60" height="4"/><rect x="220" y="442" width="60" height="4"/><rect x="360" y="442" width="60" height="4"/><rect x="900" y="442" width="60" height="4"/><rect x="1040" y="442" width="60" height="4"/><rect x="1180" y="442" width="60" height="4"/></g>
       <!-- delivery van -->
       <g class="van">
         <path d="M70 360 h150 v58 H70Z" fill="#fff"/>
         <path d="M220 372 h40 l26 26 v20 h-66Z" fill="#fff"/>
-        <path d="M228 378 h28 l18 20 h-46Z" fill="#1b2d5b"/>
-        <rect x="70" y="388" width="216" height="8" fill="#2f9c93"/>
-        <text x="145" y="381" text-anchor="middle" font-family="Barlow Condensed,Arial" font-weight="800" font-size="18" fill="#1b2d5b">MYSPACE</text>
-        <circle cx="110" cy="420" r="14" fill="#122044"/><circle cx="110" cy="420" r="5" fill="#c4e5e6"/>
-        <circle cx="250" cy="420" r="14" fill="#122044"/><circle cx="250" cy="420" r="5" fill="#c4e5e6"/>
+        <path d="M228 378 h28 l18 20 h-46Z" fill="#0b2052"/>
+        <rect x="70" y="388" width="216" height="8" fill="#f58200"/>
+        <text x="145" y="381" text-anchor="middle" font-family="Barlow Condensed,Arial" font-weight="800" font-size="18" fill="#0b2052">MYSPACE</text>
+        <circle cx="110" cy="420" r="14" fill="#061638"/><circle cx="110" cy="420" r="5" fill="#d5ddef"/>
+        <circle cx="250" cy="420" r="14" fill="#061638"/><circle cx="250" cy="420" r="5" fill="#d5ddef"/>
       </g>
       <!-- plane -->
       <g class="plane" style="transform-origin:420px 140px">
@@ -667,16 +672,16 @@ dialog[open]{animation:pop .22s var(--ease)}
           <path d="M170 160 H40"/><path d="M200 182 H90"/>
         </g>
         <g transform="translate(190 92)">
-          <path d="M150 52 L210 -6 L236 -6 L196 52Z" fill="#14234a"/>
-          <path d="M10 46 L-14 -12 L16 -12 L64 40Z" fill="#2f9c93"/>
-          <path d="M-2 -12 L16 -12 L30 6 Z" fill="#e8673f"/>
+          <path d="M150 52 L210 -6 L236 -6 L196 52Z" fill="#0a1d4a"/>
+          <path d="M10 46 L-14 -12 L16 -12 L64 40Z" fill="#f58200"/>
+          <path d="M-2 -12 L16 -12 L30 6 Z" fill="#f58200"/>
           <path d="M0 46 C 20 26, 270 22, 330 30 C 356 34, 364 48, 340 56 C 270 68, 40 68, 0 46Z" fill="#fff"/>
-          <path d="M8 52 C 60 62, 280 66, 340 56 C 330 62, 270 70, 150 70 C 60 70, 20 62, 8 52Z" fill="#1b2d5b"/>
-          <path d="M40 44 C 120 38, 260 36, 330 40 L 328 46 C 250 44, 120 46, 40 50Z" fill="#2f9c93"/>
-          <path d="M318 34 C 330 34, 342 38, 346 44 L 326 44Z" fill="#1b2d5b"/>
-          <g fill="#1b2d5b"><circle cx="110" cy="36" r="3"/><circle cx="126" cy="35" r="3"/><circle cx="142" cy="34" r="3"/><circle cx="158" cy="34" r="3"/><circle cx="174" cy="34" r="3"/><circle cx="190" cy="34" r="3"/><circle cx="206" cy="34" r="3"/><circle cx="222" cy="34" r="3"/><circle cx="238" cy="34" r="3"/><circle cx="254" cy="34" r="3"/><circle cx="270" cy="35" r="3"/></g>
-          <path d="M150 56 L96 124 L130 124 L222 60Z" fill="#243a72"/>
-          <ellipse cx="146" cy="92" rx="30" ry="12" fill="#1b2d5b"/><ellipse cx="174" cy="92" rx="5" ry="11" fill="#2f9c93"/>
+          <path d="M8 52 C 60 62, 280 66, 340 56 C 330 62, 270 70, 150 70 C 60 70, 20 62, 8 52Z" fill="#0b2052"/>
+          <path d="M40 44 C 120 38, 260 36, 330 40 L 328 46 C 250 44, 120 46, 40 50Z" fill="#f58200"/>
+          <path d="M318 34 C 330 34, 342 38, 346 44 L 326 44Z" fill="#0b2052"/>
+          <g fill="#0b2052"><circle cx="110" cy="36" r="3"/><circle cx="126" cy="35" r="3"/><circle cx="142" cy="34" r="3"/><circle cx="158" cy="34" r="3"/><circle cx="174" cy="34" r="3"/><circle cx="190" cy="34" r="3"/><circle cx="206" cy="34" r="3"/><circle cx="222" cy="34" r="3"/><circle cx="238" cy="34" r="3"/><circle cx="254" cy="34" r="3"/><circle cx="270" cy="35" r="3"/></g>
+          <path d="M150 56 L96 124 L130 124 L222 60Z" fill="#1a3678"/>
+          <ellipse cx="146" cy="92" rx="30" ry="12" fill="#0b2052"/><ellipse cx="174" cy="92" rx="5" ry="11" fill="#f58200"/>
         </g>
       </g>
     </svg>
